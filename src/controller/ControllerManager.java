@@ -49,7 +49,7 @@ public class ControllerManager {
 	}
 	
 	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel) {	
-		main.keyReleased(totalMoneyJLabel);	//quest�� ���������.
+		main.keyReleased(totalMoneyJLabel);	//quest占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占�.
 	}
 	
 	public Boolean checkFisrtGame(){
@@ -64,12 +64,6 @@ public class ControllerManager {
 	
 	public void setP_Nickname(String nickname){
 		player.setP_Nickname(nickname);
-	}
-
-	public void savePlayer(KeyEvent e) {
-		state.stateLevelUp(e, main.getMain());
-		
-
 	}
 
 
@@ -87,6 +81,10 @@ public class ControllerManager {
 		
 	}
 
+	//************스탯 버튼 초이스******************
+	public void stateChoice(ActionEvent e){
+		state.choice(e, main.getMain());
+	}
 
 }
 

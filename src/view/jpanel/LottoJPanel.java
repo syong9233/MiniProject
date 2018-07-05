@@ -66,10 +66,9 @@ public class LottoJPanel extends JPanel implements ActionListener{
 
    @Override
    public void actionPerformed(ActionEvent e) {
-
-	   View.cm().lottoStart(e, this, yesOrNoJPanel, lottoRegame);
 	   
-
+	   View.cm().lottoStart(e, this, yesOrNoJPanel, lottoRegame);
+	  
    }
 
    
