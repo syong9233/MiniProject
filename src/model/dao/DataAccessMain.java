@@ -8,6 +8,7 @@ import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import controller.ControllerManager;
 import model.vo.Main;
 import model.vo.Player;
 import model.vo.Quest;
@@ -113,6 +114,7 @@ public class DataAccessMain {
 	public void whileNotPlay(MainJPanel mainJPanel, Player player){
 		JLabel noticeJLabel = new JLabel("플레이 하지 않은 동안 획득한 금액 ");
 		JLabel noticeMoneyJLabel = new JLabel();
+		
 		int temp = (int)((new Date().getTime() - player.getP_lastTime().getTime()) / 1000);
 
 		main.setM_TotalOfMoney(main.getM_TotalOfMoney() + (main.getM_AmountOfTapMoney() * temp));
@@ -170,6 +172,7 @@ public class DataAccessMain {
 			view.add(mainJPanel);
 			view.add(subJPanel);
 			view.repaint();
+			View.cm().savePlayer();
 		}else if(e.getSource() instanceof LottoBackJButton){
 			lottoJPanel.setVisible(false);
 			subJPanel.setVisible(true);

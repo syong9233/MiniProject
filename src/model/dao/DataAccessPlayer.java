@@ -39,6 +39,7 @@ public class DataAccessPlayer {
 	
 	public void save(Main main, Quest quest, State state, Store store) {
 		player.setP_lastTime(new Date());
+		player.setP_Cash(player.getP_Cash());
 		player.setP_qtyOfTap(quest.getQ_qtyOfTap());
 		player.setP_qtyOfTotalMoney(quest.getQ_qtyOfTotalMoney());
 		player.setP_TotalOfMoney(main.getM_TotalOfMoney());
@@ -63,4 +64,5 @@ public class DataAccessPlayer {
 		player.setP_Nickname(nickname);		
 	}
 
+	
 }

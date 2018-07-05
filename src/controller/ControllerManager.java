@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -11,6 +12,7 @@ import model.dao.DataAccessPlayer;
 import model.dao.DataAccessQuest;
 import model.dao.DataAccessState;
 import model.dao.DataAccessStore;
+import model.vo.Player;
 import view.View;
 import view.jlabel.AutoMoneyJLabel;
 import view.jlabel.NicknameJLabel;
@@ -49,7 +51,7 @@ public class ControllerManager {
 	}
 	
 	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel) {	
-		main.keyReleased(totalMoneyJLabel);	//quest�� ���������.
+		main.keyReleased(totalMoneyJLabel);
 	}
 	
 	public Boolean checkFisrtGame(){
@@ -86,37 +88,18 @@ public class ControllerManager {
 		store.lottoStart(e, main.getMain(), lottoJPanel, yesOrNoJPanel, lottoRegame);
 		
 	}
+	
+	public void storeMenu(StoreJPanel storeJPanel, ActionEvent e) {
+		store.StoreMenu(storeJPanel, e , main.getMain(), player.getPlayer());
+	}
 
+	public void useItem(SubJPanel subJPanel, ActionEvent e) {
+		store.useItem(subJPanel, e, main.getMain(),player.getPlayer());
+	}
+
+	
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
