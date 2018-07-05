@@ -152,4 +152,8 @@ public class View extends JFrame implements KeyListener, ActionListener{
 	public static ControllerManager cm(){
 		return cm;
 	}
+	
+	public View getView(){
+		return this;
+	}
 }
