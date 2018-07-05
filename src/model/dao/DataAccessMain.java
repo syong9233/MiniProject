@@ -66,7 +66,8 @@ public class DataAccessMain {
 		}
 	}
 	
-	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel) {
+	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel, DataAccessQuest quest) {
+		quest.
 		main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfTapMoney());
 		totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : º¸À¯");
 	}

@@ -47,7 +47,7 @@ public class ControllerManager {
 	}
 	
 	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel) {
-		main.keyReleased(totalMoneyJLabel);
+		main.keyReleased(totalMoneyJLabel, quest);
 	}
 	
 	public Boolean checkFisrtGame(){
@@ -64,13 +64,16 @@ public class ControllerManager {
 		player.setP_Nickname(nickname);
 	}
 
-	public void savePlayer(KeyEvent e) {
-		state.stateLevelUp(e, main.getMain());
-		
-
-	}
+//	public void savePlayer(KeyEvent e) {
+//		state.stateLevelUp(e, main.getMain());
+//	}
+	
 	public void pageMove(View view, ActionEvent e, MainJPanel mainJPanel, StateJPanel stateJPanel, QuestJPanel questJPanel, StoreJPanel storeJPanel, LottoJPanel lottoJPanel, SubJPanel subJPanel) {
 		main.pageMove(view, e, mainJPanel, stateJPanel, questJPanel, storeJPanel, lottoJPanel, subJPanel);
+	}
+	
+	public void stateChoice(ActionEvent e){
+		state.choice(e, main.getMain());
 	}
 	
 }

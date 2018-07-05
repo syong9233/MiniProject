@@ -12,4 +12,7 @@ public class DataAccessQuest {
 	public Quest getQuest(){
 		return quest;
 	}
+	
+	
+	
 }
