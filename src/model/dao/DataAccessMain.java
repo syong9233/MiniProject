@@ -13,6 +13,7 @@ import model.vo.Player;
 import model.vo.Quest;
 import model.vo.State;
 import view.View;
+import view.jbutton.BackJButton;
 import view.jbutton.LottoBackJButton;
 import view.jbutton.LottoJButton;
 import view.jbutton.QuestBackJButton;
@@ -44,16 +45,7 @@ public class DataAccessMain {
 	}
 	
 	public void autoRun(TotalMoneyJLabel totalMoneyJLabel, MainJPanel mainJPanel, Player player){
-		if(!player.getP_Nickname().equals("")){
-			whileNotPlay(mainJPanel, player);
-		}
 		
-		int temp = 0;
-
-		while(true){
-			if(temp < 3){
-				
-			}else{
 				while(true){
 					try {
 						Thread.sleep(1000);
@@ -63,8 +55,7 @@ public class DataAccessMain {
 						e.printStackTrace();
 					}
 				}
-			}
-		}
+		
 	}
 	
 	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel) {	
@@ -170,7 +161,7 @@ public class DataAccessMain {
 			view.add(mainJPanel);
 			view.add(subJPanel);
 			view.repaint();
-		}else if(e.getSource() instanceof LottoBackJButton){
+		}else if(e.getSource() instanceof BackJButton){
 			lottoJPanel.setVisible(false);
 			subJPanel.setVisible(true);
 			view.add(mainJPanel);

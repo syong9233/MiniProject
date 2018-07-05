@@ -70,7 +70,7 @@ public class View extends JFrame implements KeyListener, ActionListener{
 		stateJPanel.add(stateBackJButton);
 		questJPanel.add(questBackJButton);
 		storeJPanel.add(storeBackJButton);
-		lottoJPanel.add(lottoBackJButton);
+		//lottoJPanel.add(lottoBackJButton);
 			
 		mainJPanel.add(nicknameJLabel);
 		mainJPanel.add(totalMoneyJLabel);
@@ -85,7 +85,7 @@ public class View extends JFrame implements KeyListener, ActionListener{
 		this.add(mainJPanel);
 		this.add(subJPanel);
 		
-		lottoBackJButton.addActionListener(this);
+		lottoJPanel.backButton.addActionListener(this);
 		storeBackJButton.addActionListener(this);
 		stateBackJButton.addActionListener(this);
 		questBackJButton.addActionListener(this);
