@@ -1,7 +1,7 @@
 package model.dao;
 
-import java.awt.Button;
-import java.awt.Color;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;	
 import java.awt.event.ActionEvent;
 
 import model.vo.Main;
@@ -9,32 +9,43 @@ import model.vo.Quest;
 import view.View;
 import view.jlabel.TotalMoneyJLabel;
 
+
 public class DataAccessQuest {
 	private Quest quest;
-	
+
 	public DataAccessQuest(){
 		quest = new Quest();
 	}
-	
+
 	public Quest getQuest(){
 		return quest;
 	}
-	
-public void questAdd(DataAccessMain main, TotalMoneyJLabel totalMoneyJLabel) {
-		
+
+	public void questAdd(Main main, TotalMoneyJLabel totalMoneyJLabel, JButton button3) {
+
 		quest.setQ_qtyOfTap(quest.getQ_qtyOfTap() + 1);
 		System.out.println("탭수 : " + quest.getQ_qtyOfTap());
-		if(quest.getTap1() < 11){
-			if(quest.getQ_qtyOfTap() >= quest.getTap2()){
-				System.out.println("퀘스트 횟수 : " + quest.getTap1() +"/"+ 10);
+		if (quest.getTap1() < 11) {
+			if (quest.getQ_qtyOfTap() == quest.getTap2()) {
+				System.out.println("퀘스트 횟수 : " + quest.getTap1() + "/" + 10);
 				System.out.println("총 탭 : " + quest.getQ_qtyOfTap() + "회 달성!");
-				main.getMain().setM_TotalOfMoney(main.getMain().getM_TotalOfMoney() + (quest.getReward2() * quest.getTap1()));
-				quest.setTap2(quest.getTap2() * 5 );
-				quest.setTap1(quest.getTap1() +1);
-			}	
-		}	
+				totalTapQuest(main, button3);
+			}
+
+			if (quest.getQ_qtyOfTap() >= quest.getTap2()) {
+
+				main.setM_TotalOfMoney(main.getM_TotalOfMoney() + (quest.getReward2() * quest.getTap1()));
+				quest.setQ_qtyOfTotalMoney(main.getM_TotalOfMoney());
+				System.out.println("보상 금액 : " + (quest.getReward2() * quest.getTap1()));
+				System.out.println("총 금액 : " + quest.getQ_qtyOfTotalMoney());
+
+				quest.setTap2(quest.getTap2() * 5);
+				quest.setTap1(quest.getTap1() + 1);
+
+			}
+		}
 	}
-	
+
 
 	public void questAdd2(DataAccessMain main, TotalMoneyJLabel totalMoneyJLabel) {
 		quest.setQ_qtyOfTotalMoney(main.getMain().getM_TotalOfMoney());
@@ -52,70 +63,39 @@ public void questAdd(DataAccessMain main, TotalMoneyJLabel totalMoneyJLabel) {
 				quest.setTemp1(quest.getTemp1() + 1);
 			}
 		}
-		
+
 	}
-	public void questBar(DataAccessMain main){
-		
-    /*setLayout(null);
-    setBounds(3, 300, 338, 268);
-    setBackground(new Color(100, 100, 100));*/
-    quest.getQ_pb1().setMinimum(quest.getQ_qtyOfTap());
-    Integer pb2 = (int)(long)main.getMain().getM_TotalOfMoney();
-    quest.getQ_pb2().setMinimum(pb2);
-    quest.getQ_pb1().setMaximum(quest.getTap2());
-    quest.getQ_pb2().setMaximum((int)quest.getTemp2());
-    quest.getQ_pb1().setStringPainted(true);
-    quest.getQ_pb2().setStringPainted(true);
-    
-    quest.getQ_pb1().setString(quest.getQ_qtyOfTap()+"/"+quest.getTap2());
-    if(quest.getTemp2()/((100000000)*(100000000)) >= 1){
-    	quest.getQ_pb2().setString(main.getMain().getM_TotalOfMoney()+"/"+(quest.getTemp2()/((100000000)*(100000000)))+"경");
-    }else if(quest.getTemp2()/((1000000)*(1000000)) >= 1){
-    	 quest.getQ_pb2().setString(main.getMain().getM_TotalOfMoney()+"/"+(quest.getTemp2()/((1000000)*(1000000)))+"조");
-    }else if(quest.getTemp2()/((10000)*(10000)) >=1){
-    	 quest.getQ_pb2().setString(main.getMain().getM_TotalOfMoney()+"/"+(quest.getTemp2()/((10000)*(10000)))+"억");
-    }else if(quest.getTemp2()/ 10000 >= 1){
-    	 quest.getQ_pb2().setString(main.getMain().getM_TotalOfMoney()+"/"+(quest.getTemp2()/10000)+"만");
-    }
-    
-    while( quest.getQ_pb1().getMinimum() <=  quest.getQ_pb1().getMaximum()){
-       
-    }
-    
-    
-    
-	
- }
+
+	public void choice(ActionEvent e, Main main, JButton button3, JButton button4) {
+		if (e.getActionCommand().equals("퀘스트 완료1")) {
+			this.totalTapQuest(main, button3);
+		} else if (e.getActionCommand().equals("퀘스트 완료2")) {
+			this.totalGetMoney(main, button4);
+		}
 
 
-
-public void choice(ActionEvent e, Main main) {
-	if(e.getActionCommand().equals("퀘스트 완료1")){//버튼받는것
-		this.totalTapQuest(main);
-	}else if(e.getActionCommand().equals("퀘스트 완료2")){
-		this.totalGetMoney(main);
 	}
-	
-	
-}
 
-public void totalTapQuest(Main main){
-	//버튼1 눌렀을때 구현
-	//탭하면 메인 메소드에서 퀘스트 메소드(quest dao)를 불러와야함.
-	if(quest.getTap1() < 11){
-		if(quest.getQ_qtyOfTap() >= quest.getTap2()){
-			System.out.println("퀘스트 횟수 : " + quest.getTap1() +"/"+ 10);
-			System.out.println("총 탭 : " + quest.getQ_qtyOfTap() + "회 달성!");
-			main.setM_TotalOfMoney(main.getM_TotalOfMoney() + (quest.getReward2() * quest.getTap1()));
-			quest.setTap2(quest.getTap2() * 5 );
-			quest.setTap1(quest.getTap1() +1);
-		}	
-	}	
-}
+	public void totalTapQuest (Main main, JButton button3) {
+		System.out.println("버튼3번눌림");
 
-public void totalGetMoney(Main main){
-	//버튼2 눌렀을때 구현
-}
+		// 버튼3 눌렀을때 구현
+
+		if(quest.getQ_qtyOfTap() < quest.getTap2()){
+
+			button3.setEnabled(false);
+
+		}else if(quest.getQ_qtyOfTap() >= quest.getTap2()){
+
+			button3.setEnabled(true);
+
+		}
+	}
+
+
+	public void totalGetMoney(Main main, JButton button4) {
+		// 버튼4 눌렀을때 구현
+	}
 }
 
 

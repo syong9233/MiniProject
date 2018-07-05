@@ -55,7 +55,7 @@ public class QuestJPanel extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		View.cm().questChoice(e);
+		View.cm().questChoice(e, button3, button4);
 		
 	}
 }

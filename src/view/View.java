@@ -29,6 +29,7 @@ import view.jpanel.QuestJPanel;
 import view.jpanel.StateJPanel;
 import view.jpanel.StoreJPanel;
 import view.jpanel.SubJPanel;
+import javax.swing.JButton;	
 
 public class View extends JFrame implements KeyListener, ActionListener{
 	private static ControllerManager cm = new ControllerManager();
@@ -128,7 +129,7 @@ public class View extends JFrame implements KeyListener, ActionListener{
 	public void keyReleased(KeyEvent e) {
 		
 		if(e.getKeyCode() == 32){
-			cm.keyReleased(totalMoneyJLabel); // questJPanel.button1 //버튼 안의 내용변경하기 위해 객체를 가져옴.
+			cm.keyReleased(totalMoneyJLabel, questJPanel.button3); // questJPanel.button1 //버튼 안의 내용변경하기 위해 객체를 가져옴.
 		}
 		
 		if(e.getKeyCode() == 83){

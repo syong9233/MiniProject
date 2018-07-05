@@ -32,6 +32,7 @@ import view.jpanel.QuestJPanel;
 import view.jpanel.StateJPanel;
 import view.jpanel.StoreJPanel;
 import view.jpanel.SubJPanel;
+import javax.swing.JButton; 	
 
 public class DataAccessMain {
 	private Main main;
@@ -58,10 +59,11 @@ public class DataAccessMain {
 		
 	}
 	
-	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel) {	
+	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel, DataAccessQuest quest, JButton button3) {	
 		main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfTapMoney());
 		totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
 		//quest.함수 
+		quest.questAdd(main, totalMoneyJLabel, button3); 
 	}
 	
 	public void setMain(Player player, NicknameJLabel nicknameJLabel, TotalMoneyJLabel totalMoneyJLabel, AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel) {
