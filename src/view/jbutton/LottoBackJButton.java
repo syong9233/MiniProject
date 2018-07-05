@@ -7,6 +7,6 @@ public class LottoBackJButton extends JButton{
 	public LottoBackJButton(){
 		super(" back ");
 		setSize(68, 20);
-		setLocation(265, 3);
+		setLocation(260, 350);
 	}
 }

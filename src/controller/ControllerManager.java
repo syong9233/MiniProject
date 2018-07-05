@@ -77,8 +77,8 @@ public class ControllerManager {
 		main.pageMove(view, e, mainJPanel, stateJPanel, questJPanel, storeJPanel, lottoJPanel, subJPanel);
 	}
 
-	public void lottoStart(ActionEvent e, LottoJPanel lottoJPanel, JPanel yesOrNoJPanel, JButton lottoBackButton) {
-		store.lottoStart(e, main.getMain(), lottoJPanel, yesOrNoJPanel, lottoBackButton);
+	public void lottoStart(ActionEvent e, LottoJPanel lottoJPanel, JPanel yesOrNoJPanel, JButton lottoRegame){
+		store.lottoStart(e, main.getMain(), lottoJPanel, yesOrNoJPanel, lottoRegame);
 		
 	}
 

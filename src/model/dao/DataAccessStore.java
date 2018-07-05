@@ -21,13 +21,13 @@ public class DataAccessStore {
    public Store getStore(){
       return store;
    }
-   
-   
-   
-   public void lottoStart(ActionEvent e, Main main, LottoJPanel lottoJPanel, JPanel yesOrNoJPanel, JButton lottoBackButton){
+      
+   public void lottoStart(ActionEvent e, Main main, LottoJPanel lottoJPanel, JPanel yesOrNoJPanel, JButton lottoRegame){
       System.out.println(main.getM_qtyOfLotto());
-      //JPanel fail을 다시 만들어서 
-      JPanel fail;
+      //JPanel fail을 생성
+      JPanel fail = new JPanel();
+      JPanel success = new JPanel();
+      
       if(e.getActionCommand().equals("Yes")){
          if(main.getM_qtyOfLotto() != 0){
             
@@ -36,24 +36,35 @@ public class DataAccessStore {
             int r = (int)(Math.random()*10)+1;
             
             
-            //Yes탭 눌렀을 때 당첨시
-            //당첨 시 얻는 금액에 대한 내용 ( tap 당 금액의 250 배의 금액 )
             if( r == 1){
-               main.setM_TotalOfMoney(main.getM_TotalOfMoney()+(main.getM_AmountOfTapMoney()*250));
-               
-            //Yes탭 눌렀을 떄 미 당첨시
+            	//yes탭 눌렀을 떄 당첨시
+            	success.setLayout(null);
+            	success.setBounds(0, 0, 350, 550);
+            	success.setBackground(new Color(80, 50, 30));
+            	
+            	
+            	//당첨 시 얻는 금액에 대한 내용 ( tap 당 금액의 250 배의 금액 )
+            	main.setM_TotalOfMoney(main.getM_TotalOfMoney()+(main.getM_AmountOfTapMoney()*250));
+            	
+            	lottoRegame.add(success);
+            	
+            	lottoRegame.setVisible(true);
+            	
+            	
             }else{
-               fail = new JPanel();
-               fail.setLayout(null);
-               fail.setBounds(0, 0, 350, 550);
-               fail.setBackground(new Color(80, 50, 30));
-               
-               //확인패널 없애줌
-               yesOrNoJPanel.setVisible(false);
-               
-               
-               lottoJPanel.add(fail);
-               lottoJPanel.repaint();
+            	//Yes탭 눌렀을 떄 미 당첨시
+            	fail.setLayout(null);
+            	fail.setBounds(0, 0, 350, 550);
+            	fail.setBackground(new Color(80, 50, 30));
+
+            	//확인패널 없애줌
+            	yesOrNoJPanel.setVisible(false);
+            	lottoRegame.setVisible(true);
+            	
+
+
+            	lottoJPanel.add(fail);
+            	lottoJPanel.repaint();
             }
             
          }else{
@@ -72,38 +83,17 @@ public class DataAccessStore {
          
          yesOrNoJPanel.setVisible(true);
          lottoJPanel.setVisible(true);
-         lottoBackButton.setVisible(false);
+       
+         fail.setVisible(false);
+         success.setVisible(false);
+         
          lottoJPanel.repaint();
-
-         //******반복실행이 안됨 ㅠㅠ*******
-
-
 
       }
 
    }
    
-   public void yes(Main main, LottoJPanel lottoJPanel, JPanel yesOrNoJPanel){
-      
-      //보유하고 있는 로또 개수 1 차감
-      main.setM_qtyOfLotto(main.getM_qtyOfLotto()-1);
-      int r = (int)(Math.random()*10)+1;
-      
-      //당첨 시 얻는 금액에 대한 내용 ( tap 당 금액의 250 배의 금액 )
-      if( r == 1){
-         main.setM_TotalOfMoney(main.getM_TotalOfMoney()+(main.getM_AmountOfTapMoney()*250));
-      }else{
-         JPanel fail = new JPanel();
-         
-         fail.setLayout(null);
-         fail.setBounds(0, 0, 350, 550);
-         fail.setBackground(new Color(80, 50, 30));
-         yesOrNoJPanel.setVisible(false);
-         lottoJPanel.add(fail);
-         lottoJPanel.repaint();
-      }
-      
-   }
+  
    public void No(){
       
    }
