@@ -3,12 +3,14 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
 import model.dao.DataAccessMain;
 import model.dao.DataAccessPlayer;
 import model.dao.DataAccessQuest;
 import model.dao.DataAccessState;
 import model.dao.DataAccessStore;
-import model.vo.Main;
 import view.View;
 import view.jlabel.AutoMoneyJLabel;
 import view.jlabel.NicknameJLabel;
@@ -47,7 +49,7 @@ public class ControllerManager {
 	}
 	
 	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel) {	
-		main.keyReleased(totalMoneyJLabel);	//quest¸¦ °¡Á®°¡¾ßÇÔ.
+		main.keyReleased(totalMoneyJLabel);	//questï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	}
 	
 	public Boolean checkFisrtGame(){
@@ -69,12 +71,23 @@ public class ControllerManager {
 		
 
 	}
+
+
 	public void pageMove(View view, ActionEvent e, MainJPanel mainJPanel, StateJPanel stateJPanel, QuestJPanel questJPanel, StoreJPanel storeJPanel, LottoJPanel lottoJPanel, SubJPanel subJPanel) {
 		main.pageMove(view, e, mainJPanel, stateJPanel, questJPanel, storeJPanel, lottoJPanel, subJPanel);
 	}
+
 	public void questChoice(ActionEvent e){
 		quest.choice(e, main.getMain());
 	}
+
+
+	public void lottoStart(ActionEvent e, LottoJPanel lottoJPanel, JPanel yesOrNoJPanel, JButton lottoRegame){
+		store.lottoStart(e, main.getMain(), lottoJPanel, yesOrNoJPanel, lottoRegame);
+		
+	}
+
+
 }
 
 

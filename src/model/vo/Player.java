@@ -41,7 +41,7 @@ public class Player implements java.io.Serializable{
 		this.p_AmountOfTapMoney = 7530; 
 		this.p_TotalOfMoney = 0;
 		this.p_Cash = 0;
-		this.p_qtyOfLotto = 0;
+		this.p_qtyOfLotto = 10;
 		this.p_qtyOfPotion = 0;
 		this.p_qtyOfAutoTap = 0;
 		this.p_lvOfComputer = 0;
