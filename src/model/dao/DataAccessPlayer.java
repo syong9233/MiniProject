@@ -39,7 +39,8 @@ public class DataAccessPlayer {
 	
 	public void save(Main main, Quest quest, State state, Store store) {
 		player.setP_lastTime(new Date());
-		player.setP_qtyOfTap(quest.getP_qtyOfTap());
+		player.setP_qtyOfTap(quest.getQ_qtyOfTap());
+		player.setP_qtyOfTotalMoney(quest.getQ_qtyOfTotalMoney());
 		player.setP_TotalOfMoney(main.getM_TotalOfMoney());
 		player.setP_AmountOfAutoMoney(main.getM_AmountOfAutoMoney());
 		player.setP_AmountOfTapMoney(main.getM_AmountOfTapMoney());

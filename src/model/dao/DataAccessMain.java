@@ -10,6 +10,7 @@ import javax.swing.SwingConstants;
 
 import model.vo.Main;
 import model.vo.Player;
+import model.vo.Quest;
 import model.vo.State;
 import view.View;
 import view.jbutton.LottoBackJButton;
@@ -66,9 +67,10 @@ public class DataAccessMain {
 		}
 	}
 	
-	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel) {
+	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel) {	
 		main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfTapMoney());
 		totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : º¸À¯");
+		//quest.ÇÔ¼ö 
 	}
 	
 	public void setMain(Player player, NicknameJLabel nicknameJLabel, TotalMoneyJLabel totalMoneyJLabel, AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel) {
@@ -78,7 +80,7 @@ public class DataAccessMain {
 		tapMoneyJLabel.setText(String.format("%,d", (main.getM_AmountOfTapMoney())) + " : ÅÇ");
 	}
 	
-	public void setPlayer(Player player, State state){
+	public void setPlayer(Player player, State state, Quest quest){
 		main.setM_AmountOfAutoMoney(player.getP_AmountOfAutoMoney());
 		main.setM_AmountOfTapMoney(player.getP_AmountOfTapMoney());
 		main.setM_Cash(player.getP_Cash());
@@ -91,6 +93,7 @@ public class DataAccessMain {
 		state.setP_lvOfEmploy(player.getP_lvOfEmploy());
 		state.setP_lvOfExtend(player.getP_lvOfExtend());
 		state.setP_lvOfKeyboard(player.getP_lvOfKeyboard());
+		quest.setQ_qtyOfTap(player.getP_qtyOfTap());
 	}
 	
 	public Boolean checkFisrtGame(DataAccessPlayer player){

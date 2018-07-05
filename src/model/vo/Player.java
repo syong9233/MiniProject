@@ -23,6 +23,16 @@ public class Player implements java.io.Serializable{
 	
 	//Äù½ºÆ® º¯¼ö
 	private int p_qtyOfTap;
+	private long p_qtyOfTotalMoney;
+	
+	public long getP_qtyOfTotalMoney() {
+		return p_qtyOfTotalMoney;
+	}
+
+	public void setP_qtyOfTotalMoney(long p_qtyOfTotalMoney) {
+		this.p_qtyOfTotalMoney = p_qtyOfTotalMoney;
+	}
+
 	
 	public Player(){
 		super();

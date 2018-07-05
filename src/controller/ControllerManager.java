@@ -48,8 +48,8 @@ public class ControllerManager {
 		main.autoRun(totalMoneyJLabel, mainJPanel, player.getPlayer());
 	}
 	
-	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel) {
-		main.keyReleased(totalMoneyJLabel);
+	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel) {	
+		main.keyReleased(totalMoneyJLabel);	//quest�� ���������.
 	}
 	
 	public Boolean checkFisrtGame(){
@@ -57,7 +57,7 @@ public class ControllerManager {
 	}
 
 	public void setMain(NicknameJLabel nicknameJLabel, TotalMoneyJLabel totalMoneyJLabel, AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel) {
-		main.setPlayer(player.getPlayer(), state.getState());
+		main.setPlayer(player.getPlayer(), state.getState(), quest.getQuest());
 		main.setMain(player.getPlayer(), nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel);
 		
 	}
@@ -77,9 +77,47 @@ public class ControllerManager {
 		main.pageMove(view, e, mainJPanel, stateJPanel, questJPanel, storeJPanel, lottoJPanel, subJPanel);
 	}
 
+	public void questChoice(ActionEvent e){
+		quest.choice(e, main.getMain());
+	}
+
+
 	public void lottoStart(ActionEvent e, LottoJPanel lottoJPanel, JPanel yesOrNoJPanel, JButton lottoRegame){
 		store.lottoStart(e, main.getMain(), lottoJPanel, yesOrNoJPanel, lottoRegame);
 		
 	}
 
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
