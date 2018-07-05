@@ -49,6 +49,8 @@ public class DataAccessPlayer {
 		player.setP_lvOfEducate(state.getP_lvOfEducate());
 		player.setP_lvOfEmploy(state.getP_lvOfEmploy());
 		player.setP_lvOfExtend(state.getP_lvOfExtend());
+		player.setTap1(quest.getTap1());
+		player.setTap2(quest.getTap2());
 		
 		try (ObjectOutputStream oos = 
 				new ObjectOutputStream(new FileOutputStream("player_list.dat"))){

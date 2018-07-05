@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.util.Date;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
@@ -67,10 +68,10 @@ public class DataAccessMain {
 		}
 	}
 	
-	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel) {	
+	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel, DataAccessQuest quest, JButton button3) {	
 		main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfTapMoney());
 		totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
-		//quest.함수 
+		quest.questAdd(main, totalMoneyJLabel, button3); 
 	}
 	
 	public void setMain(Player player, NicknameJLabel nicknameJLabel, TotalMoneyJLabel totalMoneyJLabel, AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel) {

@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -115,6 +116,7 @@ public class View extends JFrame implements KeyListener, ActionListener{
 		}else{
 			cm.setMain(nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel);
 			cm.autoRun(totalMoneyJLabel, mainJPanel);
+			
 		}
 		//********************************************
 	}
@@ -128,7 +130,8 @@ public class View extends JFrame implements KeyListener, ActionListener{
 	public void keyReleased(KeyEvent e) {
 		
 		if(e.getKeyCode() == 32){
-			cm.keyReleased(totalMoneyJLabel); // questJPanel.button1 //버튼 안의 내용변경하기 위해 객체를 가져옴.
+			cm.keyReleased(totalMoneyJLabel, questJPanel.button3); // questJPanel.button1 //버튼 안의 내용변경하기 위해 객체를 가져옴.
+			
 		}
 		
 		if(e.getKeyCode() == 83){

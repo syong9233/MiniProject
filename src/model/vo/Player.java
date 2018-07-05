@@ -2,6 +2,8 @@ package model.vo;
 
 import java.util.Date;
 
+import view.View;
+
 public class Player implements java.io.Serializable{
 	//회원 정보 변수
 	private String p_Nickname;
@@ -24,7 +26,58 @@ public class Player implements java.io.Serializable{
 	//퀘스트 변수
 	private int p_qtyOfTap;
 	private long p_qtyOfTotalMoney;
+	private int tap1 = 1, tap2 = 30, reward2 = 150000;
+	private int temp1 = 1, temp2 = 500000, reward1 = 500000;
 	
+	
+	public int getTap1() {
+		return tap1;
+	}
+
+	public int getTap2() {
+		return tap2;
+	}
+
+	public int getReward2() {
+		return reward2;
+	}
+
+	public int getTemp1() {
+		return temp1;
+	}
+
+	public int getTemp2() {
+		return temp2;
+	}
+
+	public int getReward1() {
+		return reward1;
+	}
+
+	public void setTap1(int tap1) {
+		this.tap1 = tap1;
+	}
+
+	public void setTap2(int tap2) {
+		this.tap2 = tap2;
+	}
+
+	public void setReward2(int reward2) {
+		this.reward2 = reward2;
+	}
+
+	public void setTemp1(int temp1) {
+		this.temp1 = temp1;
+	}
+
+	public void setTemp2(int temp2) {
+		this.temp2 = temp2;
+	}
+
+	public void setReward1(int reward1) {
+		this.reward1 = reward1;
+	}
+
 	public long getP_qtyOfTotalMoney() {
 		return p_qtyOfTotalMoney;
 	}

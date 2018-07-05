@@ -48,8 +48,8 @@ public class ControllerManager {
 		main.autoRun(totalMoneyJLabel, mainJPanel, player.getPlayer());
 	}
 	
-	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel) {	
-		main.keyReleased(totalMoneyJLabel);	//quest�� ���������.
+	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel, JButton button3) {	
+		main.keyReleased(totalMoneyJLabel, quest, button3);	//quest占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占�.
 	}
 	
 	public Boolean checkFisrtGame(){
@@ -68,8 +68,6 @@ public class ControllerManager {
 
 	public void savePlayer(KeyEvent e) {
 		state.stateLevelUp(e, main.getMain());
-		
-
 	}
 
 
@@ -77,10 +75,10 @@ public class ControllerManager {
 		main.pageMove(view, e, mainJPanel, stateJPanel, questJPanel, storeJPanel, lottoJPanel, subJPanel);
 	}
 
-	public void questChoice(ActionEvent e){
-		quest.choice(e, main.getMain());
+	public void questChoice(ActionEvent e, JButton button3, JButton button4){
+		quest.choice(e, main.getMain(), button3, button4);
+		
 	}
-
 
 	public void lottoStart(ActionEvent e, LottoJPanel lottoJPanel, JPanel yesOrNoJPanel, JButton lottoRegame){
 		store.lottoStart(e, main.getMain(), lottoJPanel, yesOrNoJPanel, lottoRegame);
