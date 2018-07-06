@@ -124,15 +124,15 @@ public class DataAccessStore {
 
 		if (e.getActionCommand().equals("P")) {
 
-			buyPotion(player);
+			buyPotion(player, main);
 
 		} else if (e.getActionCommand().equals("L")) {
 
-			buyLotto(player);
+			buyLotto(player, main);
 
 		} else if (e.getActionCommand().equals("A")) {
 
-			buyAutoTap(player);
+			buyAutoTap(player, main);
 			
 		} else if (e.getActionCommand().equals("C")) {
 
@@ -145,10 +145,10 @@ public class DataAccessStore {
 	public void useItem(SubJPanel subJPanel, ActionEvent e, Main main, Player player) {
 	
 		if (e.getActionCommand().equals("포션사용")) {
-			if (player.getP_qtyOfPotion() <= 0) {
+			if (main.getM_qtyOfPotion() <= 0) {
 				System.out.println("포션 보유량이 없습니다.");
 			} else {
-				player.setP_qtyOfPotion(player.getP_qtyOfPotion() - 1);
+				main.setM_qtyOfPotion(main.getM_qtyOfPotion() - 1);
 				System.out.println("포션이 사용되었습니다");
 
 				/* player.getP_lastTime().getTime()) / 1000); */
@@ -158,20 +158,20 @@ public class DataAccessStore {
 				// 기능해제
 				// main.setM_AmountOfTapMoney(main.getM_AmountOfAutoMoney()/2);
 
-				System.out.println(player.getP_qtyOfPotion() + "개 남았습니다.");
+				System.out.println(main.getM_qtyOfPotion() + "개 남았습니다.");
 				View.cm().savePlayer();
 
 			}
 		}
 
 		if (e.getActionCommand().equals("헬퍼사용")) {
-			if (player.getP_qtyOfAutoTap() <= 0) {
+			if (main.getM_qtyOfAutoTap() <= 0) {
 				System.out.println("헬퍼 보유량이 없습니다.");
 			} else {
-				player.setP_qtyOfAutoTap(player.getP_qtyOfAutoTap() - 1);
+				main.setM_qtyOfAutoTap(player.getP_qtyOfAutoTap() - 1);
 				System.out.println("헬퍼가 사용되었습니다");
 				// 기능구현
-				System.out.println(player.getP_qtyOfAutoTap() + "개 남았습니다.");
+				System.out.println(main.getM_qtyOfAutoTap() + "개 남았습니다.");
 				View.cm().savePlayer();
 			}
 		}
@@ -185,7 +185,7 @@ public class DataAccessStore {
 
 	}
 
-	public void buyPotion(Player player) {
+	public void buyPotion(Player player, Main main) {
 
 		if (player.getP_Cash() < store.getS_priceOfPotion()) {
 			System.out.println("금액이 부족합니다.");
@@ -193,55 +193,55 @@ public class DataAccessStore {
 		}
 
 		player.setP_Cash(player.getP_Cash() - store.getS_priceOfPotion());
-		player.setP_qtyOfPotion(player.getP_qtyOfPotion() + 1);
+		main.setM_qtyOfPotion(main.getM_qtyOfPotion() + 1);
 
 		System.out.println("포션 구매 완료(-1000)");
 		System.out.println("현재 Cash : " + player.getP_Cash());
-		System.out.println("현재 포션 개수 : " + player.getP_qtyOfPotion());
+		System.out.println("현재 포션 개수 : " + main.getM_qtyOfPotion());
 
 		return;
 
 	}
 
-	public void buyLotto(Player player) {
+	public void buyLotto(Player player, Main main) {
 
 		if (player.getP_Cash() < store.getS_priceOfLotto()) {
 			System.out.println("금액이 부족합니다.");
 			return;
 		}
 		player.setP_Cash(player.getP_Cash() - store.getS_priceOfLotto());
-		player.setP_qtyOfLotto(player.getP_qtyOfLotto() + 1);
+		main.setM_qtyOfLotto(main.getM_qtyOfLotto() + 1);
 
 		System.out.println("복권 구매 완료(-2000)");
 		System.out.println("현재 Cash : " + player.getP_Cash());
-		System.out.println("현재 복권 개수 : " + player.getP_qtyOfLotto());
+		System.out.println("현재 복권 개수 : " + main.getM_qtyOfLotto());
 
 		return;
 
 	}
 
-	public void buyAutoTap(Player player) {
+	public void buyAutoTap(Player player, Main main) {
 
 		if (player.getP_Cash() < store.getS_priceOfAutoTap()) {
 			System.out.println("금액이 부족합니다.");
 			return;
 		}
 		player.setP_Cash(player.getP_Cash() - store.getS_priceOfAutoTap());
-		player.setP_qtyOfAutoTap(player.getP_qtyOfAutoTap() + 1);
+		main.setM_qtyOfAutoTap(main.getM_qtyOfAutoTap() + 1);
 
 		System.out.println("헬퍼 구매 완료(-500)");
 		System.out.println("현재 Cash : " + player.getP_Cash());
-		System.out.println("현재 헬퍼 개수 : " + player.getP_qtyOfAutoTap());
+		System.out.println("현재 헬퍼 개수 : " + main.getM_qtyOfAutoTap());
 
 		return;
 
 	}
 
-	public void check(Player player) {
+	public void check(Player player, Main main) {
 		System.out.println("현재 Cash : " + player.getP_Cash());
-		System.out.println("현재 포션 개수 : " + player.getP_qtyOfPotion());
-		System.out.println("현재 복권 개수 : " + player.getP_qtyOfLotto());
-		System.out.println("현재 헬퍼 개수 : " + player.getP_qtyOfAutoTap());
+		System.out.println("현재 포션 개수 : " + main.getM_qtyOfPotion());
+		System.out.println("현재 복권 개수 : " + main.getM_qtyOfLotto());
+		System.out.println("현재 헬퍼 개수 : " + main.getM_qtyOfAutoTap());
 	}
 
 }
