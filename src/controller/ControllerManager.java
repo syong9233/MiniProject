@@ -86,6 +86,14 @@ public class ControllerManager {
 	public void stateChoice(ActionEvent e){
 	      state.choice(e, main.getMain());
 	   }
+	
+	public void storeMenu(StoreJPanel storeJPanel, ActionEvent e) {
+		store.StoreMenu(storeJPanel, e , main.getMain(), player.getPlayer());
+	}
+
+	public void useItem(SubJPanel subJPanel, ActionEvent e) {
+		store.useItem(subJPanel, e, main.getMain(),player.getPlayer());
+	}
 
 
 

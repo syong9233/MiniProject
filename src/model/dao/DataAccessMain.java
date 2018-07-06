@@ -76,7 +76,6 @@ public class DataAccessMain {
 	public void setPlayer(Player player, State state, Quest quest){
 		main.setM_AmountOfAutoMoney(player.getP_AmountOfAutoMoney());
 		main.setM_AmountOfTapMoney(player.getP_AmountOfTapMoney());
-		main.setM_Cash(player.getP_Cash());
 		main.setM_qtyOfAutoTap(player.getP_qtyOfAutoTap());
 		main.setM_qtyOfLotto(player.getP_qtyOfLotto());
 		main.setM_qtyOfPotion(player.getP_qtyOfPotion());
@@ -163,6 +162,7 @@ public class DataAccessMain {
 			view.add(mainJPanel);
 			view.add(subJPanel);
 			view.repaint();
+			View.cm().savePlayer();
 		}else if(e.getSource() instanceof BackJButton){
 			lottoJPanel.setVisible(false);
 			subJPanel.setVisible(true);
