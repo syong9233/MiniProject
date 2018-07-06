@@ -18,7 +18,9 @@ import model.vo.Store;
 import view.View;
 import view.jbutton.LottoRegameJButton;
 import view.jbutton.YesJButton;
+import view.jlabel.TotalMoneyJLabel;
 import view.jpanel.LottoJPanel;
+import view.jpanel.MainJPanel;
 import view.jpanel.StoreJPanel;
 import view.jpanel.SubJPanel;
 
@@ -142,37 +144,45 @@ public class DataAccessStore {
 
 	}
 
-	public void useItem(SubJPanel subJPanel, ActionEvent e, Main main, Player player) {
-	
+	public void potionTime(int time) {
+		View.cm().potiontime(time);
+	}
+	public void autoTime(int time) {
+		View.cm().autotime(time);
+	}
+
+	public void useItem(TotalMoneyJLabel totalMoneyJLabel, MainJPanel mainJPanel, ActionEvent e, DataAccessMain main) {
+
 		if (e.getActionCommand().equals("포션사용")) {
-			if (main.getM_qtyOfPotion() <= 0) {
+			if (main.getMain().getM_qtyOfPotion() <= 0) {
 				System.out.println("포션 보유량이 없습니다.");
 			} else {
-				main.setM_qtyOfPotion(main.getM_qtyOfPotion() - 1);
+				main.getMain().setM_qtyOfPotion(main.getMain().getM_qtyOfPotion() - 1);
 				System.out.println("포션이 사용되었습니다");
 
-				/* player.getP_lastTime().getTime()) / 1000); */
-				// 기능 구현
-				// main.setM_AmountOfTapMoney(main.getM_AmountOfTapMoney() * 2);
-
-				// 기능해제
-				// main.setM_AmountOfTapMoney(main.getM_AmountOfAutoMoney()/2);
-
-				System.out.println(main.getM_qtyOfPotion() + "개 남았습니다.");
+				System.out.println(main.getMain().getM_qtyOfPotion() + "개 남았습니다.");
 				View.cm().savePlayer();
-
+				
+				main.getMain().setM_potiontime(main.getMain().getM_potiontime() + 5);
+				potionTime(main.getMain().getM_potiontime());
 			}
 		}
 
 		if (e.getActionCommand().equals("헬퍼사용")) {
-			if (main.getM_qtyOfAutoTap() <= 0) {
+			System.out.println("21");
+			if (main.getMain().getM_qtyOfAutoTap() <= 0) {
 				System.out.println("헬퍼 보유량이 없습니다.");
 			} else {
-				main.setM_qtyOfAutoTap(player.getP_qtyOfAutoTap() - 1);
+				main.getMain().setM_qtyOfAutoTap(main.getMain().getM_qtyOfAutoTap() - 1);
 				System.out.println("헬퍼가 사용되었습니다");
 				// 기능구현
-				System.out.println(main.getM_qtyOfAutoTap() + "개 남았습니다.");
+				System.out.println(main.getMain().getM_qtyOfAutoTap() + "개 남았습니다.");
 				View.cm().savePlayer();
+				
+				main.getMain().setM_autotime(main.getMain().getM_autotime() + 30);
+				System.out.println("test1");
+				autoTime(main.getMain().getM_autotime());
+				System.out.println("test2");
 			}
 		}
 	}

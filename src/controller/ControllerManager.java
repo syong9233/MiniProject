@@ -44,16 +44,24 @@ public class ControllerManager {
 		player.setP_Nickname(Nickname);
 	}
 	
-	public void autoRun(TotalMoneyJLabel totalMoneyJLabel, MainJPanel mainJPanel){
-		main.autoRun(totalMoneyJLabel, mainJPanel, player.getPlayer());
+	public void autoRun(TotalMoneyJLabel totalMoneyJLabel){
+		main.autoRun(totalMoneyJLabel, main.getMain(), 0);
+	}
+	
+	public void potiontime(int time){
+		main.potionRun(time);
+	}
+	public void autotime(int time){
+		main.autoRun(time);
 	}
 	
 	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel, JButton button3) {	
 		main.keyReleased(totalMoneyJLabel, quest, button3);
 	}
-	
-	public Boolean checkFisrtGame(){
-		return main.checkFisrtGame(player);
+
+	//----------0705 16:15------------
+	public void checkFisrtGame(View view, NicknameJLabel nicknameJLabel, TotalMoneyJLabel totalMoneyJLabel, AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel, MainJPanel mainJPanel){
+		main.checkFisrtGame(view, player, state.getState(), quest.getQuest(), nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel, mainJPanel);
 	}
 
 	public void setMain(NicknameJLabel nicknameJLabel, TotalMoneyJLabel totalMoneyJLabel, AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel) {
@@ -70,8 +78,8 @@ public class ControllerManager {
 		state.stateLevelUp(e, main.getMain());
 	}
 
-	public void pageMove(View view, ActionEvent e, MainJPanel mainJPanel, StateJPanel stateJPanel, QuestJPanel questJPanel, StoreJPanel storeJPanel, LottoJPanel lottoJPanel, SubJPanel subJPanel) {
-		main.pageMove(view, e, mainJPanel, stateJPanel, questJPanel, storeJPanel, lottoJPanel, subJPanel);
+	public void pageMove(View view, ActionEvent e, JButton usePotion, MainJPanel mainJPanel, TotalMoneyJLabel totalMoneyJLabel, StateJPanel stateJPanel, QuestJPanel questJPanel, StoreJPanel storeJPanel, LottoJPanel lottoJPanel, SubJPanel subJPanel) {
+		main.pageMove(view, e, totalMoneyJLabel, mainJPanel, store, stateJPanel, questJPanel, storeJPanel, lottoJPanel, subJPanel);
 	}
 
 	public void questChoice(ActionEvent e, JButton button3, JButton button4){
@@ -90,16 +98,4 @@ public class ControllerManager {
 	public void storeMenu(StoreJPanel storeJPanel, ActionEvent e) {
 		store.StoreMenu(storeJPanel, e , main.getMain(), player.getPlayer());
 	}
-
-	public void useItem(SubJPanel subJPanel, ActionEvent e) {
-		store.useItem(subJPanel, e, main.getMain(),player.getPlayer());
-	}
-
-
-
 }
-
-
-
-
-

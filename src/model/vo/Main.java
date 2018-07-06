@@ -1,5 +1,7 @@
 package model.vo;
 
+import java.util.Date;
+
 public class Main {
 	private long m_TotalOfMoney;
 	private long m_AmountOfAutoMoney;
@@ -8,6 +10,36 @@ public class Main {
 	private int m_qtyOfLotto;
 	private int m_qtyOfPotion;
 	private int m_qtyOfAutoTap;
+	private int m_potiontime;
+	private int m_autotime;
+	
+	public int getM_autotime() {
+		return m_autotime;//
+	}
+
+	public void setM_autotime(int m_autotime) {
+		this.m_autotime = m_autotime;
+	}
+
+	public int getM_potiontime() {
+		return m_potiontime;//
+	}
+	
+	public void setM_potiontime(int m_time) {
+		this.m_potiontime = m_time;
+	}
+	
+	private boolean m_userItem = false;
+	
+	public boolean isM_userItem() {
+		return m_userItem;
+	}
+
+	public void setM_userItem(boolean m_userItem) {
+		this.m_userItem = m_userItem;
+	}
+
+
 	
 	public int getM_Cash() {
 		return m_Cash;

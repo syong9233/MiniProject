@@ -11,12 +11,12 @@ import controller.ControllerManager;
 import view.View;
 
 
-public class SubJPanel extends JPanel implements ActionListener{
+public class SubJPanel extends JPanel{
 	
 	
 	
-	private JButton usePotion = new JButton("포션사용");
-	private JButton useAutotap = new JButton("헬퍼사용");
+	public JButton usePotion = new JButton("포션사용");
+	public JButton useAutotap = new JButton("헬퍼사용");
 	
 	
 	public SubJPanel(){
@@ -26,22 +26,15 @@ public class SubJPanel extends JPanel implements ActionListener{
 		
 		usePotion.setSize(30, 30);
 		usePotion.setLocation(270, 5);
-		usePotion.addActionListener(this);
 		
 		useAutotap.setSize(30, 30);
 		useAutotap.setLocation(305, 5);
-		useAutotap.addActionListener(this);
+		
+		usePotion.setFocusable(false);
+		useAutotap.setFocusable(false);
 		
 		this.add(usePotion);
 		this.add(useAutotap);
 	}
 
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		View.cm().useItem(this, e);
-	}
-	
-	
-	
 }
