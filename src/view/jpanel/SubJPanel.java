@@ -1,40 +1,32 @@
 package view.jpanel;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import controller.ControllerManager;
-import view.View;
+import view.jbutton.storeMenuJButton.*;
 
 
 public class SubJPanel extends JPanel{
 	
-	
-	
-	public JButton usePotion = new JButton("포션사용");
-	public JButton useAutotap = new JButton("헬퍼사용");
-	
+	public UsePotionJButton usePotionJButton = new UsePotionJButton(new ImageIcon("image/store/usePotion.png"));
+	public UseAutoTapJButton useAutoTapJButton = new UseAutoTapJButton(new ImageIcon("image/store/useAutoTap.png"));
 	
 	public SubJPanel(){
 		setBounds(3, 403, 338, 165);
 		setBackground(new Color(100, 100, 100));
 		setLayout(null);
 		
-		usePotion.setSize(30, 30);
-		usePotion.setLocation(270, 5);
 		
-		useAutotap.setSize(30, 30);
-		useAutotap.setLocation(305, 5);
 		
-		usePotion.setFocusable(false);
-		useAutotap.setFocusable(false);
+		usePotionJButton.setFocusable(false);
+		useAutoTapJButton.setFocusable(false);
 		
-		this.add(usePotion);
-		this.add(useAutotap);
+		this.add(usePotionJButton);
+		this.add(useAutoTapJButton);
+		
 	}
 
 }

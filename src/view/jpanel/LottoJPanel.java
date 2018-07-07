@@ -19,7 +19,7 @@ import view.jbutton.LottoRegameJButton;
 import view.jbutton.YesJButton;
 
 public class LottoJPanel extends JPanel implements ActionListener{
-	public YesJButton yesButton = new YesJButton(new ImageIcon("image/lotto/ans_YES.png"));; 
+	public YesJButton yesButton = new YesJButton(new ImageIcon("image/lotto/ans_YES.png"));
 	public BackJButton backButton = new BackJButton(new ImageIcon("image/lotto/ans_BACK.png"));
 	private LottoRegameJButton lottoRegame = new LottoRegameJButton(new ImageIcon("image/lotto/regame.png"));
 	private JPanel yesOrNoJPanel;

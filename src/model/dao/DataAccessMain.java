@@ -23,6 +23,7 @@ import view.jbutton.StateBackJButton;
 import view.jbutton.StateJButton;
 import view.jbutton.StoreBackJButton;
 import view.jbutton.StoreJButton;
+import view.jbutton.storeMenuJButton.*;
 import view.jlabel.AutoMoneyJLabel;
 import view.jlabel.NicknameJLabel;
 import view.jlabel.TapMoneyJLabel;
@@ -283,9 +284,9 @@ public class DataAccessMain {
 			view.add(subJPanel);
 			view.add(mainJPanel);
 			view.repaint();
-		} else if (e.getActionCommand() == "포션사용") {
+		} else if (e.getSource() instanceof UsePotionJButton) {
 			store.useItem(totalMoneyJLabel, mainJPanel, e, this);
-		} else if (e.getActionCommand() == "헬퍼사용") {
+		} else if (e.getSource() instanceof UseAutoTapJButton) {
 			store.useItem(totalMoneyJLabel, mainJPanel, e, this);
 		}
 

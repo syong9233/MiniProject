@@ -18,6 +18,7 @@ import model.vo.Store;
 import view.View;
 import view.jbutton.LottoRegameJButton;
 import view.jbutton.YesJButton;
+import view.jbutton.storeMenuJButton.*;
 import view.jlabel.TotalMoneyJLabel;
 import view.jpanel.LottoJPanel;
 import view.jpanel.MainJPanel;
@@ -120,19 +121,19 @@ public class DataAccessStore {
 	// 구매항목으로 이동
 	public void StoreMenu(StoreJPanel storeJPanel, ActionEvent e, Main main, Player player) {
 
-		if (e.getActionCommand().equals("P")) {
+		if (e.getSource() instanceof BuyPotionJButton) {
 
 			buyPotion(player, main);
 
-		} else if (e.getActionCommand().equals("L")) {
-
-			buyLotto(player, main);
-
-		} else if (e.getActionCommand().equals("A")) {
+		} else if  (e.getSource() instanceof BuyAutoTapJButton) {
 
 			buyAutoTap(player, main);
 
-		} else if (e.getActionCommand().equals("C")) {
+		} else if (e.getSource() instanceof BuyLottoJButton) {
+
+			buyLotto(player, main);
+
+		} else if (e.getSource() instanceof BuyCashJButton) {
 
 			buyCash(player);
 
@@ -150,7 +151,7 @@ public class DataAccessStore {
 
 	public void useItem(TotalMoneyJLabel totalMoneyJLabel, MainJPanel mainJPanel, ActionEvent e, DataAccessMain main) {
 
-		if (e.getActionCommand().equals("포션사용")) {
+		if (e.getSource() instanceof UsePotionJButton) {
 			if (main.getMain().getM_qtyOfPotion() <= 0) {
 				System.out.println("포션 보유량이 없습니다.");
 			} else {
@@ -165,7 +166,7 @@ public class DataAccessStore {
 			}
 		}
 
-		if (e.getActionCommand().equals("헬퍼사용")) {
+		if (e.getSource() instanceof UseAutoTapJButton) {
 			System.out.println("21");
 			if (main.getMain().getM_qtyOfAutoTap() <= 0) {
 				System.out.println("헬퍼 보유량이 없습니다.");

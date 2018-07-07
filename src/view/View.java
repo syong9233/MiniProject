@@ -8,7 +8,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 import controller.ControllerManager;
 import view.jbutton.LottoBackJButton;
@@ -28,8 +27,7 @@ import view.jpanel.MainJPanel;
 import view.jpanel.QuestJPanel;
 import view.jpanel.StateJPanel;
 import view.jpanel.StoreJPanel;
-import view.jpanel.SubJPanel;
-import javax.swing.JButton;	
+import view.jpanel.SubJPanel;	
 
 public class View extends JFrame implements KeyListener, ActionListener{
 	private static ControllerManager cm = new ControllerManager();
@@ -94,8 +92,8 @@ public class View extends JFrame implements KeyListener, ActionListener{
 		questJButton.addActionListener(this);
 		storeJButton.addActionListener(this);
 		lottoJButton.addActionListener(this);	
-		subJPanel.useAutotap.addActionListener(this);
-		subJPanel.usePotion.addActionListener(this);
+		subJPanel.usePotionJButton.addActionListener(this);
+		subJPanel.useAutoTapJButton.addActionListener(this);
 		this.addKeyListener(this);
 		
 		this.setFocusable(true);
