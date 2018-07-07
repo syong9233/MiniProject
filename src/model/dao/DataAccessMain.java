@@ -60,66 +60,66 @@ public class DataAccessMain {
 
 			if (main.getM_potiontime() > 0) {
 
-				// pa
-				if (main.getM_autotime() > 0) {
-					for (int i = main.getM_autotime(); i > 0; i--) {
-						try {
-							main.setM_autotime(main.getM_autotime() - 1);
-							System.out.println("auto" + main.getM_autotime());
-							Thread.sleep(1000);
-							totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
-							main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfAutoMoney() * 10);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
-				}
+				main.setM_AmountOfTapMoney(main.getM_AmountOfTapMoney() * 10);
+				int tim = 0;
 
 				for (int i = main.getM_potiontime(); i > 0; i--) {
 					try {
+
+						Thread.sleep(100);
 						main.setM_potiontime(main.getM_potiontime() - 1);
-						System.out.println("potion" + main.getM_potiontime());
-						Thread.sleep(1000);
-						totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
-						main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfAutoMoney() * 10);
+
+						if (tim == 10) {
+							main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfAutoMoney());
+							totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
+							tim = 0;
+						}
+
+						tim++;
+
+						if (main.getM_autotime() > 0) {
+
+							main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfTapMoney());
+							totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
+
+							main.setM_autotime(main.getM_autotime() - 1);
+							System.out.println("auto in potion" + main.getM_autotime());
+
+						}
+
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
 				}
+
+				main.setM_AmountOfTapMoney(main.getM_AmountOfTapMoney() / 10);
+
 			}
-			// pa
 
-			// ap
 			if (main.getM_autotime() > 0) {
-				
-				if (main.getM_potiontime() > 0) {
-					for (int i = main.getM_potiontime(); i > 0; i--) {
-						try {
-							main.setM_potiontime(main.getM_potiontime() - 1);
-							System.out.println("potion" + main.getM_potiontime());
-							Thread.sleep(1000);
-							totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
-							main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfAutoMoney() * 10);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
 
-					for (int i = main.getM_autotime(); i > 0; i--) {
-						try {
-							main.setM_autotime(main.getM_autotime() - 1);
-							System.out.println("auto" + main.getM_autotime());
-							Thread.sleep(1000);
-							totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
-							main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfAutoMoney() * 10);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
+				for (int i = main.getM_autotime(); i > 0; i--) {
+
+					try {
+						Thread.sleep(100);
+
+						System.out.println("tap");
+
+						main.setM_autotime(main.getM_autotime() - 1);
+						totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
+						main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfTapMoney());
+
+						if (main.getM_potiontime() > 0)
+							break;
+
+					} catch (InterruptedException e) {
+						e.printStackTrace();
 					}
 
 				}
-			}
-			// ap
+
+			} else if (main.getM_autotime() > 0 && main.getM_potiontime() > 0)
+				continue;
 
 			try {
 				System.out.println(main.getM_TotalOfMoney());
@@ -130,7 +130,6 @@ public class DataAccessMain {
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel, DataAccessQuest quest, JButton button3) {
