@@ -12,6 +12,7 @@ import model.dao.DataAccessQuest;
 import model.dao.DataAccessState;
 import model.dao.DataAccessStore;
 import view.View;
+import view.jbutton.storeMenuJButton.*;
 import view.jlabel.AutoMoneyJLabel;
 import view.jlabel.NicknameJLabel;
 import view.jlabel.TapMoneyJLabel;
@@ -95,7 +96,10 @@ public class ControllerManager {
 	      state.choice(e, main.getMain());
 	   }
 	
-	public void storeMenu(StoreJPanel storeJPanel, ActionEvent e) {
-		store.StoreMenu(storeJPanel, e , main.getMain(), player.getPlayer());
+	public void storeMenu(StoreJPanel storeJPanel,  ActionEvent e,JPanel emptyMoneyJPanel,BuyPotionJButton buyPotionJButton,BuyAutoTapJButton buyAutoTapJButton,BuyLottoJButton buyLottoJButton,BuyCashJButton buyCashJButton) {
+		store.StoreMenu(storeJPanel, e , main.getMain(), player.getPlayer(), emptyMoneyJPanel, buyPotionJButton, buyAutoTapJButton, buyLottoJButton, buyCashJButton);
+	}
+	public void emptyMoney(JPanel emptyMoneyJPanel, ActionEvent e){
+		store.emptyMoney(emptyMoneyJPanel, e);
 	}
 }

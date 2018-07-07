@@ -18,12 +18,17 @@ import model.vo.Store;
 import view.View;
 import view.jbutton.LottoRegameJButton;
 import view.jbutton.YesJButton;
-import view.jbutton.storeMenuJButton.*;
+import view.jbutton.storeMenuJButton.BuyAutoTapJButton;
+import view.jbutton.storeMenuJButton.BuyCashJButton;
+import view.jbutton.storeMenuJButton.BuyLottoJButton;
+import view.jbutton.storeMenuJButton.BuyPotionJButton;
+import view.jbutton.storeMenuJButton.EmptyMoneyJButton;
+import view.jbutton.storeMenuJButton.UseAutoTapJButton;
+import view.jbutton.storeMenuJButton.UsePotionJButton;
 import view.jlabel.TotalMoneyJLabel;
 import view.jpanel.LottoJPanel;
 import view.jpanel.MainJPanel;
 import view.jpanel.StoreJPanel;
-import view.jpanel.SubJPanel;
 
 public class DataAccessStore {
 	private Store store;
@@ -119,26 +124,36 @@ public class DataAccessStore {
 	// 아이템 구매 탭
 
 	// 구매항목으로 이동
-	public void StoreMenu(StoreJPanel storeJPanel, ActionEvent e, Main main, Player player) {
-
+	public void StoreMenu(StoreJPanel storeJPanel, ActionEvent e, Main main, Player player, JPanel emptyMoneyJPanel,BuyPotionJButton buyPotionJButton,BuyAutoTapJButton buyAutoTapJButton,BuyLottoJButton buyLottoJButton,BuyCashJButton buyCashJButton) {
+ 
 		if (e.getSource() instanceof BuyPotionJButton) {
 
-			buyPotion(player, main);
+			buyPotion(storeJPanel, player, main, emptyMoneyJPanel, buyPotionJButton, buyAutoTapJButton, buyLottoJButton, buyCashJButton);
 
-		} else if  (e.getSource() instanceof BuyAutoTapJButton) {
+		} else if (e.getSource() instanceof BuyAutoTapJButton) {
 
-			buyAutoTap(player, main);
+			buyAutoTap(storeJPanel, player, main, emptyMoneyJPanel, buyPotionJButton, buyAutoTapJButton, buyLottoJButton, buyCashJButton);
 
 		} else if (e.getSource() instanceof BuyLottoJButton) {
 
-			buyLotto(player, main);
+			buyLotto(storeJPanel, player, main, emptyMoneyJPanel, buyPotionJButton, buyAutoTapJButton, buyLottoJButton, buyCashJButton);
 
 		} else if (e.getSource() instanceof BuyCashJButton) {
 
-			buyCash(player);
+			buyCash(player, buyPotionJButton, buyAutoTapJButton, buyLottoJButton, buyCashJButton);
 
+		} else if (e.getSource() instanceof EmptyMoneyJButton){
+			emptyMoneyJPanel.setVisible(false);
+			buyPotionJButton.setVisible(true);
+			buyAutoTapJButton.setVisible(true);
+			buyLottoJButton.setVisible(true);
+			buyCashJButton.setVisible(true);
 		}
 
+	}
+
+	public void emptyMoney(JPanel emptyMoneyJPanel, ActionEvent e) {
+	
 	}
 
 	public void potionTime(int time) {
@@ -184,7 +199,7 @@ public class DataAccessStore {
 		}
 	}
 
-	public void buyCash(Player player) {
+	public void buyCash(Player player,BuyPotionJButton buyPotionJButton,BuyAutoTapJButton buyAutoTapJButton,BuyLottoJButton buyLottoJButton,BuyCashJButton buyCashJButton) {
 
 		player.setP_Cash(player.getP_Cash() + 1000);
 
@@ -192,10 +207,18 @@ public class DataAccessStore {
 
 	}
 
-	public void buyPotion(Player player, Main main) {
+	public void buyPotion(StoreJPanel storeJPanel, Player player, Main main, JPanel emptyMoneyJPanel,BuyPotionJButton buyPotionJButton,BuyAutoTapJButton buyAutoTapJButton,BuyLottoJButton buyLottoJButton,BuyCashJButton buyCashJButton) {
 
 		if (player.getP_Cash() < store.getS_priceOfPotion()) {
+			
+			emptyMoneyJPanel.setVisible(true);
+			buyPotionJButton.setVisible(false);
+			buyAutoTapJButton.setVisible(false);
+			buyLottoJButton.setVisible(false);
+			buyCashJButton.setVisible(false);
+			
 			System.out.println("금액이 부족합니다.");
+
 			return;
 		}
 
@@ -210,9 +233,14 @@ public class DataAccessStore {
 
 	}
 
-	public void buyLotto(Player player, Main main) {
+	public void buyLotto(StoreJPanel storeJPanel, Player player, Main main, JPanel emptyMoneyJPanel,BuyPotionJButton buyPotionJButton,BuyAutoTapJButton buyAutoTapJButton,BuyLottoJButton buyLottoJButton,BuyCashJButton buyCashJButton) {
 
 		if (player.getP_Cash() < store.getS_priceOfLotto()) {
+			emptyMoneyJPanel.setVisible(true);
+			buyPotionJButton.setVisible(false);
+			buyAutoTapJButton.setVisible(false);
+			buyLottoJButton.setVisible(false);
+			buyCashJButton.setVisible(false);
 			System.out.println("금액이 부족합니다.");
 			return;
 		}
@@ -227,9 +255,14 @@ public class DataAccessStore {
 
 	}
 
-	public void buyAutoTap(Player player, Main main) {
+	public void buyAutoTap(StoreJPanel storeJPanel, Player player, Main main, JPanel emptyMoneyJPanel,BuyPotionJButton buyPotionJButton,BuyAutoTapJButton buyAutoTapJButton,BuyLottoJButton buyLottoJButton,BuyCashJButton buyCashJButton) {
 
 		if (player.getP_Cash() < store.getS_priceOfAutoTap()) {
+			emptyMoneyJPanel.setVisible(true);
+			buyPotionJButton.setVisible(false);
+			buyAutoTapJButton.setVisible(false);
+			buyLottoJButton.setVisible(false);
+			buyCashJButton.setVisible(false);
 			System.out.println("금액이 부족합니다.");
 			return;
 		}

@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import controller.ControllerManager;
@@ -44,10 +45,11 @@ public class View extends JFrame implements KeyListener, ActionListener{
 	private AutoMoneyJLabel autoMoneyJLabel = new AutoMoneyJLabel();
 	private TapMoneyJLabel tapMoneyJLabel = new TapMoneyJLabel();
 
-	private StateJButton stateJButton = new StateJButton();
-	private QuestJButton questJButton = new QuestJButton();
-	private StoreJButton storeJButton = new StoreJButton();
-	private LottoJButton lottoJButton = new LottoJButton();
+	private StateJButton stateJButton = new StateJButton(new ImageIcon("image/sub/state.png"));
+	private QuestJButton questJButton = new QuestJButton(new ImageIcon("image/sub/quest.png"));
+	private StoreJButton storeJButton = new StoreJButton(new ImageIcon("image/sub/store.png"));
+	private LottoJButton lottoJButton = new LottoJButton(new ImageIcon("image/sub/lotto.png"));
+	
 	private StateBackJButton stateBackJButton = new StateBackJButton();
 	private QuestBackJButton questBackJButton= new QuestBackJButton();
 	private LottoBackJButton lottoBackJButton= new LottoBackJButton();
