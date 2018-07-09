@@ -150,7 +150,7 @@ public class View extends JFrame implements KeyListener, ActionListener{
 		new Music().start();
 		new View();
 		
-		//음악실행(외안돼??외?????????)
+		
 		
 		
 		
