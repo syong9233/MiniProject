@@ -24,9 +24,10 @@ public class DataAccessQuest {
 	
 	//********************어느 완료 버튼을 누른 것인지 체크_180707_1************************
 	public void qChoice(ActionEvent e, Main main, JButton button1, JButton button2) {
-		if (e.getActionCommand().equals("T완료")) {
+		
+		if (e.getActionCommand().equals("")) {
 			this.questAdd(main, button1);
-		} else if (e.getActionCommand().equals("M완료")) {
+		} else if (e.getActionCommand().equals("")) {
 			this.questAdd2(main, button2);
 		}
 	}
@@ -58,8 +59,8 @@ public class DataAccessQuest {
 
 	//****************QuestJPanel JLabel값 변경, Quest객체 값 변경_180707_1***********
 	public void viewQuest(Main main, TotalMoneyJLabel totalMoneyJLabel, JLabel ingTap, JLabel goalTap, JLabel ingMoney, JLabel goalMoney) {
-		goalTap.setText(quest.getTap2() + " 회");
-		ingTap.setText((quest.getQ_qtyOfTap() + 1) + " 회");
+		goalTap.setText(quest.getTap2() + "");
+		ingTap.setText((quest.getQ_qtyOfTap() + 1) + "");
 		quest.setQ_qtyOfTap(quest.getQ_qtyOfTap() + 1);
 		goalMoney.setText(String.format("%,d", quest.getTemp2()));
 		ingMoney.setText(String.format("%,d", main.getM_TotalOfMoney()));

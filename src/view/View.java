@@ -8,9 +8,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import controller.ControllerManager;
+import model.vo.Quest;
 import view.jbutton.LottoBackJButton;
 import view.jbutton.LottoJButton;
 import view.jbutton.QuestBackJButton;
@@ -126,6 +128,9 @@ public class View extends JFrame implements KeyListener, ActionListener{
 							questJPanel.goalTap, questJPanel.ingMoney,
 								questJPanel.goalMoney, questJPanel.button1, 
 									questJPanel.button2);
+		}
+		if(e.getKeyCode() == 83){
+			cm.savePlayer();
 		}
 	}
 	@Override
