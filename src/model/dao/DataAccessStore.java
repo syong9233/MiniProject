@@ -120,13 +120,11 @@ public class DataAccessStore {
 
 	// 구매항목으로 이동
 	public void StoreMenu(StoreJPanel storeJPanel, ActionEvent e, Main main, Player player, JPanel emptyMoneyJPanel,BuyPotionJButton buyPotionJButton,BuyAutoTapJButton buyAutoTapJButton,
-			BuyLottoJButton buyLottoJButton,BuyCashJButton buyCashJButton, JPanel buyCashJPanel, CashCloseJButton cashCloseJButton, JPanel explanationPotionJPanel,
-			YesBuyPotionJButton yesBuyPotionJButton) {
+			BuyLottoJButton buyLottoJButton,BuyCashJButton buyCashJButton, JPanel buyCashJPanel, CashCloseJButton cashCloseJButton) {
  
-		if (e.getSource() instanceof BuyPotionJButton || e.getSource() instanceof YesBuyPotionJButton) {
+		if (e.getSource() instanceof BuyPotionJButton ) {
 
-			buyPotion(storeJPanel, player, main, emptyMoneyJPanel, buyPotionJButton, buyAutoTapJButton, buyLottoJButton, buyCashJButton, explanationPotionJPanel,
-					e, yesBuyPotionJButton );
+			buyPotion(storeJPanel, player, main, emptyMoneyJPanel, buyPotionJButton, buyAutoTapJButton, buyLottoJButton, buyCashJButton);
 
 		} else if (e.getSource() instanceof BuyAutoTapJButton) {
 
@@ -237,7 +235,7 @@ public class DataAccessStore {
 	}
 
 	public void buyPotion(StoreJPanel storeJPanel, Player player, Main main, JPanel emptyMoneyJPanel,BuyPotionJButton buyPotionJButton,BuyAutoTapJButton buyAutoTapJButton,
-			BuyLottoJButton buyLottoJButton,BuyCashJButton buyCashJButton, JPanel explanationPotionJPanel, ActionEvent e, YesBuyPotionJButton yesBuyPotionJButton) {
+			BuyLottoJButton buyLottoJButton,BuyCashJButton buyCashJButton) {
 
 		if (player.getP_Cash() < store.getS_priceOfPotion()) {
 			
@@ -250,25 +248,8 @@ public class DataAccessStore {
 			System.out.println("금액이 부족합니다.");
 
 			return;
-		}else{
-		
-		buyAutoTapJButton.setVisible(false);
-		explanationPotionJPanel.setVisible(true);
-		buyPotionJButton.setVisible(false);
-		buyLottoJButton.setVisible(false);
-		buyCashJButton.setVisible(false);
 		}
 		
-		if(e.getSource() instanceof YesBuyPotionJButton){
-			
-			explanationPotionJPanel.setVisible(false);
-			buyPotionJButton.setVisible(true);
-			buyAutoTapJButton.setVisible(true);
-			buyLottoJButton.setVisible(true);
-			buyCashJButton.setVisible(true);
-			View.cm().savePlayer();
-			
-		}
 		
 		player.setP_Cash(player.getP_Cash() - store.getS_priceOfPotion());
 		main.setM_qtyOfPotion(main.getM_qtyOfPotion() + 1);
