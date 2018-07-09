@@ -12,7 +12,13 @@ import model.dao.DataAccessPlayer;
 import model.dao.DataAccessQuest;
 import model.dao.DataAccessState;
 import model.dao.DataAccessStore;
+import model.vo.Main;
 import view.View;
+import view.jbutton.storeMenuJButton.BuyAutoTapJButton;
+import view.jbutton.storeMenuJButton.BuyCashJButton;
+import view.jbutton.storeMenuJButton.BuyLottoJButton;
+import view.jbutton.storeMenuJButton.BuyPotionJButton;
+import view.jbutton.storeMenuJButton.CashCloseJButton;
 import view.jlabel.AutoMoneyJLabel;
 import view.jlabel.NicknameJLabel;
 import view.jlabel.TapMoneyJLabel;
@@ -105,12 +111,15 @@ public class ControllerManager {
 	//------------------------------------------------------------------------------------
 
 	//***************************DataAccessStore DAO*************************************
-	public void lottoStart(ActionEvent e, LottoJPanel lottoJPanel, JPanel yesOrNoJPanel, JButton lottoRegame){
-		store.lottoStart(e, main.getMain(), lottoJPanel, yesOrNoJPanel, lottoRegame);
+	public void lottoStart(ActionEvent e, LottoJPanel lottoJPanel, JPanel yesOrNoJPanel, JButton lottoRegame, JPanel success, JPanel fail){
+		store.lottoStart(e, main.getMain(), lottoJPanel, yesOrNoJPanel, lottoRegame, success, fail);
+		
 	}
 
-	public void storeMenu(StoreJPanel storeJPanel, ActionEvent e) {
-		store.StoreMenu(storeJPanel, e , main.getMain(), player.getPlayer());
+	public void storeMenu(StoreJPanel storeJPanel,  ActionEvent e,JPanel emptyMoneyJPanel,BuyPotionJButton buyPotionJButton,BuyAutoTapJButton buyAutoTapJButton,
+			BuyLottoJButton buyLottoJButton,BuyCashJButton buyCashJButton,JPanel buyCashJPanel, CashCloseJButton cashCloseJButton) {
+		store.StoreMenu(storeJPanel, e , main.getMain(), player.getPlayer(), emptyMoneyJPanel, buyPotionJButton, buyAutoTapJButton, buyLottoJButton,
+				buyCashJButton, buyCashJPanel, cashCloseJButton);
 	}
 	//------------------------------------------------------------------------------------
 }

@@ -73,7 +73,7 @@ public class View extends JFrame implements KeyListener, ActionListener{
 		stateJPanel.add(stateBackJButton);
 		questJPanel.add(questBackJButton);
 		storeJPanel.add(storeBackJButton);
-		lottoJPanel.add(lottoBackJButton);
+		//lottoJPanel.add(lottoBackJButton);
 			
 		mainJPanel.add(nicknameJLabel);
 		mainJPanel.add(totalMoneyJLabel);
