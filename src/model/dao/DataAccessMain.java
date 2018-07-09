@@ -235,7 +235,7 @@ public class DataAccessMain {
 
 	public void pageMove(View view, ActionEvent e, TotalMoneyJLabel totalMoneyJLabel, MainJPanel mainJPanel,
 			DataAccessStore store, StateJPanel stateJPanel, QuestJPanel questJPanel, StoreJPanel storeJPanel,
-			LottoJPanel lottoJPanel, SubJPanel subJPanel) {
+			LottoJPanel lottoJPanel, SubJPanel subJPanel, StoreBackJButton storeBackJButton ) {
 		if (e.getSource() instanceof StateJButton) {
 			stateJPanel.setVisible(true);
 			subJPanel.setVisible(false);
@@ -289,6 +289,8 @@ public class DataAccessMain {
 			store.useItem(totalMoneyJLabel, mainJPanel, e, this);
 		} else if (e.getSource() instanceof UseAutoTapJButton) {
 			store.useItem(totalMoneyJLabel, mainJPanel, e, this);
+		} else if (e.getSource() instanceof BuyCashJButton){
+			storeBackJButton.setVisible(false);
 		}
 
 	}

@@ -27,10 +27,10 @@ public class StoreJPanel extends JPanel implements ActionListener{
 	private BuyLottoJButton buyLottoJButton = new BuyLottoJButton(new ImageIcon("image/store/lotto.png"));
 	
 	private BuyCashJButton buyCashJButton = new BuyCashJButton(new ImageIcon("image/store/cash.png"));
-	private Cash1000JButton Cash1000JButton = new Cash1000JButton(new ImageIcon("image/store/cash1000.png"));
-	private Cash3000JButton Cash3000JButton = new Cash3000JButton(new ImageIcon("image/store/cash3000.png"));
-	private Cash5000JButton Cash5000JButton = new Cash5000JButton(new ImageIcon("image/store/cash5000.png"));
-	private CashCloseJButton cashCloseJButton = new CashCloseJButton(new ImageIcon("image/store/close.png"));
+	private Cash1000JButton Cash1000JButton = new Cash1000JButton(new ImageIcon("image/store/store_1000cash.png"));
+	private Cash3000JButton Cash3000JButton = new Cash3000JButton(new ImageIcon("image/store/store_3000cash.png"));
+	private Cash5000JButton Cash5000JButton = new Cash5000JButton(new ImageIcon("image/store/store_5000cash.png"));
+	private CashCloseJButton cashCloseJButton = new CashCloseJButton(new ImageIcon("image/store/store_cash_payBackground.png"));
 	
 	private EmptyMoneyJButton emptyMoneyJButton = new EmptyMoneyJButton(new ImageIcon("image/store/empty.png"));
 	
@@ -49,14 +49,14 @@ public class StoreJPanel extends JPanel implements ActionListener{
 		emptyMoneyJPanel = new JPanel(){
 			protected void paintComponent(Graphics g){
 				super.paintComponent(g);
-				g.drawImage(emptyPanelImage, 0, 5, null); 
+				g.drawImage(emptyPanelImage, 0, 0, null); 
 			}
 		};
 		
 		buyCashJPanel = new JPanel(){
 			protected void paintComponent(Graphics g){
 				super.paintComponent(g);
-				g.drawImage(buyCashJPanelImage, 0, 5, null); 
+				g.drawImage(buyCashJPanelImage, 0, 0, null); 
 			}
 		};
 	
@@ -64,7 +64,6 @@ public class StoreJPanel extends JPanel implements ActionListener{
 		emptyMoneyJPanel.add(emptyMoneyJButton);
 		emptyMoneyJPanel.setVisible(false);
 		emptyMoneyJPanel.setLayout(null);
-		
 		
 		buyCashJPanel.setBounds(44, 50, 250, 400);
 		buyCashJPanel.setVisible(false);
@@ -78,7 +77,7 @@ public class StoreJPanel extends JPanel implements ActionListener{
 		try {
 			storeBackGroundImage = ImageIO.read(new File("image/store/testBackGround.png"));
 			emptyPanelImage = ImageIO.read(new File("image/store/emptyPanel.png"));
-			buyCashJPanelImage = ImageIO.read(new File("image/store/buyCashPanel.png"));
+			buyCashJPanelImage = ImageIO.read(new File("image/store/store_cash_payBackground.png"));
 			
 			
 		} catch (IOException e) {

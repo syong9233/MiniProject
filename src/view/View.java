@@ -142,7 +142,7 @@ public class View extends JFrame implements KeyListener, ActionListener{
 	//키보드의 키가 눌리고 떼이는 순간
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		cm.pageMove(this, e, questJPanel.button3, mainJPanel, totalMoneyJLabel, stateJPanel, questJPanel, storeJPanel, lottoJPanel, subJPanel);
+		cm.pageMove(this, e, questJPanel.button3, mainJPanel, totalMoneyJLabel, stateJPanel, questJPanel, storeJPanel, lottoJPanel, subJPanel, storeBackJButton);
 	}
 	
 	public static ControllerManager cm(){
