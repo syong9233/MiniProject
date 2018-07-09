@@ -8,11 +8,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import controller.ControllerManager;
-import model.vo.Quest;
+import model.vo.Music;
 import view.jbutton.LottoBackJButton;
 import view.jbutton.LottoJButton;
 import view.jbutton.QuestBackJButton;
@@ -147,6 +145,7 @@ public class View extends JFrame implements KeyListener, ActionListener{
 	
 	//**********게임 실행_180707_1*************
 	public static void main(String[] args) {
+		new Music().start();
 		new View();
 	}
 	//--------------------------------------
