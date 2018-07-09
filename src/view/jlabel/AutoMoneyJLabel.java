@@ -11,7 +11,7 @@ public class AutoMoneyJLabel extends JLabel {
 		setHorizontalAlignment(JLabel.RIGHT);
 		setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 11));
 		setForeground(new Color(255, 247, 0));
-		setBounds(2, 13, 335, 20);
+		setBounds(2, 14, 325, 20);
 	}
 	
 }

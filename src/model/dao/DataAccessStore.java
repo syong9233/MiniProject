@@ -42,10 +42,6 @@ public class DataAccessStore {
 			JButton lottoRegame, JPanel success, JPanel fail) {
 		// ¥Á√∑/≤Œ ¿ÃπÃ¡ˆ ≥÷±‚(try/catch/@override)
 		
-
-		System.out.println(main.getM_qtyOfLotto());
-		
-
 		if (e.getSource() instanceof YesJButton) {
 
 			if (main.getM_qtyOfLotto() != 0) {

@@ -67,14 +67,13 @@ public class ControllerManager {
 		main.keyReleased(totalMoneyJLabel, quest, ingTap, goalTap, ingMoney,
 				goalMoney, button1, button2);
 	}
-
-	public void checkFisrtGame(View view, NicknameJLabel nicknameJLabel, TotalMoneyJLabel totalMoneyJLabel, AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel, MainJPanel mainJPanelQuest){
-		main.checkFisrtGame(view, player, state.getState(), quest.getQuest(), nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel, mainJPanelQuest);
-	}
-
-	public void setMain(NicknameJLabel nicknameJLabel, TotalMoneyJLabel totalMoneyJLabel, AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel) {
-		main.setPlayer(player.getPlayer(), state.getState(), quest.getQuest());
-		main.setMain(player.getPlayer(), nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel);
+	
+	public void checkFisrtGame(View view, NicknameJLabel nicknameJLabel, TotalMoneyJLabel totalMoneyJLabel,
+			AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel, MainJPanel mainJPanel, SubJPanel subJPanel, JProgressBar extendBar,
+			JProgressBar educateBar, JProgressBar employBar, JProgressBar computerBar, JProgressBar keyboardBar){
+		main.checkFisrtGame(view, player, state.getState(), quest.getQuest(), nicknameJLabel,
+				totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel, mainJPanel, subJPanel, extendBar, educateBar, employBar,
+				computerBar, keyboardBar);
 	}
 
 	public void potionTime(int time){
@@ -83,13 +82,23 @@ public class ControllerManager {
 	public void autoTime(int time){
 		main.autoTime(time);
 	}
+	
+	public void setMoneyJLabel(AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel) {
+		main.reSetMoneyJLabel(autoMoneyJLabel, tapMoneyJLabel);
+	}
 
 	public void pageMove(View view, ActionEvent e, MainJPanel mainJPanel,
 			StateJPanel stateJPanel, QuestJPanel questJPanel, 
 			StoreJPanel storeJPanel, LottoJPanel lottoJPanel, 
-			SubJPanel subJPanel) {
+			SubJPanel subJPanel, JButton extendJButton, JButton educateJButton,
+			JButton employJButton, JButton computerJButton, JButton keyboardJButton,
+			JProgressBar extendBar, JProgressBar educateBar, JProgressBar employBar,
+			JProgressBar computerBar, JProgressBar keyboardBar, NicknameJLabel nicknameJLabel,
+			TotalMoneyJLabel totalMoneyJLabel, AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel) {
 		main.pageMove(view, e, mainJPanel, stateJPanel, questJPanel, storeJPanel,
-				lottoJPanel, subJPanel);
+				lottoJPanel, subJPanel, extendJButton, educateJButton,
+				employJButton, computerJButton, keyboardJButton, extendBar, educateBar, employBar,
+				computerBar, keyboardBar, nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel);
 	}
 	//------------------------------------------------------------------------------------
 
@@ -98,10 +107,9 @@ public class ControllerManager {
 		state.stateLevelUp(e, main.getMain());
 	}*/
 
-	public void stateChoice(ActionEvent e, JProgressBar extendBar,  JProgressBar educateBar,
-			JProgressBar employBar, JProgressBar computerBar, JProgressBar keyboardBar,
-			JButton educateJButton){
-		state.choice(e, main.getMain(), extendBar, educateBar, employBar, computerBar, keyboardBar, educateJButton);
+	public void stateChoice(String choice, Main main, JProgressBar stateBar, MainJPanel mainJPanel,
+			StateJPanel stateJPanel, View view, NicknameJLabel nicknameJLabel, TotalMoneyJLabel totalMoneyJLabel, AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel){
+		state.choice(choice, main, stateBar, mainJPanel, stateJPanel, view, nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel);
 	}
 	//------------------------------------------------------------------------------------
 

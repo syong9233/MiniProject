@@ -27,6 +27,24 @@ public class Player implements java.io.Serializable{
 	private int tap1 = 1, tap2 = 30, reward2 = 150000;
 	private int temp1 = 1, temp2 = 500000, reward1 = 500000;
 	
+	public Player(){
+		super();
+		this.p_Nickname = "";
+		this.p_AmountOfAutoMoney = 10;
+		this.p_AmountOfTapMoney = 150000; 
+		this.p_TotalOfMoney = 0;
+		this.p_Cash = 0;
+		this.p_qtyOfLotto = 10;
+		this.p_qtyOfPotion = 0;
+		this.p_qtyOfAutoTap = 0;
+		this.p_lvOfComputer = 1;
+		this.p_lvOfKeyboard = 1;
+		this.p_lvOfEducate = 1;
+		this.p_lvOfEmploy = 1;
+		this.p_lvOfExtend = 1;
+		this.p_qtyOfTap = 0;
+	}
+	
 	public int getTap1() {
 		return tap1;
 	}
@@ -81,25 +99,6 @@ public class Player implements java.io.Serializable{
 
 	public void setP_qtyOfTotalMoney(long p_qtyOfTotalMoney) {
 		this.p_qtyOfTotalMoney = p_qtyOfTotalMoney;
-	}
-
-	
-	public Player(){
-		super();
-		this.p_Nickname = "";
-		this.p_AmountOfAutoMoney = 10;
-		this.p_AmountOfTapMoney = 7530; 
-		this.p_TotalOfMoney = 0;
-		this.p_Cash = 0;
-		this.p_qtyOfLotto = 10;
-		this.p_qtyOfPotion = 0;
-		this.p_qtyOfAutoTap = 0;
-		this.p_lvOfComputer = 0;
-		this.p_lvOfKeyboard = 0;
-		this.p_lvOfEducate = 0;
-		this.p_lvOfEmploy = 0;
-		this.p_lvOfExtend = 0;
-		this.p_qtyOfTap = 0;
 	}
 
 	public String getP_Nickname() {

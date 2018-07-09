@@ -1,19 +1,16 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import controller.ControllerManager;
-import model.vo.Quest;
-import view.jbutton.LottoBackJButton;
 import view.jbutton.LottoJButton;
 import view.jbutton.QuestBackJButton;
 import view.jbutton.QuestJButton;
@@ -25,6 +22,7 @@ import view.jlabel.AutoMoneyJLabel;
 import view.jlabel.NicknameJLabel;
 import view.jlabel.TapMoneyJLabel;
 import view.jlabel.TotalMoneyJLabel;
+import view.jpanel.FisrtGame;
 import view.jpanel.LottoJPanel;
 import view.jpanel.MainJPanel;
 import view.jpanel.QuestJPanel;
@@ -36,9 +34,11 @@ public class View extends JFrame implements KeyListener, ActionListener{
 	
 	//***********Controller, JPanel, JLabel, JButton 등 객체 생성_180707_1************
 	private static ControllerManager cm = new ControllerManager();
-	
-	private MainJPanel mainJPanel = new MainJPanel();
+	public static View view;
+	public static FisrtGame checkGame;
+
 	private SubJPanel subJPanel = new SubJPanel();
+	private MainJPanel mainJPanel = new MainJPanel();
 	private StateJPanel stateJPanel = new StateJPanel(); 
 	private QuestJPanel questJPanel = new QuestJPanel();
 	private LottoJPanel lottoJPanel = new LottoJPanel();
@@ -55,50 +55,59 @@ public class View extends JFrame implements KeyListener, ActionListener{
 	private LottoJButton lottoJButton = new LottoJButton();
 	private StateBackJButton stateBackJButton = new StateBackJButton();
 	private QuestBackJButton questBackJButton= new QuestBackJButton();
-	private LottoBackJButton lottoBackJButton= new LottoBackJButton();
 	private StoreBackJButton storeBackJButton= new StoreBackJButton();
 	//------------------------------------------------------------------------
 	
 	public View(){
-
 		//***************MainJFrame_180707_1​****************
 		super("TapCompany");
 		setLayout(null);
 		setBounds(1000, 15, 350, 600);
-
-		Container container = getContentPane();
-		Color color = new Color(74, 59, 38);
-		container.setBackground(color);
+		getContentPane().setBackground(Color.BLACK);
+		
+		JLabel lv1JBackImageLabel = new JLabel(new ImageIcon(new ImageIcon("image/main/final_lv1.png").getImage().getScaledInstance(338, 600, java.awt.Image.SCALE_SMOOTH)));
+		lv1JBackImageLabel.setLocation(0, -30);
+		lv1JBackImageLabel.setSize(338, 600);
+		
+		JLabel subJBackImageLabel = new JLabel(new ImageIcon(new ImageIcon("image/sub/subJPanel_panel.png").getImage().getScaledInstance(338, 165, java.awt.Image.SCALE_SMOOTH)));
+		subJBackImageLabel.setLocation(0, 0);
+		subJBackImageLabel.setSize(338, 165);
 		//--------------------------------------------------
 
 		//***********add this, add action​_180707_1************
 		stateJPanel.add(stateBackJButton);
 		questJPanel.add(questBackJButton);
 		storeJPanel.add(storeBackJButton);
-		//lottoJPanel.add(lottoBackJButton);
 			
-		mainJPanel.add(nicknameJLabel);
-		mainJPanel.add(totalMoneyJLabel);
-		mainJPanel.add(autoMoneyJLabel);
-		mainJPanel.add(tapMoneyJLabel);
-		
 		subJPanel.add(stateJButton);
 		subJPanel.add(questJButton);
 		subJPanel.add(storeJButton);
 		subJPanel.add(lottoJButton);
+		subJPanel.add(subJBackImageLabel);
+		
+		mainJPanel.add(nicknameJLabel);
+		mainJPanel.add(totalMoneyJLabel);
+		mainJPanel.add(autoMoneyJLabel);
+		mainJPanel.add(tapMoneyJLabel);
+		mainJPanel.add(lv1JBackImageLabel);
 		
 		lottoJPanel.backButton.addActionListener(this);
 		storeBackJButton.addActionListener(this);
 		stateBackJButton.addActionListener(this);
 		questBackJButton.addActionListener(this);
+		stateJPanel.extendJButton.addActionListener(this);
+		stateJPanel.educateJButton.addActionListener(this);
+		stateJPanel.employJButton.addActionListener(this);
+		stateJPanel.computerJButton.addActionListener(this);
+		stateJPanel.keyboardJButton.addActionListener(this);
 		stateJButton.addActionListener(this);
 		questJButton.addActionListener(this);
 		storeJButton.addActionListener(this);
-		lottoJButton.addActionListener(this);	
+		lottoJButton.addActionListener(this);
 		this.addKeyListener(this);
 		
-		this.add(mainJPanel);
-		this.add(subJPanel);
+		add(subJPanel);
+		add(mainJPanel);
 		
 		this.setFocusable(true);
 		setResizable(false);
@@ -108,7 +117,9 @@ public class View extends JFrame implements KeyListener, ActionListener{
 		
 		//**********new player​ or load player_180707_1*********
 		cm.loadPlayer();
-		cm.checkFisrtGame(this, nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel, mainJPanel);
+		cm.checkFisrtGame(this, nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel, 
+				mainJPanel, subJPanel, stateJPanel.extendBar, stateJPanel.educateBar, stateJPanel.employBar,
+				stateJPanel.computerBar, stateJPanel.keyboardBar);
 		//--------------------------------------------
 	}
 	
@@ -116,7 +127,12 @@ public class View extends JFrame implements KeyListener, ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		cm.pageMove(this, e, mainJPanel, stateJPanel, questJPanel,
-				storeJPanel, lottoJPanel, subJPanel);
+				storeJPanel, lottoJPanel, subJPanel, stateJPanel.extendJButton,
+				stateJPanel.educateJButton, stateJPanel.employJButton,
+				stateJPanel.computerJButton, stateJPanel.keyboardJButton, 
+				stateJPanel.extendBar, stateJPanel.educateBar, stateJPanel.employBar,
+				stateJPanel.computerBar, stateJPanel.keyboardBar,
+				nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel);
 	}
 	//------------------------------------------------------------------
 	
@@ -128,9 +144,6 @@ public class View extends JFrame implements KeyListener, ActionListener{
 							questJPanel.goalTap, questJPanel.ingMoney,
 								questJPanel.goalMoney, questJPanel.button1, 
 									questJPanel.button2);
-		}
-		if(e.getKeyCode() == 83){
-			cm.savePlayer();
 		}
 	}
 	@Override
@@ -147,7 +160,18 @@ public class View extends JFrame implements KeyListener, ActionListener{
 	
 	//**********게임 실행_180707_1*************
 	public static void main(String[] args) {
-		new View();
+		/*FisrtGame checkGame = new FisrtGame();
+		checkGame.start();
+		checkGame.getFisrtGame().cm.loadPlayer();
+		View.view.cm().checkFisrtGame(this, nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel, 
+				mainJPanel, subJPanel, stateJPanel.extendBar, stateJPanel.educateBar, stateJPanel.employBar,
+				stateJPanel.computerBar, stateJPanel.keyboardBar);
+		try {
+			checkGame.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}*/
+		view = new View();
 	}
 	//--------------------------------------
 }

@@ -1,13 +1,10 @@
 package view.jpanel;
 
-import java.awt.Color;
-
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import view.jbutton.storeMenuJButton.*;
-
+import view.jbutton.storeMenuJButton.UseAutoTapJButton;
+import view.jbutton.storeMenuJButton.UsePotionJButton;
 
 public class SubJPanel extends JPanel{
 	
@@ -16,17 +13,13 @@ public class SubJPanel extends JPanel{
 	
 	public SubJPanel(){
 		setBounds(3, 403, 338, 165);
-		setBackground(new Color(100, 100, 100));
+		setOpaque(false);
 		setLayout(null);
-		
-		
-		
+
 		usePotionJButton.setFocusable(false);
 		useAutoTapJButton.setFocusable(false);
-		
-		this.add(usePotionJButton);
-		this.add(useAutoTapJButton);
-		
-	}
 
+		add(usePotionJButton);
+		add(useAutoTapJButton);	
+	}
 }

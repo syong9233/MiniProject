@@ -8,6 +8,9 @@ import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 import model.vo.Main;
@@ -55,7 +58,7 @@ public class DataAccessMain {
 							main.setM_AutoTime(main.getM_AutoTime() - 1);
 							System.out.println("auto" +main.getM_AutoTime());
 							Thread.sleep(1000);
-							totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
+							totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()));
 							main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfAutoMoney() * 10);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
@@ -68,7 +71,7 @@ public class DataAccessMain {
 						main.setM_PotionTime(main.getM_PotionTime() - 1);
 						System.out.println("potion"+main.getM_PotionTime());
 						Thread.sleep(1000);
-						totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
+						totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()));
 						main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfAutoMoney() * 10);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
@@ -83,7 +86,7 @@ public class DataAccessMain {
 							main.setM_PotionTime(main.getM_PotionTime() - 1);
 							System.out.println("potion"+main.getM_PotionTime());
 							Thread.sleep(1000);
-							totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
+							totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()));
 							main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfAutoMoney() * 10);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
@@ -95,7 +98,7 @@ public class DataAccessMain {
 							main.setM_AutoTime(main.getM_AutoTime() - 1);
 							System.out.println("auto"+main.getM_AutoTime());
 							Thread.sleep(1000);
-							totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
+							totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()));
 							main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfAutoMoney() * 10);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
@@ -106,7 +109,7 @@ public class DataAccessMain {
 
 			try {
 				Thread.sleep(1000);
-				totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
+				totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()));
 				main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfAutoMoney());
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -134,7 +137,7 @@ public class DataAccessMain {
 			JLabel goalTap, JLabel ingTap, JLabel goalMoney,
 			JLabel ingMoney , JButton button1, JButton button2) {	
 		main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfTapMoney());
-		totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
+		totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()));
 		quest.viewQuest(main, totalMoneyJLabel, goalTap, ingTap, goalMoney, ingMoney);
 	}
 	//-----------------------------------------------------------------------
@@ -142,19 +145,40 @@ public class DataAccessMain {
 	//*************************게임 상단 금액 셋팅_180707_1*************************
 	public void setMain(Player player, NicknameJLabel nicknameJLabel, 
 			TotalMoneyJLabel totalMoneyJLabel, AutoMoneyJLabel autoMoneyJLabel, 
-			TapMoneyJLabel tapMoneyJLabel) {
+			TapMoneyJLabel tapMoneyJLabel, JProgressBar extendBar, JProgressBar educateBar,
+			JProgressBar employBar, JProgressBar computerBar, JProgressBar keyboardBar, State state) {
 		nicknameJLabel.setText("player : " + player.getP_Nickname());
-		totalMoneyJLabel.setText(String.format("%,d", (main.getM_TotalOfMoney())) + " : 보유");
-		autoMoneyJLabel.setText(String.format("%,d", (main.getM_AmountOfAutoMoney())) + " : 자동");
-		tapMoneyJLabel.setText(String.format("%,d", (main.getM_AmountOfTapMoney())) + " : 탭");
+		totalMoneyJLabel.setText(String.format("%,d", (main.getM_TotalOfMoney())));
+		autoMoneyJLabel.setText(String.format("%,d", (main.getM_AmountOfAutoMoney())));
+		tapMoneyJLabel.setText(String.format("%,d", (main.getM_AmountOfTapMoney())));
+		
+		extendBar.setValue(state.getP_lvOfExtend());
+		educateBar.setValue(state.getP_lvOfEducate());
+		employBar.setValue(state.getP_lvOfEmploy());
+		computerBar.setValue(state.getP_lvOfComputer());
+		keyboardBar.setValue(state.getP_lvOfKeyboard());
+		extendBar.setString(state.getP_lvOfExtend() + "/" + extendBar.getMaximum());
+		educateBar.setString(state.getP_lvOfEducate() + "/" + educateBar.getMaximum());
+		employBar.setString(state.getP_lvOfEmploy() + "/" + employBar.getMaximum());
+		computerBar.setString(state.getP_lvOfComputer() + "/" + computerBar.getMaximum());
+		keyboardBar.setString(state.getP_lvOfKeyboard() + "/" + keyboardBar.getMaximum());
 	}
 	//-----------------------------------------------------------------------
 
+	//**************스탯 레벨 업 버튼을 누를 경우 상단 JLabel 변경_180709_1****************
+	public void reSetMoneyJLabel(AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel) {
+		autoMoneyJLabel.setText(String.format("%,d", (main.getM_AmountOfAutoMoney())));
+		tapMoneyJLabel.setText(String.format("%,d", (main.getM_AmountOfTapMoney())));
+	}
+	//-----------------------------------------------------------------------
+	
 	//**************새로 시작하는 이용자인지 기존에 플레이를 했던 이용자인지 체크_180707_1****************
 	public void checkFisrtGame(View view, DataAccessPlayer player,
 			State state, Quest quest,  NicknameJLabel nicknameJLabel, 
 			TotalMoneyJLabel totalMoneyJLabel, AutoMoneyJLabel autoMoneyJLabel,
-			TapMoneyJLabel tapMoneyJLabel, MainJPanel mainJPanel){
+			TapMoneyJLabel tapMoneyJLabel, MainJPanel mainJPanel, SubJPanel subJPanel,
+			JProgressBar extendBar, JProgressBar educateBar, JProgressBar employBar,
+			JProgressBar computerBar, JProgressBar keyboardBar){
 		if(player.getPlayer().getP_Nickname().equals("")){
 			int temp = 1;
 			String nickname = "";
@@ -179,15 +203,17 @@ public class DataAccessMain {
 			if(!nickname.equals("")){
 				player.setP_Nickname(nickname);
 				setPlayer(player.getPlayer(), state, quest);
-				setMain(player.getPlayer(), nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel);
+				setMain(player.getPlayer(), nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel,
+						extendBar, educateBar, employBar, computerBar, keyboardBar, state);
 				autoRun(totalMoneyJLabel, this.getMain(), 0);
 			}else{
 				view.setVisible(false); 
 			}
 		}else{
 			setPlayer(player.getPlayer(), state, quest);
-			setMain(player.getPlayer(), nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel);
-			whileNotPlay(mainJPanel, player.getPlayer());
+			setMain(player.getPlayer(), nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel,
+					extendBar, educateBar, employBar, computerBar, keyboardBar, state);
+			whileNotPlay(view, mainJPanel, subJPanel, player.getPlayer());
 			autoRun(totalMoneyJLabel, this.getMain(), 0);
 	
 		}
@@ -195,7 +221,7 @@ public class DataAccessMain {
 	//-----------------------------------------------------------------------
 
 	//*******************플레이하지 않은 동안 획득한 금액 추가_180707_1*******************
-	public void whileNotPlay(MainJPanel mainJPanel, Player player){
+	public void whileNotPlay(View view, MainJPanel mainJPanel, SubJPanel subJPanel, Player player){
 		JLabel noticeJLabel = new JLabel("플레이 하지 않은 동안 획득한 금액 ");
 		JLabel noticeMoneyJLabel = new JLabel();
 		int temp = (int)((new Date().getTime() - player.getP_lastTime().getTime()) / 1000);
@@ -210,9 +236,12 @@ public class DataAccessMain {
 		noticeMoneyJLabel.setForeground(new Color(255, 255, 255));
 		noticeMoneyJLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		noticeMoneyJLabel.setText(String.format("%,d", (main.getM_AmountOfTapMoney() * temp)));
+		
 		mainJPanel.add(noticeJLabel);
 		mainJPanel.add(noticeMoneyJLabel);
-		mainJPanel.repaint();
+		view.add(subJPanel);
+		view.add(mainJPanel);
+		
 		try {
 			Thread.sleep(3000);
 			noticeJLabel.setVisible(false);
@@ -254,7 +283,11 @@ public class DataAccessMain {
 	//*********************게임 내 버튼을 누를 경우 페이지 이동_180707_1*******************
 	public void pageMove(View view, ActionEvent e, MainJPanel mainJPanel,
 			StateJPanel stateJPanel, QuestJPanel questJPanel, StoreJPanel storeJPanel,
-			LottoJPanel lottoJPanel, SubJPanel subJPanel) {
+			LottoJPanel lottoJPanel, SubJPanel subJPanel, JButton extendJButton,
+			JButton educateJButton, JButton employJButton, JButton computerJButton, JButton keyboardJButton,
+			JProgressBar extendBar, JProgressBar educateBar, JProgressBar employBar,
+			JProgressBar computerBar, JProgressBar keyboardBar, NicknameJLabel nicknameJLabel,
+			TotalMoneyJLabel totalMoneyJLabel, AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel) {
 		if(e.getSource() instanceof StateJButton){
 			stateJPanel.setVisible(true);
 			subJPanel.setVisible(false);
@@ -282,15 +315,15 @@ public class DataAccessMain {
 		}else if(e.getSource() instanceof StoreBackJButton){
 			subJPanel.setVisible(true);
 			storeJPanel.setVisible(false);
-			view.add(mainJPanel);
 			view.add(subJPanel);
+			view.add(mainJPanel);
 			view.repaint();
 			View.cm().savePlayer();
 		}else if(e.getSource() instanceof BackJButton){
 			lottoJPanel.setVisible(false);
 			subJPanel.setVisible(true);
-			view.add(mainJPanel);
 			view.add(subJPanel);
+			view.add(mainJPanel);
 			view.repaint();
 		}else if(e.getSource() instanceof StateBackJButton){
 			stateJPanel.setVisible(false);
@@ -304,6 +337,16 @@ public class DataAccessMain {
 			view.add(subJPanel);
 			view.add(mainJPanel);
 			view.repaint();
+		}else if(e.getActionCommand().equals("회사 확장")){
+			View.cm().stateChoice("회사 확장", main, extendBar, mainJPanel, stateJPanel, view, nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel);
+		}else if(e.getActionCommand().equals("교육 이수")){
+			View.cm().stateChoice("교육 이수", main, educateBar, mainJPanel, stateJPanel, view, nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel);
+		}else if(e.getActionCommand().equals("직원 고용")){
+			View.cm().stateChoice("직원 고용", main, employBar, mainJPanel, stateJPanel, view, nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel);
+		}else if(e.getActionCommand().equals("컴퓨터 사양")){
+			View.cm().stateChoice("컴퓨터 사양", main, computerBar, mainJPanel, stateJPanel, view, nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel);
+		}else if(e.getActionCommand().equals("타자수")){
+			View.cm().stateChoice("타자수", main, keyboardBar, mainJPanel, stateJPanel, view, nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel);
 		}
 	}
 	//---------------------------------------------------------------
