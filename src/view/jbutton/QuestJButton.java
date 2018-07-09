@@ -5,11 +5,9 @@ import javax.swing.JButton;
 
 public class QuestJButton extends JButton{
 
-	public QuestJButton(ImageIcon imageIcon){
-		super(imageIcon);
-		setSize(60, 60);
-		setLocation(98, 100);
+	public QuestJButton(){
+		super(new ImageIcon("image/main/main_Quest"));
+		setSize(75, 35);
+		setLocation(90, 122);
 	}
-
-	
 }

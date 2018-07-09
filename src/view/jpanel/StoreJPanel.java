@@ -1,130 +1,94 @@
 package view.jpanel;
 
 import java.awt.Color;
-
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowFocusListener;
 import java.awt.image.BufferedImage;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import view.View;
-import view.jbutton.storeMenuJButton.*;
 
-public class StoreJPanel extends JPanel implements ActionListener{
+public class StoreJPanel extends JPanel implements ActionListener {
 	
-	private BuyPotionJButton buyPotionJButton = new BuyPotionJButton(new ImageIcon("image/store/potion.png"));
-	private BuyAutoTapJButton buyAutoTapJButton = new BuyAutoTapJButton(new ImageIcon("image/store/autoTap.png"));
-	private BuyLottoJButton buyLottoJButton = new BuyLottoJButton(new ImageIcon("image/store/lotto.png"));
-	
-	private BuyCashJButton buyCashJButton = new BuyCashJButton(new ImageIcon("image/store/cash.png"));
-	private Cash1000JButton Cash1000JButton = new Cash1000JButton(new ImageIcon("image/store/cash1000.png"));
-	private Cash3000JButton Cash3000JButton = new Cash3000JButton(new ImageIcon("image/store/cash3000.png"));
-	private Cash5000JButton Cash5000JButton = new Cash5000JButton(new ImageIcon("image/store/cash5000.png"));
-	private CashCloseJButton cashCloseJButton = new CashCloseJButton(new ImageIcon("image/store/close.png"));
-	
-	private EmptyMoneyJButton emptyMoneyJButton = new EmptyMoneyJButton(new ImageIcon("image/store/empty.png"));
-	
-	private	JPanel emptyMoneyJPanel ;
-	private JPanel buyCashJPanel ;
-	
-	private BufferedImage  storeBackGroundImage;
-	private BufferedImage  emptyPanelImage;
-	private BufferedImage  buyCashJPanelImage;
-	
+	//***********JButton, Image 등 객체 생성 및 변수 선언_180707_1************
+	private JButton buyPotion = new JButton(new ImageIcon("image/store/store_portion.png"));
+	private JButton buyLotto = new JButton("L");
+	private JButton buyAutoTap = new JButton("A");
+	private JButton buyCash = new JButton("C");
+
+	private BufferedImage storeBackgroundImage;
+	//----------------------------------------------------------------
+
 	public StoreJPanel() {
 
-		setLayout(null);
-		setBounds(3, 52, 338, 610);
+		//***************StoreJPanel_180707_1​****************
+		this.setLayout(null);
+		this.setBounds(3, 52, 338, 516);
+		this.setBackground(new Color(100, 100, 100));
+		//----------------------------------------------------
 		
-		emptyMoneyJPanel = new JPanel(){
-			protected void paintComponent(Graphics g){
-				super.paintComponent(g);
-				g.drawImage(emptyPanelImage, 0, 5, null); 
-			}
-		};
-		
-		buyCashJPanel = new JPanel(){
-			protected void paintComponent(Graphics g){
-				super.paintComponent(g);
-				g.drawImage(buyCashJPanelImage, 0, 5, null); 
-			}
-		};
-	
-		emptyMoneyJPanel.setBounds(44, 170, 250, 150);
-		emptyMoneyJPanel.add(emptyMoneyJButton);
-		emptyMoneyJPanel.setVisible(false);
-		emptyMoneyJPanel.setLayout(null);
-		
-		
-		buyCashJPanel.setBounds(44, 50, 250, 400);
-		buyCashJPanel.setVisible(false);
-		buyCashJPanel.add(Cash1000JButton);
-		buyCashJPanel.add(Cash3000JButton);
-		buyCashJPanel.add(Cash5000JButton);
-		buyCashJPanel.add(cashCloseJButton);
-		buyCashJPanel.setLayout(null);
-		
-		
+		//**********************이미지 객체화_180707_1*************************
 		try {
-			storeBackGroundImage = ImageIO.read(new File("image/store/testBackGround.png"));
-			emptyPanelImage = ImageIO.read(new File("image/store/emptyPanel.png"));
-			buyCashJPanelImage = ImageIO.read(new File("image/store/buyCashPanel.png"));
-			
-			
+			storeBackgroundImage = ImageIO.read(new File("image/store/store_background.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//------------------------------------------------------------------
 		
-		
-		
-		
-		
-		
-		this.add(emptyMoneyJPanel);
-		this.add(buyCashJPanel);
-		
-		this.add(buyPotionJButton);
-		this.add(buyAutoTapJButton);
-		this.add(buyLottoJButton);
-		this.add(buyCashJButton);
-		
-		buyPotionJButton.addActionListener(this);
-		buyAutoTapJButton.addActionListener(this);
-		buyLottoJButton.addActionListener(this);
-		buyCashJButton.addActionListener(this);
-		emptyMoneyJButton.addActionListener(this);
-		Cash1000JButton.addActionListener(this);
-		Cash3000JButton.addActionListener(this);
-		Cash5000JButton.addActionListener(this);
-		cashCloseJButton.addActionListener(this);
+		//****************각각의 JButton Setting_180707_1****************
+		buyPotion.setLocation(60, 120);
+		buyPotion.setSize(105, 162);
+		buyPotion.addActionListener(this);
+		buyPotion.setFont(new Font("맑은 고딕", Font.BOLD, 12));
 
+		buyLotto.setLocation(265, 85);
+		buyLotto.setSize(68, 50);
+		buyLotto.addActionListener(this);
+		buyLotto.setFont(new Font("맑은 고딕", Font.BOLD, 12));
 
+		buyAutoTap.setLocation(265, 140);
+		buyAutoTap.setSize(68, 50);
+		buyAutoTap.addActionListener(this);
+		buyAutoTap.setFont(new Font("맑은 고딕", Font.BOLD, 12));
+
+		buyCash.setLocation(265, 195);
+		buyCash.setSize(68, 50);
+		buyCash.addActionListener(this);
+		buyCash.setFont(new Font("맑은 고딕", Font.BOLD, 12));
+		//------------------------------------------------------------
+		
+		//***********add this​_180707_1************
+		this.add(buyPotion);
+		this.add(buyLotto);
+		this.add(buyAutoTap);
+		this.add(buyCash);
+		//-----------------------------------------
 	}
 
+	//*********JButton 등의 이벤트 발생 시작 메소드_180707_1************
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		View.cm().storeMenu(this, e);
+	}
+	//---------------------------------------------------------
+
+	//*******StoreJPanel BackGround Image add_180707_1**********
 	@Override
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
-		g.drawImage(storeBackGroundImage, 0, -93, null);
-
+		g.drawImage(storeBackgroundImage, -1, 1, null);
 	}
-	
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		View.cm().storeMenu(this, e, emptyMoneyJPanel, buyPotionJButton, buyAutoTapJButton, buyLottoJButton, 
-				buyCashJButton, buyCashJPanel, cashCloseJButton);
-	}
-	
-	
+	//---------------------------------------------------------
 
 }

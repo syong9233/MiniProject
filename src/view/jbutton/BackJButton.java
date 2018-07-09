@@ -7,7 +7,8 @@ public class BackJButton extends JButton {
 	
 	public BackJButton(ImageIcon imageIcon){
 		super(imageIcon);
-		setLocation(23,100);
+		setLocation(143, 100);
 		setSize(110,30);
+		
 	}
 }
