@@ -5,16 +5,14 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class EmptyMoneyJButton extends JButton {
+public class Cash3000JButton extends JButton {
 
-	public EmptyMoneyJButton(ImageIcon imageIcon) {
+	public Cash3000JButton(ImageIcon imageIcon) {
 
 		super(imageIcon);
-		
-		setLocation(85, 90);
-		setSize(80, 40);
 
-		
+		setLocation(50, 110);
+		setSize(150, 70);
+
 	}
-
 }
