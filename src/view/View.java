@@ -1,16 +1,20 @@
 package view;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+import java.net.MalformedURLException;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 import controller.ControllerManager;
+import model.vo.Music;
 import view.jbutton.LottoBackJButton;
 import view.jbutton.LottoJButton;
 import view.jbutton.QuestBackJButton;
@@ -139,10 +143,17 @@ public class View extends JFrame implements KeyListener, ActionListener{
 		return cm;
 	}
 	//------------------------------------------------------------------
-	
+
 	//**********게임 실행_180707_1*************
 	public static void main(String[] args) {
 		new View();
+		
+		//음악실행(외안돼??외?????????)
+		new Music().start();
+		
+		
 	}
-	//--------------------------------------
+
 }
+
+
