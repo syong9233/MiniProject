@@ -5,10 +5,10 @@ import javax.swing.JButton;
 
 public class StateJButton extends JButton{
 	
-	public StateJButton(ImageIcon imageIcon){
-		super(imageIcon);
-		setSize(60, 60);
-		setLocation(15, 100);
+	public StateJButton(){
+		super(new ImageIcon("image/main/main_state"));
+		setSize(75, 35);
+		setLocation(7, 122);
 	}
 	
 }

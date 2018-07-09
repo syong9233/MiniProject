@@ -7,8 +7,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import controller.ControllerManager;
 import view.jbutton.LottoBackJButton;
@@ -28,9 +28,11 @@ import view.jpanel.MainJPanel;
 import view.jpanel.QuestJPanel;
 import view.jpanel.StateJPanel;
 import view.jpanel.StoreJPanel;
-import view.jpanel.SubJPanel;	
+import view.jpanel.SubJPanel;
 
 public class View extends JFrame implements KeyListener, ActionListener{
+	
+	//***********Controller, JPanel, JLabel, JButton 등 객체 생성_180707_1************
 	private static ControllerManager cm = new ControllerManager();
 	
 	private MainJPanel mainJPanel = new MainJPanel();
@@ -45,33 +47,33 @@ public class View extends JFrame implements KeyListener, ActionListener{
 	private AutoMoneyJLabel autoMoneyJLabel = new AutoMoneyJLabel();
 	private TapMoneyJLabel tapMoneyJLabel = new TapMoneyJLabel();
 
-	private StateJButton stateJButton = new StateJButton(new ImageIcon("image/sub/state.png"));
-	private QuestJButton questJButton = new QuestJButton(new ImageIcon("image/sub/quest.png"));
-	private StoreJButton storeJButton = new StoreJButton(new ImageIcon("image/sub/store.png"));
-	private LottoJButton lottoJButton = new LottoJButton(new ImageIcon("image/sub/lotto.png"));
-	
+	private StateJButton stateJButton = new StateJButton();
+	private QuestJButton questJButton = new QuestJButton();
+	private StoreJButton storeJButton = new StoreJButton();
+	private LottoJButton lottoJButton = new LottoJButton();
 	private StateBackJButton stateBackJButton = new StateBackJButton();
 	private QuestBackJButton questBackJButton= new QuestBackJButton();
 	private LottoBackJButton lottoBackJButton= new LottoBackJButton();
 	private StoreBackJButton storeBackJButton= new StoreBackJButton();
+	//------------------------------------------------------------------------
 	
 	public View(){
-		
+
+		//***************MainJFrame_180707_1​****************
 		super("TapCompany");
-		//***************MainController​****************
 		setLayout(null);
 		setBounds(1000, 15, 350, 600);
 
 		Container container = getContentPane();
 		Color color = new Color(74, 59, 38);
 		container.setBackground(color);
-		//********************************************
+		//--------------------------------------------------
 
-		//******************add This​******************
+		//***********add this, add action​_180707_1************
 		stateJPanel.add(stateBackJButton);
 		questJPanel.add(questBackJButton);
 		storeJPanel.add(storeBackJButton);
-		//lottoJPanel.add(lottoBackJButton);
+		lottoJPanel.add(lottoBackJButton);
 			
 		mainJPanel.add(nicknameJLabel);
 		mainJPanel.add(totalMoneyJLabel);
@@ -83,9 +85,6 @@ public class View extends JFrame implements KeyListener, ActionListener{
 		subJPanel.add(storeJButton);
 		subJPanel.add(lottoJButton);
 		
-		this.add(mainJPanel);
-		this.add(subJPanel);
-		
 		lottoJPanel.backButton.addActionListener(this);
 		storeBackJButton.addActionListener(this);
 		stateBackJButton.addActionListener(this);
@@ -94,62 +93,56 @@ public class View extends JFrame implements KeyListener, ActionListener{
 		questJButton.addActionListener(this);
 		storeJButton.addActionListener(this);
 		lottoJButton.addActionListener(this);	
-		subJPanel.usePotionJButton.addActionListener(this);
-		subJPanel.useAutoTapJButton.addActionListener(this);
 		this.addKeyListener(this);
+		
+		this.add(mainJPanel);
+		this.add(subJPanel);
 		
 		this.setFocusable(true);
 		setResizable(false);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//********************************************
-
-
-		//**********new player  or load player*********
+		//--------------------------------------------------
+		
+		//**********new player​ or load player_180707_1*********
 		cm.loadPlayer();
-		//----------0705 16:15------------
 		cm.checkFisrtGame(this, nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel, mainJPanel);
-		//********************************************
-
+		//--------------------------------------------
 	}
 	
-	public static void main(String[] args) {
-		new View();
-	}
-
-	//0706 17:50 변경
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		
-		if(e.getKeyCode() == 32){
-			cm.keyReleased(totalMoneyJLabel, questJPanel.button3); // questJPanel.button1 //버튼 안의 내용변경하기 위해 객체를 가져옴.
-		}
-		
-		if(e.getKeyCode() == 83){
-			cm.savePlayer();
-		}
-	}
-
-	//키보드 눌리는 순간
-	@Override
-	public void keyTyped(KeyEvent e) {}
-
-	// 키보드의 키가 눌린 순간
-	@Override
-	public void keyPressed(KeyEvent e) {}
-
-	//키보드의 키가 눌리고 떼이는 순간
+	//*********JButton, JLabel 등의 이벤트 발생 시작 메소드_180707_1************
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		cm.pageMove(this, e, questJPanel.button3, mainJPanel, totalMoneyJLabel, stateJPanel, questJPanel, storeJPanel, lottoJPanel, subJPanel);
+		cm.pageMove(this, e, mainJPanel, stateJPanel, questJPanel,
+				storeJPanel, lottoJPanel, subJPanel);
 	}
+	//------------------------------------------------------------------
 	
+	//*************SpaceBar의 이벤트 발생 시작 메소드_180707_1******************
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if(e.getKeyCode() == 32){
+			cm.keyReleased(totalMoneyJLabel, questJPanel.ingTap, 
+							questJPanel.goalTap, questJPanel.ingMoney,
+								questJPanel.goalMoney, questJPanel.button1, 
+									questJPanel.button2);
+		}
+	}
+	@Override
+	public void keyTyped(KeyEvent e) {}
+	@Override
+	public void keyPressed(KeyEvent e) {}
+	//------------------------------------------------------------------
+	
+	//***********ControllerManaber의 공유 목적 메소드_180707_1****************
 	public static ControllerManager cm(){
 		return cm;
 	}
+	//------------------------------------------------------------------
 	
-	public View getView(){
-		return this;
+	//**********게임 실행_180707_1*************
+	public static void main(String[] args) {
+		new View();
 	}
+	//--------------------------------------
 }

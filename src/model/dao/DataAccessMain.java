@@ -8,7 +8,6 @@ import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import model.vo.Main;
@@ -24,7 +23,6 @@ import view.jbutton.StateBackJButton;
 import view.jbutton.StateJButton;
 import view.jbutton.StoreBackJButton;
 import view.jbutton.StoreJButton;
-import view.jbutton.storeMenuJButton.*;
 import view.jlabel.AutoMoneyJLabel;
 import view.jlabel.NicknameJLabel;
 import view.jlabel.TapMoneyJLabel;
@@ -39,92 +37,74 @@ import view.jpanel.SubJPanel;
 public class DataAccessMain {
 	private Main main;
 
-	public DataAccessMain() {
+	public DataAccessMain(){
 		main = new Main();
 	}
 
-	public Main getMain() {
+	public Main getMain(){
 		return main;
 	}
 
-	public void potionRun(int time) {
-		main.setM_potiontime(time);
-		return;
-	}
-
-	public void autoRun(int time) {
-		main.setM_autotime(time);
-		return;
-	}
-
+	//*************자동으로 금액이 오르는 부분, 아이템 사용시 자동으로 체크 후 사용_180707_1*************
 	public void autoRun(TotalMoneyJLabel totalMoneyJLabel, Main main, int time) {
 		while (true) {
+			if (main.getM_PotionTime() > 0) {
+				if (main.getM_AutoTime() > 0) {
+					for (int i = main.getM_AutoTime(); i > 0; i--) {
+						try {
+							main.setM_AutoTime(main.getM_AutoTime() - 1);
+							System.out.println("auto" +main.getM_AutoTime());
+							Thread.sleep(1000);
+							totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
+							main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfAutoMoney() * 10);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+				}
 
-			if (main.getM_potiontime() > 0) {
-
-				main.setM_AmountOfTapMoney(main.getM_AmountOfTapMoney() * 10);
-				int tim = 0;
-
-				for (int i = main.getM_potiontime(); i > 0; i--) {
+				for (int i = main.getM_PotionTime(); i > 0; i--) {
 					try {
-
-						Thread.sleep(100);
-						main.setM_potiontime(main.getM_potiontime() - 1);
-
-						if (tim == 10) {
-							main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfAutoMoney());
-							totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
-							tim = 0;
-						}
-
-						tim++;
-
-						if (main.getM_autotime() > 0) {
-
-							main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfTapMoney());
-							totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
-
-							main.setM_autotime(main.getM_autotime() - 1);
-							System.out.println("auto in potion" + main.getM_autotime());
-
-						}
-
+						main.setM_PotionTime(main.getM_PotionTime() - 1);
+						System.out.println("potion"+main.getM_PotionTime());
+						Thread.sleep(1000);
+						totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
+						main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfAutoMoney() * 10);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
 				}
-
-				main.setM_AmountOfTapMoney(main.getM_AmountOfTapMoney() / 10);
-
 			}
 
-			if (main.getM_autotime() > 0) {
-
-				for (int i = main.getM_autotime(); i > 0; i--) {
-
-					try {
-						Thread.sleep(100);
-
-						System.out.println("tap");
-
-						main.setM_autotime(main.getM_autotime() - 1);
-						totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
-						main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfTapMoney());
-
-						if (main.getM_potiontime() > 0)
-							break;
-
-					} catch (InterruptedException e) {
-						e.printStackTrace();
+			if (main.getM_AutoTime() > 0) {
+				if (main.getM_PotionTime() > 0) {
+					for (int i = main.getM_PotionTime(); i > 0; i--) {
+						try {
+							main.setM_PotionTime(main.getM_PotionTime() - 1);
+							System.out.println("potion"+main.getM_PotionTime());
+							Thread.sleep(1000);
+							totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
+							main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfAutoMoney() * 10);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
 					}
 
+					for (int i = main.getM_AutoTime(); i > 0; i--) {
+						try {
+							main.setM_AutoTime(main.getM_AutoTime() - 1);
+							System.out.println("auto"+main.getM_AutoTime());
+							Thread.sleep(1000);
+							totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
+							main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfAutoMoney() * 10);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
 				}
-
-			} else if (main.getM_autotime() > 0 && main.getM_potiontime() > 0)
-				continue;
+			}
 
 			try {
-				System.out.println(main.getM_TotalOfMoney());
 				Thread.sleep(1000);
 				totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
 				main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfAutoMoney());
@@ -133,82 +113,91 @@ public class DataAccessMain {
 			}
 		}
 	}
+	//-------------------------------------------------------------------------
 
-	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel, DataAccessQuest quest, JButton button3) {
+	//*******아이템 사용했을 경우 시간 추가(autuRun에서 시간 체크 후 아이템 기능을 시간동안 적용)_180707_1*******
+	public void potionRun(int time) {
+		main.setM_PotionTime(time);
+		return;
+	}
+	//---------------------------------------------------------------------------------
+
+	//*******아이템 사용했을 경우 시간 추가(autuRun에서 시간 체크 후 아이템 기능을 시간동안 적용)_180707_1*******
+	public void autoTime(int time) {
+		main.setM_AutoTime(time);
+		return;
+	}
+	//---------------------------------------------------------------------------------
+
+	//*************************스페이스바를 눌렀을 경우_180707_1*************************
+	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel, DataAccessQuest quest,
+			JLabel goalTap, JLabel ingTap, JLabel goalMoney,
+			JLabel ingMoney , JButton button1, JButton button2) {	
 		main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfTapMoney());
 		totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
-		// quest.함수
-		quest.questAdd(main, totalMoneyJLabel, button3);
+		quest.viewQuest(main, totalMoneyJLabel, goalTap, ingTap, goalMoney, ingMoney);
 	}
+	//-----------------------------------------------------------------------
 
-	public void setMain(Player player, NicknameJLabel nicknameJLabel, TotalMoneyJLabel totalMoneyJLabel,
-			AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel) {
+	//*************************게임 상단 금액 셋팅_180707_1*************************
+	public void setMain(Player player, NicknameJLabel nicknameJLabel, 
+			TotalMoneyJLabel totalMoneyJLabel, AutoMoneyJLabel autoMoneyJLabel, 
+			TapMoneyJLabel tapMoneyJLabel) {
 		nicknameJLabel.setText("player : " + player.getP_Nickname());
 		totalMoneyJLabel.setText(String.format("%,d", (main.getM_TotalOfMoney())) + " : 보유");
 		autoMoneyJLabel.setText(String.format("%,d", (main.getM_AmountOfAutoMoney())) + " : 자동");
 		tapMoneyJLabel.setText(String.format("%,d", (main.getM_AmountOfTapMoney())) + " : 탭");
 	}
+	//-----------------------------------------------------------------------
 
-	public void setPlayer(Player player, State state, Quest quest) {
-		main.setM_AmountOfAutoMoney(player.getP_AmountOfAutoMoney());
-		main.setM_AmountOfTapMoney(player.getP_AmountOfTapMoney());
-		main.setM_qtyOfAutoTap(player.getP_qtyOfAutoTap());
-		main.setM_qtyOfLotto(player.getP_qtyOfLotto());
-		main.setM_qtyOfPotion(player.getP_qtyOfPotion());
-		main.setM_TotalOfMoney(player.getP_TotalOfMoney());
-		state.setP_lvOfComputer(player.getP_lvOfComputer());
-		state.setP_lvOfEducate(player.getP_lvOfEducate());
-		state.setP_lvOfEmploy(player.getP_lvOfEmploy());
-		state.setP_lvOfExtend(player.getP_lvOfExtend());
-		state.setP_lvOfKeyboard(player.getP_lvOfKeyboard());
-		quest.setQ_qtyOfTap(player.getP_qtyOfTap());
-	}
-
-	// ----------0706 16:31------------
-	public void checkFisrtGame(View view, DataAccessPlayer player, State state, Quest quest,
-			NicknameJLabel nicknameJLabel, TotalMoneyJLabel totalMoneyJLabel, AutoMoneyJLabel autoMoneyJLabel,
-			TapMoneyJLabel tapMoneyJLabel, MainJPanel mainJPanel) {
-		if (player.getPlayer().getP_Nickname().equals("")) {
+	//**************새로 시작하는 이용자인지 기존에 플레이를 했던 이용자인지 체크_180707_1****************
+	public void checkFisrtGame(View view, DataAccessPlayer player,
+			State state, Quest quest,  NicknameJLabel nicknameJLabel, 
+			TotalMoneyJLabel totalMoneyJLabel, AutoMoneyJLabel autoMoneyJLabel,
+			TapMoneyJLabel tapMoneyJLabel, MainJPanel mainJPanel){
+		if(player.getPlayer().getP_Nickname().equals("")){
 			int temp = 1;
 			String nickname = "";
-			while (temp == 1) {
+			while(temp == 1){
 				nickname = JOptionPane.showInputDialog(null, "닉네임 입력", "닉네임 설정", JOptionPane.OK_CANCEL_OPTION);
-				if (nickname.length() != 0) {
-					for (int i = 0; i < nickname.length(); i++) {
-						if (nickname.charAt(i) == 32) {
-							JOptionPane.showMessageDialog(null, "닉네임에 띄어쓰기를 넣을 수 없습니다");
+				if(nickname.length() != 0){
+					for(int i = 0; i < nickname.length(); i++){
+						if(nickname.charAt(i) == 32){
+							JOptionPane.showMessageDialog(null,"닉네임에 띄어쓰기를 넣을 수 없습니다");
 							i = nickname.length();
-						} else if (i == (nickname.length() - 1)) {
+						}else if(i == (nickname.length()-1)){
 							temp = 2;
 						}
 					}
-				} else {
-					if (nickname.length() == 0) {
-						JOptionPane.showMessageDialog(null, "닉네임은 공백일 수 없습니다");
+				}else{
+					if(nickname.length() == 0){
+						JOptionPane.showMessageDialog(null,"닉네임은 공백일 수 없습니다");
 					}
 				}
 			}
 
-			if (!nickname.equals("")) {
+			if(!nickname.equals("")){
 				player.setP_Nickname(nickname);
 				setPlayer(player.getPlayer(), state, quest);
 				setMain(player.getPlayer(), nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel);
 				autoRun(totalMoneyJLabel, this.getMain(), 0);
-			} else {
-				view.setVisible(false);
+			}else{
+				view.setVisible(false); 
 			}
-		} else {
+		}else{
 			setPlayer(player.getPlayer(), state, quest);
 			setMain(player.getPlayer(), nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel);
 			whileNotPlay(mainJPanel, player.getPlayer());
 			autoRun(totalMoneyJLabel, this.getMain(), 0);
 		}
 	}
+	//-----------------------------------------------------------------------
 
-	public void whileNotPlay(MainJPanel mainJPanel, Player player) {
+	//*******************플레이하지 않은 동안 획득한 금액 추가_180707_1*******************
+	public void whileNotPlay(MainJPanel mainJPanel, Player player){
 		JLabel noticeJLabel = new JLabel("플레이 하지 않은 동안 획득한 금액 ");
 		JLabel noticeMoneyJLabel = new JLabel();
-		int temp = (int) ((new Date().getTime() - player.getP_lastTime().getTime()) / 1000);
+		int temp = (int)((new Date().getTime() - player.getP_lastTime().getTime()) / 1000);
 
 		main.setM_TotalOfMoney(main.getM_TotalOfMoney() + (main.getM_AmountOfTapMoney() * temp));
 
@@ -232,66 +221,80 @@ public class DataAccessMain {
 		}
 		return;
 	}
+	//-----------------------------------------------------------------------
 
-	public void pageMove(View view, ActionEvent e, TotalMoneyJLabel totalMoneyJLabel, MainJPanel mainJPanel,
-			DataAccessStore store, StateJPanel stateJPanel, QuestJPanel questJPanel, StoreJPanel storeJPanel,
+	//*****************첫 게임, 이어하는 게임의 플레이어 정보 설정_180707_1*******************
+	public void setPlayer(Player player, State state, Quest quest){
+		main.setM_AmountOfAutoMoney(player.getP_AmountOfAutoMoney());
+		main.setM_AmountOfTapMoney(player.getP_AmountOfTapMoney());
+		main.setM_Cash(player.getP_Cash());
+		main.setM_qtyOfAutoTap(player.getP_qtyOfAutoTap());
+		main.setM_qtyOfLotto(player.getP_qtyOfLotto());
+		main.setM_qtyOfPotion(player.getP_qtyOfPotion());
+		main.setM_TotalOfMoney(player.getP_TotalOfMoney());
+		state.setP_lvOfComputer(player.getP_lvOfComputer());
+		state.setP_lvOfEducate(player.getP_lvOfEducate());
+		state.setP_lvOfEmploy(player.getP_lvOfEmploy());
+		state.setP_lvOfExtend(player.getP_lvOfExtend());
+		state.setP_lvOfKeyboard(player.getP_lvOfKeyboard());
+		quest.setQ_qtyOfTap(player.getP_qtyOfTap());
+	}
+	//-----------------------------------------------------------------------
+
+	//*********************게임 내 버튼을 누를 경우 페이지 이동_180707_1*******************
+	public void pageMove(View view, ActionEvent e, MainJPanel mainJPanel,
+			StateJPanel stateJPanel, QuestJPanel questJPanel, StoreJPanel storeJPanel,
 			LottoJPanel lottoJPanel, SubJPanel subJPanel) {
-		if (e.getSource() instanceof StateJButton) {
+		if(e.getSource() instanceof StateJButton){
 			stateJPanel.setVisible(true);
 			subJPanel.setVisible(false);
 			view.add(stateJPanel);
 			view.add(mainJPanel);
 			view.repaint();
-		} else if (e.getSource() instanceof QuestJButton) {
+		}else if(e.getSource() instanceof QuestJButton){
 			questJPanel.setVisible(true);
 			subJPanel.setVisible(false);
 			view.add(questJPanel);
 			view.add(mainJPanel);
 			view.repaint();
-		} else if (e.getSource() instanceof StoreJButton) {
+		}else if(e.getSource() instanceof StoreJButton){
 			storeJPanel.setVisible(true);
 			subJPanel.setVisible(false);
 			view.add(storeJPanel);
 			view.add(mainJPanel);
 			view.repaint();
-		} else if (e.getSource() instanceof LottoJButton) {
+		}else if(e.getSource() instanceof LottoJButton){
 			lottoJPanel.setVisible(true);
 			subJPanel.setVisible(false);
 			view.add(lottoJPanel);
 			view.add(mainJPanel);
 			view.repaint();
-		} else if (e.getSource() instanceof StoreBackJButton) {
+		}else if(e.getSource() instanceof StoreBackJButton){
 			subJPanel.setVisible(true);
 			storeJPanel.setVisible(false);
 			view.add(mainJPanel);
 			view.add(subJPanel);
 			view.repaint();
 			View.cm().savePlayer();
-		} else if (e.getSource() instanceof BackJButton) {
+		}else if(e.getSource() instanceof BackJButton){
 			lottoJPanel.setVisible(false);
 			subJPanel.setVisible(true);
 			view.add(mainJPanel);
 			view.add(subJPanel);
 			view.repaint();
-		} else if (e.getSource() instanceof StateBackJButton) {
+		}else if(e.getSource() instanceof StateBackJButton){
 			stateJPanel.setVisible(false);
 			subJPanel.setVisible(true);
 			view.add(subJPanel);
 			view.add(mainJPanel);
 			view.repaint();
-		} else if (e.getSource() instanceof QuestBackJButton) {
+		}else if(e.getSource() instanceof QuestBackJButton){
 			questJPanel.setVisible(false);
 			subJPanel.setVisible(true);
 			view.add(subJPanel);
 			view.add(mainJPanel);
 			view.repaint();
-		} else if (e.getSource() instanceof UsePotionJButton) {
-			store.useItem(totalMoneyJLabel, mainJPanel, e, this);
-		} else if (e.getSource() instanceof UseAutoTapJButton) {
-			store.useItem(totalMoneyJLabel, mainJPanel, e, this);
 		}
-
 	}
-	
-	
+	//---------------------------------------------------------------
 }

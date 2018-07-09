@@ -1,7 +1,6 @@
 package model.vo;
 
 import java.util.Date;
-import view.View;
 
 public class Player implements java.io.Serializable{
 	//회원 정보 변수
@@ -10,12 +9,10 @@ public class Player implements java.io.Serializable{
 	private long p_TotalOfMoney;
 	private long p_AmountOfAutoMoney;
 	private long p_AmountOfTapMoney;
-	
-	//스토어 변수
-	private int p_Cash; // 이거는 플레이어에 있는 변수를 활용
-	private int p_qtyOfLotto; // 메인에 있는 변수로 활용
-	private int p_qtyOfPotion; //        "
-	private int p_qtyOfAutoTap; //        "
+	private int p_Cash;
+	private int p_qtyOfLotto;
+	private int p_qtyOfPotion;
+	private int p_qtyOfAutoTap;
 	
 	//상태 변수
 	private byte p_lvOfComputer;
@@ -30,7 +27,61 @@ public class Player implements java.io.Serializable{
 	private int tap1 = 1, tap2 = 30, reward2 = 150000;
 	private int temp1 = 1, temp2 = 500000, reward1 = 500000;
 	
+	public int getTap1() {
+		return tap1;
+	}
 
+	public void setTap1(int tap1) {
+		this.tap1 = tap1;
+	}
+
+	public int getTap2() {
+		return tap2;
+	}
+
+	public void setTap2(int tap2) {
+		this.tap2 = tap2;
+	}
+
+	public int getReward2() {
+		return reward2;
+	}
+
+	public void setReward2(int reward2) {
+		this.reward2 = reward2;
+	}
+
+	public int getTemp1() {
+		return temp1;
+	}
+
+	public void setTemp1(int temp1) {
+		this.temp1 = temp1;
+	}
+
+	public int getTemp2() {
+		return temp2;
+	}
+
+	public void setTemp2(int temp2) {
+		this.temp2 = temp2;
+	}
+
+	public int getReward1() {
+		return reward1;
+	}
+
+	public void setReward1(int reward1) {
+		this.reward1 = reward1;
+	}
+
+	public long getP_qtyOfTotalMoney() {
+		return p_qtyOfTotalMoney;
+	}
+
+	public void setP_qtyOfTotalMoney(long p_qtyOfTotalMoney) {
+		this.p_qtyOfTotalMoney = p_qtyOfTotalMoney;
+	}
 
 	
 	public Player(){
@@ -170,59 +221,4 @@ public class Player implements java.io.Serializable{
 	public void setP_AmountOfTapMoney(long p_AmountOfTapMoney) {
 		this.p_AmountOfTapMoney = p_AmountOfTapMoney;
 	}	
-	public int getTap1() {
-		return tap1;
-	}
-
-	public int getTap2() {
-		return tap2;
-	}
-
-	public int getReward2() {
-		return reward2;
-	}
-
-	public int getTemp1() {
-		return temp1;
-	}
-
-	public int getTemp2() {
-		return temp2;
-	}
-
-	public int getReward1() {
-		return reward1;
-	}
-
-	public void setTap1(int tap1) {
-		this.tap1 = tap1;
-	}
-
-	public void setTap2(int tap2) {
-		this.tap2 = tap2;
-	}
-
-	public void setReward2(int reward2) {
-		this.reward2 = reward2;
-	}
-
-	public void setTemp1(int temp1) {
-		this.temp1 = temp1;
-	}
-
-	public void setTemp2(int temp2) {
-		this.temp2 = temp2;
-	}
-
-	public void setReward1(int reward1) {
-		this.reward1 = reward1;
-	}
-
-	public long getP_qtyOfTotalMoney() {
-		return p_qtyOfTotalMoney;
-	}
-
-	public void setP_qtyOfTotalMoney(long p_qtyOfTotalMoney) {
-		this.p_qtyOfTotalMoney = p_qtyOfTotalMoney;
-	}
 }

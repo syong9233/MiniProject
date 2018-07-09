@@ -1,18 +1,9 @@
 package model.vo;
 
-import javax.swing.JButton;
-import javax.swing.JProgressBar;
-
-import model.dao.DataAccessMain;
-
 public class Quest {
 	private int q_qtyOfTap;
 	private long q_qtyOfTotalMoney;
-		
-	
-	//temp1 = Äù½ºÆ® È½¼ö , temp2 = ¸ñÇ¥±Ý¾× , reward1 = º¸»ó
 	private int temp1 = 1, temp2 = 500000, reward1 = 500000;
-	//tap1 = Äù½ºÆ® È½¼ö , tap2 = ¸ñÇ¥ÅÇ¼ö , reward2 = º¸»ó
 	private int tap1 = 1, tap2 = 30, reward2 = 150000;
 	
 	public int getTemp1() {

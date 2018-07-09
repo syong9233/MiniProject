@@ -7,8 +7,10 @@ import javax.swing.JPanel;
 public class MainJPanel extends JPanel{
 	
 	public MainJPanel(){
-		this.setBounds(3, 3, 338, 400);
-		this.setBackground(new Color(0, 0, 0));
-		this.setLayout(null);
+		//***************MainJPanel_180707_1​****************
+		setBounds(3, 3, 338, 400);
+		setBackground(new Color(0, 0, 0));
+		setLayout(null);
+		//------------------------------------------------------
 	}
 }
