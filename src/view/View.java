@@ -7,8 +7,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 import controller.ControllerManager;
 import view.jbutton.LottoBackJButton;
@@ -28,8 +28,7 @@ import view.jpanel.MainJPanel;
 import view.jpanel.QuestJPanel;
 import view.jpanel.StateJPanel;
 import view.jpanel.StoreJPanel;
-import view.jpanel.SubJPanel;
-import javax.swing.JButton;	
+import view.jpanel.SubJPanel;	
 
 public class View extends JFrame implements KeyListener, ActionListener{
 	private static ControllerManager cm = new ControllerManager();
@@ -46,10 +45,11 @@ public class View extends JFrame implements KeyListener, ActionListener{
 	private AutoMoneyJLabel autoMoneyJLabel = new AutoMoneyJLabel();
 	private TapMoneyJLabel tapMoneyJLabel = new TapMoneyJLabel();
 
-	private StateJButton stateJButton = new StateJButton();
-	private QuestJButton questJButton = new QuestJButton();
-	private StoreJButton storeJButton = new StoreJButton();
-	private LottoJButton lottoJButton = new LottoJButton();
+	private StateJButton stateJButton = new StateJButton(new ImageIcon("image/sub/state.png"));
+	private QuestJButton questJButton = new QuestJButton(new ImageIcon("image/sub/quest.png"));
+	private StoreJButton storeJButton = new StoreJButton(new ImageIcon("image/sub/store.png"));
+	private LottoJButton lottoJButton = new LottoJButton(new ImageIcon("image/sub/lotto.png"));
+	
 	private StateBackJButton stateBackJButton = new StateBackJButton();
 	private QuestBackJButton questBackJButton= new QuestBackJButton();
 	private LottoBackJButton lottoBackJButton= new LottoBackJButton();
@@ -94,6 +94,8 @@ public class View extends JFrame implements KeyListener, ActionListener{
 		questJButton.addActionListener(this);
 		storeJButton.addActionListener(this);
 		lottoJButton.addActionListener(this);	
+		subJPanel.usePotionJButton.addActionListener(this);
+		subJPanel.useAutoTapJButton.addActionListener(this);
 		this.addKeyListener(this);
 		
 		this.setFocusable(true);
@@ -101,30 +103,22 @@ public class View extends JFrame implements KeyListener, ActionListener{
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//********************************************
-		
-		//**********new player​ or load player*********
+
+
+		//**********new player  or load player*********
 		cm.loadPlayer();
-		if(cm.checkFisrtGame()){
-			String nickname = JOptionPane.showInputDialog(null, "닉네임 입력", "닉네임 설정", JOptionPane.OK_CANCEL_OPTION);
-			if(!nickname.equals("")){
-				cm.setP_Nickname(nickname);
-				cm.setMain(nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel);
-				cm.autoRun(totalMoneyJLabel, mainJPanel);
-			}else{
-				this.setVisible(false);
-			}
-		}else{
-			cm.setMain(nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel);
-			cm.autoRun(totalMoneyJLabel, mainJPanel);
-		}
+		//----------0705 16:15------------
+		cm.checkFisrtGame(this, nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel, mainJPanel);
 		//********************************************
+
 	}
 	
 	public static void main(String[] args) {
 		new View();
 	}
 
-	//키보드의 키가 눌리고 떼이는 순간
+	//0706 17:50 변경
+
 	@Override
 	public void keyReleased(KeyEvent e) {
 		
@@ -144,10 +138,11 @@ public class View extends JFrame implements KeyListener, ActionListener{
 	// 키보드의 키가 눌린 순간
 	@Override
 	public void keyPressed(KeyEvent e) {}
-	
+
+	//키보드의 키가 눌리고 떼이는 순간
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		cm.pageMove(this, e, mainJPanel, stateJPanel, questJPanel, storeJPanel, lottoJPanel, subJPanel);
+		cm.pageMove(this, e, questJPanel.button3, mainJPanel, totalMoneyJLabel, stateJPanel, questJPanel, storeJPanel, lottoJPanel, subJPanel);
 	}
 	
 	public static ControllerManager cm(){

@@ -10,10 +10,12 @@ public class Player implements java.io.Serializable{
 	private long p_TotalOfMoney;
 	private long p_AmountOfAutoMoney;
 	private long p_AmountOfTapMoney;
-	private int p_Cash;
-	private int p_qtyOfLotto;
-	private int p_qtyOfPotion;
-	private int p_qtyOfAutoTap;
+	
+	//스토어 변수
+	private int p_Cash; // 이거는 플레이어에 있는 변수를 활용
+	private int p_qtyOfLotto; // 메인에 있는 변수로 활용
+	private int p_qtyOfPotion; //        "
+	private int p_qtyOfAutoTap; //        "
 	
 	//상태 변수
 	private byte p_lvOfComputer;

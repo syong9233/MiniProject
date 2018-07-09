@@ -1,12 +1,15 @@
 package view.jbutton;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class QuestJButton extends JButton{
 
-	public QuestJButton(){
-		super("Äù½ºÆ®");
-		setSize(75, 35);
-		setLocation(90, 122);
+	public QuestJButton(ImageIcon imageIcon){
+		super(imageIcon);
+		setSize(60, 60);
+		setLocation(98, 100);
 	}
+
+	
 }

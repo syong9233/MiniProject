@@ -44,6 +44,9 @@ public class DataAccessPlayer {
 		player.setP_TotalOfMoney(main.getM_TotalOfMoney());
 		player.setP_AmountOfAutoMoney(main.getM_AmountOfAutoMoney());
 		player.setP_AmountOfTapMoney(main.getM_AmountOfTapMoney());
+		player.setP_qtyOfPotion(main.getM_qtyOfPotion());
+		player.setP_qtyOfAutoTap(main.getM_qtyOfAutoTap());
+		player.setP_qtyOfLotto(main.getM_qtyOfLotto());
 		player.setP_lvOfComputer(state.getP_lvOfComputer());
 		player.setP_lvOfKeyboard(state.getP_lvOfKeyboard());
 		player.setP_lvOfEducate(state.getP_lvOfEducate());
