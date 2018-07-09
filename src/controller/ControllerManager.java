@@ -12,6 +12,7 @@ import model.dao.DataAccessQuest;
 import model.dao.DataAccessState;
 import model.dao.DataAccessStore;
 import view.View;
+import view.jbutton.StoreBackJButton;
 import view.jbutton.storeMenuJButton.*;
 import view.jlabel.AutoMoneyJLabel;
 import view.jlabel.NicknameJLabel;
@@ -33,6 +34,8 @@ public class ControllerManager {
 	private DataAccessState state = new DataAccessState();
 	private DataAccessStore store = new DataAccessStore();
 		
+	private StoreBackJButton storeBackJButton = new StoreBackJButton();
+	
 	public void savePlayer(){
 		player.save(main.getMain(), quest.getQuest(), state.getState(), store.getStore());
 	}
@@ -79,16 +82,19 @@ public class ControllerManager {
 		state.stateLevelUp(e, main.getMain());
 	}
 
-	public void pageMove(View view, ActionEvent e, JButton usePotion, MainJPanel mainJPanel, TotalMoneyJLabel totalMoneyJLabel, StateJPanel stateJPanel, QuestJPanel questJPanel, StoreJPanel storeJPanel, LottoJPanel lottoJPanel, SubJPanel subJPanel) {
-		main.pageMove(view, e, totalMoneyJLabel, mainJPanel, store, stateJPanel, questJPanel, storeJPanel, lottoJPanel, subJPanel);
+	public void pageMove(View view, ActionEvent e, JButton usePotion, MainJPanel mainJPanel, TotalMoneyJLabel totalMoneyJLabel,
+			StateJPanel stateJPanel, QuestJPanel questJPanel, StoreJPanel storeJPanel, LottoJPanel lottoJPanel, SubJPanel subJPanel
+			,StoreBackJButton storeBackJButton) {
+		main.pageMove(view, e, totalMoneyJLabel, mainJPanel, store, stateJPanel, questJPanel, storeJPanel, lottoJPanel,
+				subJPanel, storeBackJButton);
 	}
 
 	public void questChoice(ActionEvent e, JButton button3, JButton button4){
 		quest.choice(e, main.getMain(), button3, button4);
 	}
 
-	public void lottoStart(ActionEvent e, LottoJPanel lottoJPanel, JPanel yesOrNoJPanel, JButton lottoRegame){
-		store.lottoStart(e, main.getMain(), lottoJPanel, yesOrNoJPanel, lottoRegame);
+	public void lottoStart(ActionEvent e, LottoJPanel lottoJPanel, JPanel yesOrNoJPanel, JButton lottoRegame, JPanel success, JPanel fail){
+		store.lottoStart(e, main.getMain(), lottoJPanel, yesOrNoJPanel, lottoRegame, success, fail);
 		
 	}
 	

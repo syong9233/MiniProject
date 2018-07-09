@@ -25,6 +25,10 @@ public class LottoJPanel extends JPanel implements ActionListener{
 	private JPanel yesOrNoJPanel;
 	private BufferedImage lottoBackGroundImage;
 	private BufferedImage lottoYesOrNoImage;
+	private BufferedImage lottoSuccessImage;
+	private BufferedImage lottoFailImage;
+	private JPanel success;
+	private JPanel fail;
 
 	public LottoJPanel(){
 
@@ -39,6 +43,31 @@ public class LottoJPanel extends JPanel implements ActionListener{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		try {
+			lottoSuccessImage = ImageIO.read(new File("image/lotto/lotto_success.png"));
+			lottoFailImage = ImageIO.read(new File("image/lotto/lotto_fail.png"));
+		} catch (IOException e1) {
+
+			e1.printStackTrace();
+		}
+		
+		success = new JPanel() {
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				g.drawImage(lottoSuccessImage, 0, 5, null);
+			}
+		};
+
+		fail = new JPanel() {
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				g.drawImage(lottoFailImage, 0, 5, null);
+			}
+		};
+		
+		fail.setVisible(false);
+		success.setVisible(false);
 		//*************************************
 
 		//******로또 regame버튼*************
@@ -77,7 +106,7 @@ public class LottoJPanel extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		View.cm().lottoStart(e, this, yesOrNoJPanel, lottoRegame);
+		View.cm().lottoStart(e, this, yesOrNoJPanel, lottoRegame, success, fail);
 	}
 
 	//패널에 이미지 넣는방법
