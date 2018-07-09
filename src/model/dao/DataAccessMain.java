@@ -189,6 +189,7 @@ public class DataAccessMain {
 			setMain(player.getPlayer(), nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel);
 			whileNotPlay(mainJPanel, player.getPlayer());
 			autoRun(totalMoneyJLabel, this.getMain(), 0);
+	
 		}
 	}
 	//-----------------------------------------------------------------------
@@ -240,7 +241,16 @@ public class DataAccessMain {
 		quest.setQ_qtyOfTap(player.getP_qtyOfTap());
 	}
 	//-----------------------------------------------------------------------
-
+	
+	public void loadQuest(Quest quest, JLabel goalTap, JLabel ingTap, JLabel goalMoney, JLabel ingMoney){
+		goalTap.setText(quest.getTap2() + "");
+		ingTap.setText((quest.getQ_qtyOfTap() + 1) + "");
+		quest.setQ_qtyOfTap(quest.getQ_qtyOfTap() + 1);
+		goalMoney.setText(String.format("%,d", quest.getTemp2()));
+		ingMoney.setText(String.format("%,d", main.getM_TotalOfMoney()));
+		quest.setQ_qtyOfTotalMoney(main.getM_TotalOfMoney());
+	}
+	
 	//*********************게임 내 버튼을 누를 경우 페이지 이동_180707_1*******************
 	public void pageMove(View view, ActionEvent e, MainJPanel mainJPanel,
 			StateJPanel stateJPanel, QuestJPanel questJPanel, StoreJPanel storeJPanel,
