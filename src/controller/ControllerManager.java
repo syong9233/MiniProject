@@ -80,16 +80,12 @@ public class ControllerManager {
 	public void potionTime(int time){
 		main.potionRun(time);
 	}
-	public void autoTime(int time){
-		main.autoTime(time);
+	public void autotime(int time){
+		main.autoRun(time);
 	}
 
-	public void pageMove(View view, ActionEvent e, MainJPanel mainJPanel,
-			StateJPanel stateJPanel, QuestJPanel questJPanel, 
-			StoreJPanel storeJPanel, LottoJPanel lottoJPanel, 
-			SubJPanel subJPanel) {
-		main.pageMove(view, e, mainJPanel, stateJPanel, questJPanel, storeJPanel,
-				lottoJPanel, subJPanel);
+	public void pageMove(View view, ActionEvent e, JButton usePotion, MainJPanel mainJPanel, TotalMoneyJLabel totalMoneyJLabel, StateJPanel stateJPanel, QuestJPanel questJPanel, StoreJPanel storeJPanel, LottoJPanel lottoJPanel, SubJPanel subJPanel) {
+		main.pageMove(view, e, totalMoneyJLabel, mainJPanel, store, stateJPanel, questJPanel, storeJPanel, lottoJPanel, subJPanel);
 	}
 	//------------------------------------------------------------------------------------
 

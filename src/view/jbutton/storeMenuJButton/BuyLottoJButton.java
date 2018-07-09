@@ -11,7 +11,7 @@ public class BuyLottoJButton extends JButton {
 
 		super(imageIcon);
 
-		setLocation(10, 235);
+		setLocation(10, 270);
 		setSize(150, 160);
 	}
 

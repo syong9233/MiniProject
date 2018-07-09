@@ -23,6 +23,8 @@ import view.jbutton.StateBackJButton;
 import view.jbutton.StateJButton;
 import view.jbutton.StoreBackJButton;
 import view.jbutton.StoreJButton;
+import view.jbutton.storeMenuJButton.UseAutoTapJButton;
+import view.jbutton.storeMenuJButton.UsePotionJButton;
 import view.jlabel.AutoMoneyJLabel;
 import view.jlabel.NicknameJLabel;
 import view.jlabel.TapMoneyJLabel;
@@ -46,63 +48,81 @@ public class DataAccessMain {
 	}
 
 	//*************자동으로 금액이 오르는 부분, 아이템 사용시 자동으로 체크 후 사용_180707_1*************
+	public void potionRun(int time) {
+		main.setM_potiontime(time);
+		return;
+	}
+
+	public void autoRun(int time) {
+		main.setM_autotime(time);
+		return;
+	}
+
 	public void autoRun(TotalMoneyJLabel totalMoneyJLabel, Main main, int time) {
 		while (true) {
-			if (main.getM_PotionTime() > 0) {
-				if (main.getM_AutoTime() > 0) {
-					for (int i = main.getM_AutoTime(); i > 0; i--) {
-						try {
-							main.setM_AutoTime(main.getM_AutoTime() - 1);
-							System.out.println("auto" +main.getM_AutoTime());
-							Thread.sleep(1000);
-							totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
-							main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfAutoMoney() * 10);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
-				}
 
-				for (int i = main.getM_PotionTime(); i > 0; i--) {
+			if (main.getM_potiontime() > 0) {
+
+				main.setM_AmountOfTapMoney(main.getM_AmountOfTapMoney() * 10);
+				int tim = 0;
+
+				for (int i = main.getM_potiontime(); i > 0; i--) {
 					try {
-						main.setM_PotionTime(main.getM_PotionTime() - 1);
-						System.out.println("potion"+main.getM_PotionTime());
-						Thread.sleep(1000);
-						totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
-						main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfAutoMoney() * 10);
+
+						Thread.sleep(100);
+						main.setM_potiontime(main.getM_potiontime() - 1);
+
+						if (tim == 10) {
+							main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfAutoMoney());
+							totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
+							tim = 0;
+						}
+
+						tim++;
+
+						if (main.getM_autotime() > 0) {
+
+							main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfTapMoney());
+							totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
+
+							main.setM_autotime(main.getM_autotime() - 1);
+							System.out.println("auto in potion" + main.getM_autotime());
+
+						}
+
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
 				}
+
+				main.setM_AmountOfTapMoney(main.getM_AmountOfTapMoney() / 10);
+
 			}
 
-			if (main.getM_AutoTime() > 0) {
-				if (main.getM_PotionTime() > 0) {
-					for (int i = main.getM_PotionTime(); i > 0; i--) {
-						try {
-							main.setM_PotionTime(main.getM_PotionTime() - 1);
-							System.out.println("potion"+main.getM_PotionTime());
-							Thread.sleep(1000);
-							totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
-							main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfAutoMoney() * 10);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
+			if (main.getM_autotime() > 0) {
+
+				for (int i = main.getM_autotime(); i > 0; i--) {
+
+					try {
+						Thread.sleep(100);
+
+						System.out.println("tap");
+
+						main.setM_autotime(main.getM_autotime() - 1);
+						totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
+						main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfTapMoney());
+
+						if (main.getM_potiontime() > 0)
+							break;
+
+					} catch (InterruptedException e) {
+						e.printStackTrace();
 					}
 
-					for (int i = main.getM_AutoTime(); i > 0; i--) {
-						try {
-							main.setM_AutoTime(main.getM_AutoTime() - 1);
-							System.out.println("auto"+main.getM_AutoTime());
-							Thread.sleep(1000);
-							totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : 보유");
-							main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfAutoMoney() * 10);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
 				}
-			}
+
+			} else if (main.getM_autotime() > 0 && main.getM_potiontime() > 0)
+				continue;
 
 			try {
 				Thread.sleep(1000);
@@ -115,18 +135,7 @@ public class DataAccessMain {
 	}
 	//-------------------------------------------------------------------------
 
-	//*******아이템 사용했을 경우 시간 추가(autuRun에서 시간 체크 후 아이템 기능을 시간동안 적용)_180707_1*******
-	public void potionRun(int time) {
-		main.setM_PotionTime(time);
-		return;
-	}
-	//---------------------------------------------------------------------------------
 
-	//*******아이템 사용했을 경우 시간 추가(autuRun에서 시간 체크 후 아이템 기능을 시간동안 적용)_180707_1*******
-	public void autoTime(int time) {
-		main.setM_AutoTime(time);
-		return;
-	}
 	//---------------------------------------------------------------------------------
 
 	//*************************스페이스바를 눌렀을 경우_180707_1*************************
@@ -252,8 +261,8 @@ public class DataAccessMain {
 	}
 	
 	//*********************게임 내 버튼을 누를 경우 페이지 이동_180707_1*******************
-	public void pageMove(View view, ActionEvent e, MainJPanel mainJPanel,
-			StateJPanel stateJPanel, QuestJPanel questJPanel, StoreJPanel storeJPanel,
+	public void pageMove(View view, ActionEvent e, TotalMoneyJLabel totalMoneyJLabel, MainJPanel mainJPanel,
+			DataAccessStore store, StateJPanel stateJPanel, QuestJPanel questJPanel, StoreJPanel storeJPanel,
 			LottoJPanel lottoJPanel, SubJPanel subJPanel) {
 		if(e.getSource() instanceof StateJButton){
 			stateJPanel.setVisible(true);
@@ -304,6 +313,10 @@ public class DataAccessMain {
 			view.add(subJPanel);
 			view.add(mainJPanel);
 			view.repaint();
+		} else if (e.getSource() instanceof UsePotionJButton) {
+			store.useItem(totalMoneyJLabel, mainJPanel, e, this);
+		} else if (e.getSource() instanceof UseAutoTapJButton) {
+			store.useItem(totalMoneyJLabel, mainJPanel, e, this);
 		}
 	}
 	//---------------------------------------------------------------

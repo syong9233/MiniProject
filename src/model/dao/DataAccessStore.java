@@ -150,7 +150,7 @@ public class DataAccessStore {
 	}
 
 	public void autoTime(int time) {
-		View.cm().autoTime(time);
+		View.cm().autotime(time);
 	}
 
 	public void useItem(TotalMoneyJLabel totalMoneyJLabel, MainJPanel mainJPanel, ActionEvent e, DataAccessMain main) {
@@ -165,8 +165,8 @@ public class DataAccessStore {
 				System.out.println(main.getMain().getM_qtyOfPotion() + "개 남았습니다.");
 				View.cm().savePlayer();
 
-				main.getMain().setM_PotionTime(main.getMain().getM_PotionTime() + (5 * 10));
-				potionTime(main.getMain().getM_PotionTime());
+				main.getMain().setM_potiontime(main.getMain().getM_potiontime() + (5 * 10));
+				potionTime(main.getMain().getM_potiontime());
 			}
 		}
 
@@ -181,8 +181,8 @@ public class DataAccessStore {
 				System.out.println(main.getMain().getM_qtyOfAutoTap() + "개 남았습니다.");
 				View.cm().savePlayer();
 
-				main.getMain().setM_AutoTime(main.getMain().getM_AutoTime() + (5 * 10));
-				autoTime(main.getMain().getM_AutoTime());
+				main.getMain().setM_autotime(main.getMain().getM_autotime() + (5 * 10));
+				autoTime(main.getMain().getM_autotime());
 
 			}
 		}

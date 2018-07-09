@@ -30,7 +30,7 @@ public class StoreJPanel extends JPanel implements ActionListener{
 	private Cash1000JButton Cash1000JButton = new Cash1000JButton(new ImageIcon("image/store/store_1000cash.png"));
 	private Cash3000JButton Cash3000JButton = new Cash3000JButton(new ImageIcon("image/store/store_3000cash.png"));
 	private Cash5000JButton Cash5000JButton = new Cash5000JButton(new ImageIcon("image/store/store_5000cash.png"));
-	private CashCloseJButton cashCloseJButton = new CashCloseJButton(new ImageIcon("image/store/store_cash_payBackground.png"));
+	private CashCloseJButton cashCloseJButton = new CashCloseJButton(new ImageIcon("image/store/common_backButton.png"));
 	
 	private EmptyMoneyJButton emptyMoneyJButton = new EmptyMoneyJButton(new ImageIcon("image/store/empty.png"));
 	
@@ -44,7 +44,7 @@ public class StoreJPanel extends JPanel implements ActionListener{
 	public StoreJPanel() {
 
 		setLayout(null);
-		setBounds(3, 52, 338, 610);
+		setBounds(3, 62, 350,600 );
 		
 		emptyMoneyJPanel = new JPanel(){
 			protected void paintComponent(Graphics g){
@@ -59,20 +59,21 @@ public class StoreJPanel extends JPanel implements ActionListener{
 				g.drawImage(buyCashJPanelImage, 0, 0, null); 
 			}
 		};
-	
+		
 		emptyMoneyJPanel.setBounds(44, 170, 250, 150);
 		emptyMoneyJPanel.add(emptyMoneyJButton);
 		emptyMoneyJPanel.setVisible(false);
 		emptyMoneyJPanel.setLayout(null);
+		emptyMoneyJPanel.setOpaque(false);
 		
-		buyCashJPanel.setBounds(44, 50, 250, 400);
+		buyCashJPanel.setBounds(10, 110, 319, 356);
 		buyCashJPanel.setVisible(false);
 		buyCashJPanel.add(Cash1000JButton);
 		buyCashJPanel.add(Cash3000JButton);
 		buyCashJPanel.add(Cash5000JButton);
 		buyCashJPanel.add(cashCloseJButton);
 		buyCashJPanel.setLayout(null);
-		
+		buyCashJPanel.setOpaque(false);
 		
 		try {
 			storeBackGroundImage = ImageIO.read(new File("image/store/store_background.png"));
@@ -86,7 +87,22 @@ public class StoreJPanel extends JPanel implements ActionListener{
 		
 		
 		
-		
+	      //**********버튼투명************
+	      buyPotionJButton.setBorderPainted(false);
+	      buyPotionJButton.setContentAreaFilled(false);
+	      buyPotionJButton.setFocusPainted(false);
+
+	      buyAutoTapJButton.setBorderPainted(false);
+	      buyAutoTapJButton.setContentAreaFilled(false);
+	      buyAutoTapJButton.setFocusPainted(false);
+
+	      buyLottoJButton.setBorderPainted(false);
+	      buyLottoJButton.setContentAreaFilled(false);
+	      buyLottoJButton.setFocusPainted(false);
+
+	      buyCashJButton.setBorderPainted(false);
+	      buyCashJButton.setContentAreaFilled(false);
+	      buyCashJButton.setFocusPainted(false);
 		
 		
 		this.add(emptyMoneyJPanel);

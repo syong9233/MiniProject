@@ -11,8 +11,11 @@ public class CashCloseJButton extends JButton {
 
 		super(imageIcon);
 
-		setLocation(50, 270);
-		setSize(150, 70);
+		setLocation(230, 270);
+		setSize(67, 67);
+		setBorderPainted(false);
+		setContentAreaFilled(false);
+		setFocusPainted(false);
 
 	}
 }

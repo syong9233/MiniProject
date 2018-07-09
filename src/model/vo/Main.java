@@ -8,25 +8,24 @@ public class Main {
 	private int m_qtyOfLotto;
 	private int m_qtyOfPotion;
 	private int m_qtyOfAutoTap;
-	private int m_PotionTime;
-	private int m_AutoTime;
+	private int m_potiontime;
+	private int m_autotime;
 	
-	public int getM_PotionTime() {
-		return m_PotionTime;
+	public int getM_autotime() {
+		return m_autotime;//
 	}
 
-	public void setM_PotionTime(int m_PotionTime) {
-		this.m_PotionTime = m_PotionTime;
+	public void setM_autotime(int m_autotime) {
+		this.m_autotime = m_autotime;
 	}
 
-	public int getM_AutoTime() {
-		return m_AutoTime;
+	public int getM_potiontime() {
+		return m_potiontime;//
 	}
 
-	public void setM_AutoTime(int m_AutoTime) {
-		this.m_AutoTime = m_AutoTime;
+	public void setM_potiontime(int m_time) {
+		this.m_potiontime = m_time;
 	}
-
 	public int getM_Cash() {
 		return m_Cash;
 	}

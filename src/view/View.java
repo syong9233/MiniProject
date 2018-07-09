@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -49,14 +50,16 @@ public class View extends JFrame implements KeyListener, ActionListener{
 	private AutoMoneyJLabel autoMoneyJLabel = new AutoMoneyJLabel();
 	private TapMoneyJLabel tapMoneyJLabel = new TapMoneyJLabel();
 
-	private StateJButton stateJButton = new StateJButton();
-	private QuestJButton questJButton = new QuestJButton();
-	private StoreJButton storeJButton = new StoreJButton();
-	private LottoJButton lottoJButton = new LottoJButton();
-	private StateBackJButton stateBackJButton = new StateBackJButton();
-	private QuestBackJButton questBackJButton= new QuestBackJButton();
-	private LottoBackJButton lottoBackJButton= new LottoBackJButton();
-	private StoreBackJButton storeBackJButton= new StoreBackJButton();
+
+	private StateBackJButton stateBackJButton = new StateBackJButton(new ImageIcon("image/store/common_backButton.png"));
+	private QuestBackJButton questBackJButton= new QuestBackJButton(new ImageIcon("image/store/common_backButton.png"));
+	private LottoBackJButton lottoBackJButton= new LottoBackJButton(new ImageIcon("image/store/common_backButton.png"));
+	private StoreBackJButton storeBackJButton= new StoreBackJButton(new ImageIcon("image/store/common_backButton.png"));
+	private StateJButton stateJButton = new StateJButton(new ImageIcon("image/main/main_state.png"));
+	private QuestJButton questJButton = new QuestJButton(new ImageIcon("image/main/main_Quest.png"));
+	private StoreJButton storeJButton = new StoreJButton(new ImageIcon("image/main/main_store.png"));
+	private LottoJButton lottoJButton = new LottoJButton(new ImageIcon("image/main/main_lotto.png"));
+	
 	//------------------------------------------------------------------------
 	
 	public View(){
@@ -87,6 +90,9 @@ public class View extends JFrame implements KeyListener, ActionListener{
 		subJPanel.add(storeJButton);
 		subJPanel.add(lottoJButton);
 		
+		subJPanel.usePotionJButton.addActionListener(this);
+		subJPanel.useAutoTapJButton.addActionListener(this);
+		
 		lottoJPanel.backButton.addActionListener(this);
 		storeBackJButton.addActionListener(this);
 		stateBackJButton.addActionListener(this);
@@ -115,9 +121,11 @@ public class View extends JFrame implements KeyListener, ActionListener{
 	//*********JButton, JLabel 등의 이벤트 발생 시작 메소드_180707_1************
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		cm.pageMove(this, e, mainJPanel, stateJPanel, questJPanel,
+		cm.pageMove(this, e, lottoBackJButton, mainJPanel, totalMoneyJLabel, stateJPanel, questJPanel,
 				storeJPanel, lottoJPanel, subJPanel);
 	}
+	
+	
 	//------------------------------------------------------------------
 	
 	//*************SpaceBar의 이벤트 발생 시작 메소드_180707_1******************
