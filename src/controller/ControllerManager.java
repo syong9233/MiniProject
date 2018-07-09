@@ -14,6 +14,7 @@ import model.dao.DataAccessState;
 import model.dao.DataAccessStore;
 import model.vo.Main;
 import view.View;
+import view.jbutton.StoreBackJButton;
 import view.jbutton.storeMenuJButton.BuyAutoTapJButton;
 import view.jbutton.storeMenuJButton.BuyCashJButton;
 import view.jbutton.storeMenuJButton.BuyLottoJButton;
@@ -83,12 +84,12 @@ public class ControllerManager {
 		main.autoTime(time);
 	}
 
-	public void pageMove(View view, ActionEvent e, MainJPanel mainJPanel,
-			StateJPanel stateJPanel, QuestJPanel questJPanel, 
-			StoreJPanel storeJPanel, LottoJPanel lottoJPanel, 
-			SubJPanel subJPanel) {
-		main.pageMove(view, e, mainJPanel, stateJPanel, questJPanel, storeJPanel,
-				lottoJPanel, subJPanel);
+	public void pageMove(View view, ActionEvent e, TotalMoneyJLabel totalMoneyJLabel, MainJPanel mainJPanel,
+			 StateJPanel stateJPanel, QuestJPanel questJPanel, StoreJPanel storeJPanel,
+			LottoJPanel lottoJPanel, SubJPanel subJPanel, StoreBackJButton storeBackJButton  ){
+		
+		main.pageMove(view, e, totalMoneyJLabel,mainJPanel , this.store , stateJPanel ,questJPanel,
+				storeJPanel,lottoJPanel,subJPanel,storeBackJButton);
 	}
 	//------------------------------------------------------------------------------------
 

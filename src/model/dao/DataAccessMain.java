@@ -23,6 +23,9 @@ import view.jbutton.StateBackJButton;
 import view.jbutton.StateJButton;
 import view.jbutton.StoreBackJButton;
 import view.jbutton.StoreJButton;
+import view.jbutton.storeMenuJButton.BuyCashJButton;
+import view.jbutton.storeMenuJButton.UseAutoTapJButton;
+import view.jbutton.storeMenuJButton.UsePotionJButton;
 import view.jlabel.AutoMoneyJLabel;
 import view.jlabel.NicknameJLabel;
 import view.jlabel.TapMoneyJLabel;
@@ -242,59 +245,72 @@ public class DataAccessMain {
 	//-----------------------------------------------------------------------
 
 	//*********************게임 내 버튼을 누를 경우 페이지 이동_180707_1*******************
-	public void pageMove(View view, ActionEvent e, MainJPanel mainJPanel,
-			StateJPanel stateJPanel, QuestJPanel questJPanel, StoreJPanel storeJPanel,
-			LottoJPanel lottoJPanel, SubJPanel subJPanel) {
-		if(e.getSource() instanceof StateJButton){
+	public void pageMove(View view, ActionEvent e, TotalMoneyJLabel totalMoneyJLabel, MainJPanel mainJPanel,
+			DataAccessStore store, StateJPanel stateJPanel, QuestJPanel questJPanel, StoreJPanel storeJPanel,
+			LottoJPanel lottoJPanel, SubJPanel subJPanel, StoreBackJButton storeBackJButton ) {
+	
+		
+		if (e.getSource() instanceof StateJButton) {
 			stateJPanel.setVisible(true);
 			subJPanel.setVisible(false);
 			view.add(stateJPanel);
 			view.add(mainJPanel);
 			view.repaint();
-		}else if(e.getSource() instanceof QuestJButton){
+		} else if (e.getSource() instanceof QuestJButton) {
 			questJPanel.setVisible(true);
 			subJPanel.setVisible(false);
 			view.add(questJPanel);
 			view.add(mainJPanel);
 			view.repaint();
-		}else if(e.getSource() instanceof StoreJButton){
+		} else if (e.getSource() instanceof StoreJButton) {
 			storeJPanel.setVisible(true);
 			subJPanel.setVisible(false);
 			view.add(storeJPanel);
 			view.add(mainJPanel);
 			view.repaint();
-		}else if(e.getSource() instanceof LottoJButton){
+		} else if (e.getSource() instanceof LottoJButton) {
 			lottoJPanel.setVisible(true);
 			subJPanel.setVisible(false);
 			view.add(lottoJPanel);
 			view.add(mainJPanel);
 			view.repaint();
-		}else if(e.getSource() instanceof StoreBackJButton){
+		} else if (e.getSource() instanceof StoreBackJButton) {
 			subJPanel.setVisible(true);
 			storeJPanel.setVisible(false);
 			view.add(mainJPanel);
 			view.add(subJPanel);
 			view.repaint();
 			View.cm().savePlayer();
-		}else if(e.getSource() instanceof BackJButton){
+		} else if (e.getSource() instanceof BackJButton) {
 			lottoJPanel.setVisible(false);
 			subJPanel.setVisible(true);
 			view.add(mainJPanel);
 			view.add(subJPanel);
 			view.repaint();
-		}else if(e.getSource() instanceof StateBackJButton){
+		} else if (e.getSource() instanceof StateBackJButton) {
 			stateJPanel.setVisible(false);
 			subJPanel.setVisible(true);
 			view.add(subJPanel);
 			view.add(mainJPanel);
 			view.repaint();
-		}else if(e.getSource() instanceof QuestBackJButton){
+		} else if (e.getSource() instanceof QuestBackJButton) {
 			questJPanel.setVisible(false);
 			subJPanel.setVisible(true);
 			view.add(subJPanel);
 			view.add(mainJPanel);
 			view.repaint();
+		} else if (e.getSource() instanceof UsePotionJButton) {
+			System.out.println("potion");
+			store.useItem(totalMoneyJLabel, mainJPanel, e, this);
+			
+		} else if (e.getSource() instanceof UseAutoTapJButton) {
+			System.out.println("tap");
+			store.useItem(totalMoneyJLabel, mainJPanel, e, this);
+		} else if (e.getSource() instanceof BuyCashJButton){
+			storeBackJButton.setVisible(false);
 		}
+
 	}
+	
 	//---------------------------------------------------------------
 }

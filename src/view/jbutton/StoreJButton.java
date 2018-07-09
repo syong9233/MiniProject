@@ -5,9 +5,12 @@ import javax.swing.JButton;
 
 public class StoreJButton extends JButton{
 
-	public StoreJButton(){
-		super(new ImageIcon("image/main/main_Store"));
-		setSize(75, 35);
-		setLocation(173, 122);
+	public StoreJButton(ImageIcon imageicon){
+		super(imageicon);
+		setSize(80, 70);
+		setLocation(173, 70);
+		setBorderPainted(false);
+		setContentAreaFilled(false);
+		setFocusPainted(false);
 	}
 }

@@ -11,7 +11,7 @@ public class BuyPotionJButton extends JButton {
 
 		super(imageIcon);
 
-		setLocation(10, 60);
+		setLocation(10, 80);
 		setSize(150,160);
 
 	}
