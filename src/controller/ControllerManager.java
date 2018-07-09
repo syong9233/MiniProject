@@ -97,10 +97,9 @@ public class ControllerManager {
 	   }
 	
 	public void storeMenu(StoreJPanel storeJPanel,  ActionEvent e,JPanel emptyMoneyJPanel,BuyPotionJButton buyPotionJButton,BuyAutoTapJButton buyAutoTapJButton,
-			BuyLottoJButton buyLottoJButton,BuyCashJButton buyCashJButton,JPanel buyCashJPanel, CashCloseJButton cashCloseJButton, JPanel explanationPotionJPanel,
-			YesBuyPotionJButton yesBuyPotionJButton) {
+			BuyLottoJButton buyLottoJButton,BuyCashJButton buyCashJButton,JPanel buyCashJPanel, CashCloseJButton cashCloseJButton) {
 		store.StoreMenu(storeJPanel, e , main.getMain(), player.getPlayer(), emptyMoneyJPanel, buyPotionJButton, buyAutoTapJButton, buyLottoJButton,
-				buyCashJButton, buyCashJPanel, cashCloseJButton, explanationPotionJPanel, yesBuyPotionJButton);
+				buyCashJButton, buyCashJPanel, cashCloseJButton);
 	}
 	
 }
