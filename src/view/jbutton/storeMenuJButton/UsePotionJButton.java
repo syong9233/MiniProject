@@ -11,9 +11,11 @@ public class UsePotionJButton extends JButton {
 
 		super(imageIcon);
 
-		setSize(30, 30);
-		setLocation(270, 5);
-
+		setSize(55, 25);
+		setLocation(5, 25);
+		setBorderPainted(false);
+		setContentAreaFilled(false);
+		setFocusPainted(false);
 	}
 
 }

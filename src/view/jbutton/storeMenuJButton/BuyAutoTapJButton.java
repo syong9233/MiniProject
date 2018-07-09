@@ -11,8 +11,8 @@ public class BuyAutoTapJButton extends JButton {
 
 		super(imageIcon);
 
-		setLocation(175, 60);
-		setSize(150, 160);
+		setLocation(175, 85);
+		setSize(150, 170);
 
 	}
 

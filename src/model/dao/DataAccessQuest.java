@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 
 import model.vo.Main;
 import model.vo.Quest;
+import view.jbutton.questMenuJButton.questComplete_1;
+import view.jbutton.questMenuJButton.questComplete_2;
 import view.jlabel.TotalMoneyJLabel;
 
 
@@ -23,11 +25,11 @@ public class DataAccessQuest {
 	}
 	
 	//********************어느 완료 버튼을 누른 것인지 체크_180707_1************************
-	public void qChoice(ActionEvent e, Main main, JButton button1, JButton button2) {
+	public void qChoice(ActionEvent e, Main main, questComplete_1 button1, questComplete_2 button2) {
 		
-		if (e.getActionCommand().equals("")) {
+		if (e.getSource() instanceof questComplete_1) {
 			this.questAdd(main, button1);
-		} else if (e.getActionCommand().equals("")) {
+		} else if (e.getSource() instanceof questComplete_2) {
 			this.questAdd2(main, button2);
 		}
 	}

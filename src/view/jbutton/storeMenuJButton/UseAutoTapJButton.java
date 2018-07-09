@@ -11,9 +11,11 @@ public class UseAutoTapJButton extends JButton {
 
 		super(imageIcon);
 
-		setSize(30, 30);
-		setLocation(305, 5);
-
+		setSize(55, 25);
+		setLocation(65, 25);
+		setBorderPainted(false);
+		setContentAreaFilled(false);
+		setFocusPainted(false);
 	}
 
 }

@@ -11,7 +11,7 @@ public class BuyCashJButton extends JButton {
 
 		super(imageIcon);
 
-		setLocation(175, 235);
+		setLocation(175, 274);
 		setSize(150, 160);
 
 	}

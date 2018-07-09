@@ -46,11 +46,16 @@ public class DataAccessPlayer {
 		player.setP_TotalOfMoney(main.getM_TotalOfMoney());
 		player.setP_AmountOfAutoMoney(main.getM_AmountOfAutoMoney());
 		player.setP_AmountOfTapMoney(main.getM_AmountOfTapMoney());
+		player.setP_qtyOfPotion(main.getM_qtyOfPotion());
+		player.setP_qtyOfAutoTap(main.getM_qtyOfAutoTap());
+		player.setP_qtyOfLotto(main.getM_qtyOfLotto());
 		player.setP_lvOfComputer(state.getP_lvOfComputer());
 		player.setP_lvOfKeyboard(state.getP_lvOfKeyboard());
 		player.setP_lvOfEducate(state.getP_lvOfEducate());
 		player.setP_lvOfEmploy(state.getP_lvOfEmploy());
 		player.setP_lvOfExtend(state.getP_lvOfExtend());
+		player.setTap1(quest.getTap1());
+		player.setTap2(quest.getTap2());
 		
 		try (ObjectOutputStream oos = 
 				new ObjectOutputStream(new FileOutputStream("player_list.dat"))){
