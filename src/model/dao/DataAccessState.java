@@ -1,8 +1,7 @@
 package model.dao;
 
-import java.awt.Image;
-
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 
@@ -45,7 +44,7 @@ public class DataAccessState {
 			keyboardLevelUp(main, stateBar, autoMoneyJLabel, tapMoneyJLabel);
 		}
 	}
-	// ***************회사확장 레벨****************
+	// ***************180710_회사확장 레벨_값 수정(회사Level * 2천만원, 보상:탭 x3)****************
 	public void extendLevelUp(Main main, JProgressBar extendBar, MainJPanel mainJPanel,
 			StateJPanel stateJPanel, View view, TotalMoneyJLabel totalMoneyJLabel,
 			NicknameJLabel nicknameJLabel, AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel){
@@ -65,10 +64,10 @@ public class DataAccessState {
 		lv10JBackImageLabel.setLocation(0, -30);
 
 		if(state.getP_lvOfExtend() < 10){                                    //회사Level < 10
-			if(main.getM_TotalOfMoney() > (state.getP_lvOfExtend()* 150000)){                     //총 금액 > 레벨머니
-				main.setM_TotalOfMoney(main.getM_TotalOfMoney() - (state.getP_lvOfExtend()* 150000));   //구매 금액. 전체 돈 - 레벨머니
+			if(main.getM_TotalOfMoney() > (state.getP_lvOfExtend()* 20000000)){                     //총 금액 > 레벨머니
+				main.setM_TotalOfMoney(main.getM_TotalOfMoney() - (state.getP_lvOfExtend()* 20000000));   //구매 금액. 전체 돈 - 레벨머니
 				state.setP_lvOfExtend((byte)(state.getP_lvOfExtend() + 1));            //회사 레벨 +1
-				main.setM_AmountOfAutoMoney(main.getM_AmountOfAutoMoney() * 10);      //보상 : 오토탭 x 10
+				main.setM_AmountOfTapMoney(main.getM_AmountOfTapMoney() * 3);      //보상 : 탭 x 3
 				System.out.println(main.getM_AmountOfAutoMoney());
 				extendBar.setValue(state.getP_lvOfExtend());                     
 				extendBar.setString(state.getP_lvOfExtend() + "/" + extendBar.getMaximum());//1/10 bar추가
@@ -124,14 +123,14 @@ public class DataAccessState {
 		}
 	}
 
-	// ***************교육이수 레벨****************
+	// ***************180710_교육이수 레벨_값 수정(교육이수Level * 800만원, 보상:오토탭 x5)****************
 	public void educateLevelUp(Main main, JProgressBar educateBar, AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel){ 
-		int educateLevelMoney = 200000 * state.getP_lvOfEducate();                  //교육이수 금액
+		int educateLevelMoney = 8000000 * state.getP_lvOfEducate();                  //교육이수 금액
 		if(state.getP_lvOfExtend() > state.getP_lvOfEducate()){                     //회사Level > 교육이수Level
 			if(main.getM_TotalOfMoney() > educateLevelMoney){                     //전체 돈 > 교육이수 금액
 				main.setM_TotalOfMoney(main.getM_TotalOfMoney() - educateLevelMoney);   //전체금액 - 교육이수 금액
 				state.setP_lvOfEducate((byte)(state.getP_lvOfEducate() + 1));         //교육이수 레벨 +1
-				main.setM_AmountOfAutoMoney(main.getM_AmountOfAutoMoney() * 2);         //보상 : 오토탭 x 2
+				main.setM_AmountOfAutoMoney(main.getM_AmountOfAutoMoney() * 5);         //보상 : 오토탭 x 5
 				educateBar.setValue(state.getP_lvOfEducate());
 				educateBar.setString(state.getP_lvOfEducate() + "/" + educateBar.getMaximum());
 				View.cm().setMoneyJLabel(autoMoneyJLabel, tapMoneyJLabel);
@@ -144,9 +143,9 @@ public class DataAccessState {
 		}
 	}
 
-	// ***************직원고용 레벨****************
+	// ***************180710_직원고용 레벨_값 수정(직원고용Level * 1000만원, 보상:탭 x2)****************
 	public void employLevelUp(Main main, JProgressBar employBar, AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel){
-		int employLevelMoney = 300000 * state.getP_lvOfEmploy();                  //직원고용 금액
+		int employLevelMoney = 10000000 * state.getP_lvOfEmploy();                  //직원고용 금액
 		if(state.getP_lvOfExtend() > state.getP_lvOfEmploy()){                     //회사Level > 직원고용Level
 			if(main.getM_TotalOfMoney() > employLevelMoney){                     //전체 돈 > 고용금액
 				main.setM_TotalOfMoney(main.getM_TotalOfMoney() - employLevelMoney);   //전체금액 - 직원고용 금액
@@ -164,14 +163,14 @@ public class DataAccessState {
 		}
 	}
 
-	// ***************컴퓨터사양 레벨****************
+	// ***************180710_컴퓨터 레벨_값 수정(컴퓨터Level * 700만원, 보상:오토탭 x4)****************
 	public void computerLevelUp(Main main, JProgressBar computerBar, AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel){
-		int computerLevelMoney = 300000 * state.getP_lvOfComputer();               //컴퓨터사양 금액
+		int computerLevelMoney = 7000000 * state.getP_lvOfComputer();               //컴퓨터사양 금액
 		if(state.getP_lvOfExtend() > state.getP_lvOfComputer()){                  //회사Level > 컴퓨터사양Level
 			if(main.getM_TotalOfMoney() > computerLevelMoney){                     //전체돈 > 컴퓨터사양 금액
 				main.setM_TotalOfMoney(main.getM_TotalOfMoney() - computerLevelMoney);   //전체금액 - 컴퓨터 금액
 				state.setP_lvOfComputer((byte)(state.getP_lvOfComputer() + 1));         //컴퓨터 사양 레벨 +1
-				main.setM_AmountOfTapMoney(main.getM_AmountOfTapMoney() * 2);         //보상: 탭 x 2
+				main.setM_AmountOfAutoMoney(main.getM_AmountOfAutoMoney() * 4);         //보상: 오토탭 x 4
 				computerBar.setValue(state.getP_lvOfComputer());
 				computerBar.setString(state.getP_lvOfComputer() + "/" + computerBar.getMaximum());
 				View.cm().setMoneyJLabel(autoMoneyJLabel, tapMoneyJLabel);
@@ -184,14 +183,14 @@ public class DataAccessState {
 		}
 	}
 
-	// ***************타자수 레벨****************
+	// ***************180710_타자수 레벨_값 수정(타자수Level * 700만원, 보상:오토탭 x4)****************
 	public void keyboardLevelUp(Main main, JProgressBar keyboardBar, AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel){   
-		int keyboardLevelMoney = 300000 * state.getP_lvOfKeyboard();               //타자수 금액
+		int keyboardLevelMoney = 7000000 * state.getP_lvOfKeyboard();               //타자수 금액
 		if(state.getP_lvOfExtend() > state.getP_lvOfKeyboard()){                  //회사Level > 타자수Level
 			if(main.getM_TotalOfMoney() > keyboardLevelMoney){                     //전체돈 > 타자수 금액
 				main.setM_TotalOfMoney(main.getM_TotalOfMoney() - keyboardLevelMoney);   //전체금액 - 타자수 금액
 				state.setP_lvOfKeyboard((byte)(state.getP_lvOfKeyboard() + 1));         //타자수 레벨 +1
-				main.setM_AmountOfTapMoney(main.getM_AmountOfTapMoney() * 2);         //보상: 탭 x 2
+				main.setM_AmountOfAutoMoney(main.getM_AmountOfAutoMoney() * 4);         //보상: 오토탭 x 4
 				keyboardBar.setValue(state.getP_lvOfKeyboard());
 				keyboardBar.setString(state.getP_lvOfKeyboard() + "/" + keyboardBar.getMaximum());
 				View.cm().setMoneyJLabel(autoMoneyJLabel, tapMoneyJLabel);
@@ -203,4 +202,14 @@ public class DataAccessState {
 			System.out.println("아직 불가능 (현재 타자수 : " + state.getP_lvOfKeyboard() + ")");
 		}
 	}
+	//************180710_텍스트값 부여 ***********
+		//마우스 커서 올려놓으면 금액 뜸
+		public void keyboardSpace(Main main, JButton extendJButton, JButton educateJButton, JButton employJButton,
+											 JButton computerJButton, JButton keyboardJButton) {
+		extendJButton.setToolTipText("다음 레벨까지 " + main.getM_TotalOfMoney() + " / " + (state.getP_lvOfExtend() * 20000000));
+		educateJButton.setToolTipText("다음 레벨까지 " + main.getM_TotalOfMoney() + " / " + (state.getP_lvOfEducate() * 8000000));
+		employJButton.setToolTipText("다음 레벨까지 " + main.getM_TotalOfMoney() + " / " + (state.getP_lvOfEmploy() * 10000000));
+		computerJButton.setToolTipText("다음 레벨까지 " + main.getM_TotalOfMoney() + " / " + (state.getP_lvOfComputer() * 7000000));
+		keyboardJButton.setToolTipText("다음 레벨까지 " + main.getM_TotalOfMoney() + " / " + (state.getP_lvOfKeyboard() * 7000000));
+		}
 }
