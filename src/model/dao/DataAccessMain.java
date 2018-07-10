@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.util.Date;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -153,7 +154,13 @@ public class DataAccessMain {
 	public void setMain(Player player, NicknameJLabel nicknameJLabel, 
 			TotalMoneyJLabel totalMoneyJLabel, AutoMoneyJLabel autoMoneyJLabel, 
 			TapMoneyJLabel tapMoneyJLabel, JProgressBar extendBar, JProgressBar educateBar,
-			JProgressBar employBar, JProgressBar computerBar, JProgressBar keyboardBar, State state) {
+			JProgressBar employBar, JProgressBar computerBar, JProgressBar keyboardBar, State state, MainJPanel mainJPanel, View view, SubJPanel subJPanel) {
+		
+		JLabel lv3JBackImageLabel = new JLabel(new ImageIcon(new ImageIcon("image/main/final_lv3.png").getImage().getScaledInstance(338, 600, java.awt.Image.SCALE_SMOOTH)));
+		JLabel lv5JBackImageLabel = new JLabel(new ImageIcon(new ImageIcon("image/main/final_lv5.png").getImage().getScaledInstance(338, 600, java.awt.Image.SCALE_SMOOTH)));
+		JLabel lv7JBackImageLabel = new JLabel(new ImageIcon(new ImageIcon("image/main/final_lv7.png").getImage().getScaledInstance(338, 600, java.awt.Image.SCALE_SMOOTH)));
+		JLabel lv9JBackImageLabel = new JLabel(new ImageIcon(new ImageIcon("image/main/final_lv9.png").getImage().getScaledInstance(338, 600, java.awt.Image.SCALE_SMOOTH)));
+		
 		nicknameJLabel.setText("player : " + player.getP_Nickname());
 		totalMoneyJLabel.setText(String.format("%,d", (main.getM_TotalOfMoney())));
 		autoMoneyJLabel.setText(String.format("%,d", (main.getM_AmountOfAutoMoney())));
@@ -173,6 +180,56 @@ public class DataAccessMain {
 		employBar.setString(state.getP_lvOfEmploy() + "/" + employBar.getMaximum());
 		computerBar.setString(state.getP_lvOfComputer() + "/" + computerBar.getMaximum());
 		keyboardBar.setString(state.getP_lvOfKeyboard() + "/" + keyboardBar.getMaximum());
+		
+		if(state.getP_lvOfExtend() == 3){
+			lv3JBackImageLabel.setSize(338, 600);
+			lv3JBackImageLabel.setLocation(0, -30);
+			mainJPanel.removeAll();
+			mainJPanel.add(nicknameJLabel); 
+			mainJPanel.add(totalMoneyJLabel);
+			mainJPanel.add(autoMoneyJLabel);
+			mainJPanel.add(tapMoneyJLabel);
+			mainJPanel.add(lv3JBackImageLabel);
+			view.add(subJPanel);
+			view.add(mainJPanel);
+			view.repaint();
+		 } if(state.getP_lvOfExtend() == 5){
+			 lv5JBackImageLabel.setSize(338, 600);
+			 lv5JBackImageLabel.setLocation(0, -30);
+			mainJPanel.removeAll();
+			mainJPanel.add(nicknameJLabel); 
+			mainJPanel.add(totalMoneyJLabel);
+			mainJPanel.add(autoMoneyJLabel);
+			mainJPanel.add(tapMoneyJLabel);
+			mainJPanel.add(lv5JBackImageLabel);
+			view.add(subJPanel);
+			view.add(mainJPanel);
+			view.repaint();
+		 } if(state.getP_lvOfExtend() == 7){
+			 lv7JBackImageLabel.setSize(338, 600);
+			 lv7JBackImageLabel.setLocation(0, -30);
+				mainJPanel.removeAll();
+				mainJPanel.add(nicknameJLabel); 
+				mainJPanel.add(totalMoneyJLabel);
+				mainJPanel.add(autoMoneyJLabel);
+				mainJPanel.add(tapMoneyJLabel);
+				mainJPanel.add(lv7JBackImageLabel);
+				view.add(subJPanel);
+				view.add(mainJPanel);
+				view.repaint();
+		 } if(state.getP_lvOfExtend() == 9){
+			 lv9JBackImageLabel.setSize(338, 600);
+			 lv9JBackImageLabel.setLocation(0, -30);
+				mainJPanel.removeAll();
+				mainJPanel.add(nicknameJLabel); 
+				mainJPanel.add(totalMoneyJLabel);
+				mainJPanel.add(autoMoneyJLabel);
+				mainJPanel.add(tapMoneyJLabel);
+				mainJPanel.add(lv9JBackImageLabel);
+				view.add(subJPanel);
+				view.add(mainJPanel);
+				view.repaint();
+		 }
 	}
 	//-----------------------------------------------------------------------
 	public void reSetMoneyJLabel(AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel) {
@@ -211,7 +268,7 @@ public class DataAccessMain {
 				player.setP_Nickname(nickname);
 				setPlayer(player.getPlayer(), state, quest);
 				setMain(player.getPlayer(), nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel,
-						extendBar, educateBar, employBar, computerBar, keyboardBar, state);
+						extendBar, educateBar, employBar, computerBar, keyboardBar, state, mainJPanel, view, subJPanel);
 				autoRun(totalMoneyJLabel, this.getMain(), 0);
 			}else{
 				view.setVisible(false); 
@@ -219,7 +276,7 @@ public class DataAccessMain {
 		}else{
 			setPlayer(player.getPlayer(), state, quest);
 			setMain(player.getPlayer(), nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel,
-					extendBar, educateBar, employBar, computerBar, keyboardBar, state);
+					extendBar, educateBar, employBar, computerBar, keyboardBar, state, mainJPanel, view, subJPanel);
 			whileNotPlay(view, mainJPanel, subJPanel, player.getPlayer());
 			autoRun(totalMoneyJLabel, this.getMain(), 0);
 	
@@ -233,6 +290,7 @@ public class DataAccessMain {
 
 
 	}
+
 	//-----------------------------------------------------------------------
 
 	//*******************플레이하지 않은 동안 획득한 금액 추가_180707_1*******************

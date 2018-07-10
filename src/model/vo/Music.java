@@ -18,7 +18,5 @@ public class Music extends Thread{
       } catch (MalformedURLException e) {
          e.printStackTrace();
       }
-   
    }
-
 }
