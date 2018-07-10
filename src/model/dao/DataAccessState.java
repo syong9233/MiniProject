@@ -51,17 +51,18 @@ public class DataAccessState {
 		JLabel lv3JBackImageLabel = new JLabel(new ImageIcon(new ImageIcon("image/main/final_lv3.png").getImage().getScaledInstance(338, 600, java.awt.Image.SCALE_SMOOTH)));
 		JLabel lv5JBackImageLabel = new JLabel(new ImageIcon(new ImageIcon("image/main/final_lv5.png").getImage().getScaledInstance(338, 600, java.awt.Image.SCALE_SMOOTH)));
 		JLabel lv7JBackImageLabel = new JLabel(new ImageIcon(new ImageIcon("image/main/final_lv7.png").getImage().getScaledInstance(338, 600, java.awt.Image.SCALE_SMOOTH)));
-		JLabel lv10JBackImageLabel = new JLabel(new ImageIcon(new ImageIcon("image/main/final_lv3.png").getImage().getScaledInstance(338, 600, java.awt.Image.SCALE_SMOOTH)));
-
+		JLabel lv9JBackImageLabel = new JLabel(new ImageIcon(new ImageIcon("image/main/final_lv9.png").getImage().getScaledInstance(338, 600, java.awt.Image.SCALE_SMOOTH)));
+		
+		
 		lv3JBackImageLabel.setSize(338, 600);
 		lv5JBackImageLabel.setSize(338, 600);
 		lv7JBackImageLabel.setSize(338, 600);
-		lv10JBackImageLabel.setSize(338, 600);
+		lv9JBackImageLabel.setSize(338, 600);
 		
 		lv3JBackImageLabel.setLocation(0, -30);
 		lv5JBackImageLabel.setLocation(0, -30);
 		lv7JBackImageLabel.setLocation(0, -30);
-		lv10JBackImageLabel.setLocation(0, -30);
+		lv9JBackImageLabel.setLocation(0, -30);
 
 		if(state.getP_lvOfExtend() < 10){                                    //회사Level < 10
 			if(main.getM_TotalOfMoney() > (state.getP_lvOfExtend()* 20000000)){                     //총 금액 > 레벨머니
@@ -110,13 +111,13 @@ public class DataAccessState {
 			view.add(stateJPanel);
 			view.add(mainJPanel);
 			view.repaint();
-		}else if(state.getP_lvOfExtend() == 10){
+		}else if(state.getP_lvOfExtend() == 9){
 			mainJPanel.removeAll();
 			mainJPanel.add(nicknameJLabel); 
 			mainJPanel.add(totalMoneyJLabel);
 			mainJPanel.add(autoMoneyJLabel);
 			mainJPanel.add(tapMoneyJLabel);
-			mainJPanel.add(lv10JBackImageLabel);
+			mainJPanel.add(lv9JBackImageLabel);
 			view.add(stateJPanel);
 			view.add(mainJPanel);
 			view.repaint();
