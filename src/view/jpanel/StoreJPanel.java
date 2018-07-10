@@ -44,7 +44,7 @@ public class StoreJPanel extends JPanel implements ActionListener{
 	public StoreJPanel() {
 
 		setLayout(null);
-		setBounds(3, 62, 350,600 );
+		setBounds(3, 56, 350,600 );
 		
 		emptyMoneyJPanel = new JPanel(){
 			protected void paintComponent(Graphics g){
