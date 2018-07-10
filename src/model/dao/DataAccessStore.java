@@ -167,6 +167,8 @@ public class DataAccessStore {
 
 				main.getMain().setM_potiontime(main.getMain().getM_potiontime() + (5 * 10));
 				potionTime(main.getMain().getM_potiontime());
+				
+				View.potionJLabel.setText(String.format("%,d", main.getMain().getM_qtyOfPotion()));
 			}
 		}
 
@@ -183,6 +185,8 @@ public class DataAccessStore {
 
 				main.getMain().setM_autotime(main.getMain().getM_autotime() + (5 * 10));
 				autoTime(main.getMain().getM_autotime());
+				
+				View.autoJLabel.setText(String.format("%,d", main.getMain().getM_qtyOfAutoTap()));
 
 			}
 		}
@@ -230,15 +234,15 @@ public class DataAccessStore {
 			buyAutoTapJButton.setVisible(false);
 			buyLottoJButton.setVisible(false);
 			buyCashJButton.setVisible(false);
-
 			System.out.println("금액이 부족합니다.");
 
 			return;
 		}
-
-		player.setP_Cash(player.getP_Cash() - store.getS_priceOfPotion());
 		main.setM_qtyOfPotion(main.getM_qtyOfPotion() + 10);
-
+		player.setP_Cash(player.getP_Cash() - store.getS_priceOfPotion());
+		
+		
+		
 		System.out.println("포션 구매 완료(-1000)");
 		System.out.println("현재 Cash : " + player.getP_Cash());
 		System.out.println("현재 포션 개수 : " + main.getM_qtyOfPotion());

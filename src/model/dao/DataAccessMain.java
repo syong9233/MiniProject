@@ -158,6 +158,10 @@ public class DataAccessMain {
 		totalMoneyJLabel.setText(String.format("%,d", (main.getM_TotalOfMoney())));
 		autoMoneyJLabel.setText(String.format("%,d", (main.getM_AmountOfAutoMoney())));
 		tapMoneyJLabel.setText(String.format("%,d", (main.getM_AmountOfTapMoney())));
+		View.potionJLabel.setText(String.format("%,d", main.getM_qtyOfPotion()));
+		View.autoJLabel.setText(String.format("%,d", main.getM_qtyOfAutoTap()));
+		View.cashJLabel.setText(String.format("%,d",player.getP_Cash()));
+		View.lottoJLabel.setText(String.format("%,d",main.getM_qtyOfLotto()));
 		
 		extendBar.setValue(state.getP_lvOfExtend());
 		educateBar.setValue(state.getP_lvOfEducate());
@@ -220,6 +224,14 @@ public class DataAccessMain {
 			autoRun(totalMoneyJLabel, this.getMain(), 0);
 	
 		}
+		
+		View.potionJLabel.setText(String.format("%,d", main.getM_qtyOfPotion()));
+		View.autoJLabel.setText(String.format("%,d", main.getM_qtyOfAutoTap()));
+		View.lottoJLabel.setText(String.format("%,d",main.getM_qtyOfLotto()));
+		View.cashJLabel.setText(String.format("%,d",player.getPlayer().getP_Cash()));
+		
+
+
 	}
 	//-----------------------------------------------------------------------
 
@@ -292,7 +304,7 @@ public class DataAccessMain {
 			JProgressBar extendBar, JProgressBar educateBar, JProgressBar employBar,
 			JProgressBar computerBar, JProgressBar keyboardBar, NicknameJLabel nicknameJLabel,
 			TotalMoneyJLabel totalMoneyJLabel, AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel
-			,DataAccessStore store, StoreBackJButton storeBackJButton) {
+			,DataAccessStore store, StoreBackJButton storeBackJButton, DataAccessPlayer player) {
 		
 		
 		
@@ -327,6 +339,10 @@ public class DataAccessMain {
 			view.add(subJPanel);
 			view.add(mainJPanel);
 			view.repaint();
+			View.potionJLabel.setText(String.format("%,d", main.getM_qtyOfPotion()));
+			View.autoJLabel.setText(String.format("%,d", main.getM_qtyOfAutoTap()));
+			View.lottoJLabel.setText(String.format("%,d",main.getM_qtyOfLotto()));
+			View.cashJLabel.setText(String.format("%,d", player.getPlayer().getP_Cash()));
 			View.cm().savePlayer();
 		}else if(e.getSource() instanceof BackJButton){
 			lottoJPanel.setVisible(false);
@@ -334,6 +350,7 @@ public class DataAccessMain {
 			view.add(subJPanel);
 			view.add(mainJPanel);
 			view.repaint();
+			View.lottoJLabel.setText(String.format("%,d",main.getM_qtyOfLotto()));
 		}else if(e.getSource() instanceof StateBackJButton){
 			stateJPanel.setVisible(false);
 			subJPanel.setVisible(true);

@@ -5,13 +5,14 @@ import java.awt.Font;
 
 import javax.swing.JLabel;
 
-public class TapMoneyJLabel extends JLabel {
+public class S_LottoJLabel extends JLabel {
 
-	public TapMoneyJLabel() {
+	public S_LottoJLabel() {
+		super("asdfas");
 		setHorizontalAlignment(JLabel.RIGHT);
-		setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 11));
+		setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 16));
 		setForeground(new Color(255, 247, 0));
-		setBounds(0, 26, 312, 27);
+		setBounds(0, 0, 165, 72);
 	}
 
 }
