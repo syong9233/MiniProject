@@ -13,7 +13,7 @@ public class Music extends Thread{
       try {
          AudioClip clip = Applet.newAudioClip(file.toURI().toURL());
          clip.play();
-
+         clip.loop();
 
       } catch (MalformedURLException e) {
          e.printStackTrace();
