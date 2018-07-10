@@ -1,10 +1,14 @@
 package view;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+import java.net.MalformedURLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -12,7 +16,6 @@ import javax.swing.JLabel;
 
 import controller.ControllerManager;
 import model.vo.Music;
-import view.jbutton.LottoBackJButton;
 import view.jbutton.LottoJButton;
 import view.jbutton.QuestBackJButton;
 import view.jbutton.QuestJButton;
@@ -58,6 +61,10 @@ public class View extends JFrame implements KeyListener, ActionListener{
 	private QuestJButton questJButton = new QuestJButton(new ImageIcon("image/main/main_Quest.png"));
 	private StoreJButton storeJButton = new StoreJButton(new ImageIcon("image/main/main_store.png"));
 	private LottoJButton lottoJButton = new LottoJButton(new ImageIcon("image/main/main_lotto.png"));
+	
+	//sound
+	File file = new File("sound/buttonEffect_click.wav");
+	AudioClip clip;
 	
 	//------------------------------------------------------------------------
 	
@@ -130,8 +137,18 @@ public class View extends JFrame implements KeyListener, ActionListener{
 	}
 	
 	//*********JButton, JLabel 등의 이벤트 발생 시작 메소드_180707_1************
-	@Override
+
 	public void actionPerformed(ActionEvent e) {
+
+		try {
+			AudioClip clip = Applet.newAudioClip(file.toURI().toURL());
+			clip.play();
+
+
+		} catch (MalformedURLException e1) {
+			e1.printStackTrace();
+		}
+
 		cm.pageMove(this, e, mainJPanel, stateJPanel, questJPanel,
 				storeJPanel, lottoJPanel, subJPanel, stateJPanel.extendJButton,
 				stateJPanel.educateJButton, stateJPanel.employJButton,
@@ -141,7 +158,7 @@ public class View extends JFrame implements KeyListener, ActionListener{
 				nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel);
 	}
 	//------------------------------------------------------------------
-	
+
 	//*************SpaceBar의 이벤트 발생 시작 메소드_180707_1******************
 	@Override
 	public void keyReleased(KeyEvent e) {
