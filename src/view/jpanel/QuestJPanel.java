@@ -1,5 +1,6 @@
 package view.jpanel;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -53,8 +54,8 @@ public class QuestJPanel extends JPanel implements ActionListener{
 		
 		goalTap.setLocation(50, 110);
 		ingTap.setLocation(190, 110);
-		goalMoney.setLocation(50, 240);
-		ingMoney.setLocation(190, 240);
+		goalMoney.setLocation(30, 240);
+		ingMoney.setLocation(160, 240);
 		
 		button1.setLocation(275, 100);
 		button2.setLocation(275, 230);
@@ -65,6 +66,16 @@ public class QuestJPanel extends JPanel implements ActionListener{
 		ingTap.setSize(130, 50);
 		goalMoney.setSize(150, 50);
 		ingMoney.setSize(150, 50);
+		
+		Font f1 = new Font("궁서", Font.BOLD, 20);
+		Font f2 = new Font("궁서", Font.BOLD, 20);
+		Font f3 = new Font("궁서", Font.BOLD, 12);
+		Font f4 = new Font("궁서", Font.BOLD, 12);
+		
+		goalTap.setFont(f1);
+		ingTap.setFont(f2);
+		goalMoney.setFont(f3);
+		ingMoney.setFont(f4);
 		
 		button1.setSize(70, 65);
 		button2.setSize(70, 65);
