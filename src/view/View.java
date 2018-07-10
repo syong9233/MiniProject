@@ -62,8 +62,8 @@ public class View extends JFrame implements KeyListener, ActionListener{
 	private AutoMoneyJLabel autoMoneyJLabel = new AutoMoneyJLabel();
 	private TapMoneyJLabel tapMoneyJLabel = new TapMoneyJLabel();
 
-	private StateBackJButton stateBackJButton = new StateBackJButton(new ImageIcon("image/store/common_backButton.png"));
-	private QuestBackJButton questBackJButton= new QuestBackJButton(new ImageIcon("image/store/common_backButton.png"));
+	private StateBackJButton stateBackJButton = new StateBackJButton(new ImageIcon("image/state/state_backButton.png"));
+	private QuestBackJButton questBackJButton= new QuestBackJButton(new ImageIcon("image/state/state_backButton.png"));
 	private StoreBackJButton storeBackJButton= new StoreBackJButton(new ImageIcon("image/store/common_backButton.png"));
 	private StateJButton stateJButton = new StateJButton(new ImageIcon("image/main/main_state.png"));
 	private QuestJButton questJButton = new QuestJButton(new ImageIcon("image/main/main_Quest.png"));

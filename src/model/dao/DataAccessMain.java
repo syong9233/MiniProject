@@ -283,6 +283,7 @@ public class DataAccessMain {
 		state.setP_lvOfEmploy(player.getP_lvOfEmploy());
 		state.setP_lvOfExtend(player.getP_lvOfExtend());
 		state.setP_lvOfKeyboard(player.getP_lvOfKeyboard());
+		
 		quest.setQ_qtyOfTap(player.getP_qtyOfTap());
 	}
 	//-----------------------------------------------------------------------

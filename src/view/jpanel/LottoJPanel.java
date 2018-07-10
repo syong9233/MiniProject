@@ -33,7 +33,7 @@ public class LottoJPanel extends JPanel implements ActionListener{
 	public LottoJPanel(){
 
 		this.setLayout(null);
-		this.setBounds(0, 50, 350, 600);
+		this.setBounds(0, 56, 350, 600);
 		this.setBackground(new Color(255, 255, 255));
 
 		//패널에 이미지 넣는 방법(try/catch/@override)
