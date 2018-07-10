@@ -64,10 +64,11 @@ public class ControllerManager {
 
 	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel, JLabel ingTap,
 			JLabel goalTap, JLabel ingMoney, JLabel goalMoney, 
-			JButton button1, JButton button2) {	
-		main.keyReleased(totalMoneyJLabel, quest, ingTap, goalTap, ingMoney,
-				goalMoney, button1, button2);
-	}
+			JButton button1, JButton button2, JButton extendJButton, JButton educateJButton, JButton employJButton, JButton computerJButton, JButton keyboardJButton) {	
+		main.keyReleased(totalMoneyJLabel, quest, state, ingTap, goalTap, ingMoney,
+				goalMoney, button1, button2, extendJButton, educateJButton, employJButton, computerJButton, keyboardJButton);
+	}// 180710_JButton Ãß°¡
+
 
 	public void checkFisrtGame(View view, NicknameJLabel nicknameJLabel, TotalMoneyJLabel totalMoneyJLabel,
 			AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel, MainJPanel mainJPanel, SubJPanel subJPanel, JProgressBar extendBar,

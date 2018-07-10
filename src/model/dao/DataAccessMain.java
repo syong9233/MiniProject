@@ -138,13 +138,15 @@ public class DataAccessMain {
 	//-------------------------------------------------------------------------
 
 	//*************************스페이스바를 눌렀을 경우_180707_1*************************
-	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel, DataAccessQuest quest,
+	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel, DataAccessQuest quest, DataAccessState state,
 			JLabel goalTap, JLabel ingTap, JLabel goalMoney,
-			JLabel ingMoney , JButton button1, JButton button2) {	
+			JLabel ingMoney , JButton button1, JButton button2, JButton extendJButton, JButton educateJButton,
+																JButton employJButton, JButton computerJButton, JButton keyboardJButton) {	
 		main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfTapMoney());
 		totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()));
 		quest.viewQuest(main, totalMoneyJLabel, goalTap, ingTap, goalMoney, ingMoney);
-	}
+		state.keyboardSpace(main, extendJButton, educateJButton,employJButton, computerJButton, keyboardJButton);
+	}// 180710_JButton 추가
 	//-----------------------------------------------------------------------
 
 	//*************************게임 상단 금액 셋팅_180707_1*************************

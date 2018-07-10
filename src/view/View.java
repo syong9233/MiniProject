@@ -166,7 +166,9 @@ public class View extends JFrame implements KeyListener, ActionListener{
 			cm.keyReleased(totalMoneyJLabel, questJPanel.ingTap, 
 							questJPanel.goalTap, questJPanel.ingMoney,
 								questJPanel.goalMoney, questJPanel.button1, 
-									questJPanel.button2);
+									questJPanel.button2,
+									stateJPanel.extendJButton, stateJPanel.educateJButton, stateJPanel.employJButton,
+									stateJPanel.computerJButton, stateJPanel.keyboardJButton); //JButton extend ~ keyboard (5개)추가 
 		}
 		if(e.getKeyCode() == 83){
 			cm.savePlayer();
