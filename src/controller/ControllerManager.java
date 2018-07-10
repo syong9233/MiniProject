@@ -13,6 +13,7 @@ import model.dao.DataAccessQuest;
 import model.dao.DataAccessState;
 import model.dao.DataAccessStore;
 import model.vo.Main;
+import model.vo.Player;
 import view.View;
 import view.jbutton.questMenuJButton.questComplete_1;
 import view.jbutton.questMenuJButton.questComplete_2;
@@ -46,6 +47,7 @@ public class ControllerManager {
 
 	public void loadPlayer(){
 		player.load();
+		
 	}
 
 	public void newPlayer(String Nickname){
@@ -100,7 +102,7 @@ public class ControllerManager {
 		main.pageMove(view, e, mainJPanel, stateJPanel, questJPanel, storeJPanel,
 				lottoJPanel, subJPanel, extendJButton, educateJButton,
 				employJButton, computerJButton, keyboardJButton, extendBar, educateBar, employBar,
-				computerBar, keyboardBar, nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel, store, null);
+				computerBar, keyboardBar, nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel, store, null, player);
 	}
 	//------------------------------------------------------------------------------------
 

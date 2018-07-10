@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.net.MalformedURLException;
 
@@ -25,9 +27,14 @@ import view.jbutton.StoreBackJButton;
 import view.jbutton.StoreJButton;
 import view.jlabel.AutoMoneyJLabel;
 import view.jlabel.NicknameJLabel;
+import view.jlabel.S_AutoJLabel;
+import view.jlabel.S_CashJLabel;
+import view.jlabel.S_LottoJLabel;
+import view.jlabel.S_PotionJLabel;
 import view.jlabel.TapMoneyJLabel;
 import view.jlabel.TotalMoneyJLabel;
 import view.jpanel.FirstGame;
+import view.jpanel.InventoryJPanel;
 import view.jpanel.LottoJPanel;
 import view.jpanel.MainJPanel;
 import view.jpanel.QuestJPanel;
@@ -48,9 +55,10 @@ public class View extends JFrame implements KeyListener, ActionListener{
 	private QuestJPanel questJPanel = new QuestJPanel();
 	private LottoJPanel lottoJPanel = new LottoJPanel();
 	private StoreJPanel storeJPanel = new StoreJPanel();
+	private InventoryJPanel inventoryJPanel = new InventoryJPanel();
 	
 	private NicknameJLabel nicknameJLabel = new NicknameJLabel();
-	private TotalMoneyJLabel totalMoneyJLabel = new TotalMoneyJLabel();;
+	private TotalMoneyJLabel totalMoneyJLabel = new TotalMoneyJLabel();
 	private AutoMoneyJLabel autoMoneyJLabel = new AutoMoneyJLabel();
 	private TapMoneyJLabel tapMoneyJLabel = new TapMoneyJLabel();
 
@@ -61,6 +69,12 @@ public class View extends JFrame implements KeyListener, ActionListener{
 	private QuestJButton questJButton = new QuestJButton(new ImageIcon("image/main/main_Quest.png"));
 	private StoreJButton storeJButton = new StoreJButton(new ImageIcon("image/main/main_store.png"));
 	private LottoJButton lottoJButton = new LottoJButton(new ImageIcon("image/main/main_lotto.png"));
+	
+	public static S_PotionJLabel potionJLabel = new S_PotionJLabel();
+	public static S_AutoJLabel autoJLabel = new S_AutoJLabel();
+	public static S_CashJLabel cashJLabel = new S_CashJLabel();
+	public static S_LottoJLabel lottoJLabel = new S_LottoJLabel();
+
 	
 	//sound
 	File file = new File("sound/buttonEffect_click.wav");
@@ -76,6 +90,13 @@ public class View extends JFrame implements KeyListener, ActionListener{
 		setBounds(1000, 15, 350, 600);
 		getContentPane().setBackground(Color.BLACK);
 		
+		this.addWindowListener(new WindowAdapter(){
+	         public void windowClosing(WindowEvent e) { 
+	            cm.savePlayer();
+	            System.exit(0);
+	         }
+	      });
+		
 		JLabel lv1JBackImageLabel = new JLabel(new ImageIcon(new ImageIcon("image/main/final_lv1.png").getImage().getScaledInstance(338, 600, java.awt.Image.SCALE_SMOOTH)));
 		lv1JBackImageLabel.setLocation(0, -30);
 		lv1JBackImageLabel.setSize(338, 600);
@@ -86,10 +107,15 @@ public class View extends JFrame implements KeyListener, ActionListener{
 		//--------------------------------------------------
 
 		//***********add this, add action​_180707_1************
+		subJPanel.add(potionJLabel);
+		subJPanel.add(autoJLabel);
+		subJPanel.add(cashJLabel);
+		subJPanel.add(lottoJLabel);
+		
 		stateJPanel.add(stateBackJButton);
 		questJPanel.add(questBackJButton);
 		storeJPanel.add(storeBackJButton);
-			
+		
 		subJPanel.add(stateJButton);
 		subJPanel.add(questJButton);
 		subJPanel.add(storeJButton);
@@ -101,6 +127,7 @@ public class View extends JFrame implements KeyListener, ActionListener{
 		mainJPanel.add(autoMoneyJLabel);
 		mainJPanel.add(tapMoneyJLabel);
 		mainJPanel.add(lv1JBackImageLabel);
+		
 		
 		stateJPanel.extendJButton.addActionListener(this);
 		stateJPanel.educateJButton.addActionListener(this);
