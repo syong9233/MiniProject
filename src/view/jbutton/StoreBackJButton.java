@@ -8,7 +8,7 @@ public class StoreBackJButton extends JButton{
 	public StoreBackJButton(ImageIcon imageIcon){
 		super(imageIcon);
 		setSize(67, 128);
-		setLocation(265, 380);
+		setLocation(265, 370);
 		setBorderPainted(false);
 		setContentAreaFilled(false);
 		setFocusPainted(false);

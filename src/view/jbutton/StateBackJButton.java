@@ -7,8 +7,8 @@ public class StateBackJButton extends JButton{
 	
 	public StateBackJButton(ImageIcon imageIcon){
 		super(imageIcon);
-		setSize(67, 67);
-		setLocation(265, 0);
+		setSize(67, 115);
+		setLocation(265, 240);
 		
 		setBorderPainted(false);
 		setContentAreaFilled(false);
