@@ -128,7 +128,7 @@ public class DataAccessMain {
 
 			try {
 				Thread.sleep(1000);
-				totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()) + " : º¸À¯");
+				totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()));
 				main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfAutoMoney());
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -237,9 +237,13 @@ public class DataAccessMain {
 		noticeMoneyJLabel.setForeground(new Color(255, 255, 255));
 		noticeMoneyJLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		noticeMoneyJLabel.setText(String.format("%,d", (main.getM_AmountOfTapMoney() * temp)));
+		
 		mainJPanel.add(noticeJLabel);
 		mainJPanel.add(noticeMoneyJLabel);
-		mainJPanel.repaint();
+		view.add(subJPanel);
+		view.add(mainJPanel);
+		view.repaint();
+		
 		try {
 			Thread.sleep(3000);
 			noticeJLabel.setVisible(false);
@@ -353,7 +357,6 @@ public class DataAccessMain {
 		} else if (e.getSource() instanceof UsePotionJButton) {
 			System.out.println("potion");
 			store.useItem(totalMoneyJLabel, mainJPanel, e, this);
-			
 		} else if (e.getSource() instanceof UseAutoTapJButton) {
 			System.out.println("tap");
 			store.useItem(totalMoneyJLabel, mainJPanel, e, this);

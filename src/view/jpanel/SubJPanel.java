@@ -23,9 +23,9 @@ public class SubJPanel extends JPanel {
 
 	public SubJPanel() {
 
-		setBounds(3, 403, 352, 189);
+		setBounds(3, 403, 338, 165);
+		setOpaque(false);
 		setLayout(null);
-		this.setOpaque(false);
 		
 		usePotionJButton.setFocusable(false);
 		useAutoTapJButton.setFocusable(false);
@@ -36,7 +36,6 @@ public class SubJPanel extends JPanel {
 		try {
 			subBackgroundImage = ImageIO.read(new File("image/main/main_sub.png"));
 		} catch (IOException e) {
-
 			e.printStackTrace();
 		}
 
