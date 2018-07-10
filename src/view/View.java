@@ -53,7 +53,6 @@ public class View extends JFrame implements KeyListener, ActionListener{
 
 	private StateBackJButton stateBackJButton = new StateBackJButton(new ImageIcon("image/store/common_backButton.png"));
 	private QuestBackJButton questBackJButton= new QuestBackJButton(new ImageIcon("image/store/common_backButton.png"));
-	private LottoBackJButton lottoBackJButton= new LottoBackJButton(new ImageIcon("image/store/common_backButton.png"));
 	private StoreBackJButton storeBackJButton= new StoreBackJButton(new ImageIcon("image/store/common_backButton.png"));
 	private StateJButton stateJButton = new StateJButton(new ImageIcon("image/main/main_state.png"));
 	private QuestJButton questJButton = new QuestJButton(new ImageIcon("image/main/main_Quest.png"));
@@ -68,8 +67,6 @@ public class View extends JFrame implements KeyListener, ActionListener{
 		super("TapCompany");
 		setLayout(null);
 		setBounds(1000, 15, 350, 600);
-
-	
 		getContentPane().setBackground(Color.BLACK);
 		
 		JLabel lv1JBackImageLabel = new JLabel(new ImageIcon(new ImageIcon("image/main/final_lv1.png").getImage().getScaledInstance(338, 600, java.awt.Image.SCALE_SMOOTH)));
@@ -85,8 +82,13 @@ public class View extends JFrame implements KeyListener, ActionListener{
 		stateJPanel.add(stateBackJButton);
 		questJPanel.add(questBackJButton);
 		storeJPanel.add(storeBackJButton);
-		//lottoJPanel.add(lottoBackJButton);
 			
+		subJPanel.add(stateJButton);
+		subJPanel.add(questJButton);
+		subJPanel.add(storeJButton);
+		subJPanel.add(lottoJButton);
+		subJPanel.add(subJBackImageLabel);
+		
 		mainJPanel.add(nicknameJLabel);
 		mainJPanel.add(totalMoneyJLabel);
 		mainJPanel.add(autoMoneyJLabel);
@@ -98,12 +100,7 @@ public class View extends JFrame implements KeyListener, ActionListener{
 		stateJPanel.employJButton.addActionListener(this);
 		stateJPanel.computerJButton.addActionListener(this);
 		stateJPanel.keyboardJButton.addActionListener(this);
-		
-		subJPanel.add(stateJButton);
-		subJPanel.add(questJButton);
-		subJPanel.add(storeJButton);
-		subJPanel.add(lottoJButton);
-		
+
 		lottoJPanel.backButton.addActionListener(this);
 		storeBackJButton.addActionListener(this);
 		stateBackJButton.addActionListener(this);
@@ -116,9 +113,8 @@ public class View extends JFrame implements KeyListener, ActionListener{
 		subJPanel.usePotionJButton.addActionListener(this);
 		subJPanel.useAutoTapJButton.addActionListener(this);
 		
-		
-		this.add(mainJPanel);
 		this.add(subJPanel);
+		this.add(mainJPanel);
 		
 		this.setFocusable(true);
 		setResizable(false);

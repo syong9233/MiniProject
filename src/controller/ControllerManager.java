@@ -77,9 +77,6 @@ public class ControllerManager {
 				computerBar, keyboardBar);
 	}
 	
-
-	
-
 	public void potionTime(int time){
 		main.potionRun(time);
 	}
