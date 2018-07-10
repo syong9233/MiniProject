@@ -70,3 +70,4 @@ public class Quest {
 		this.q_qtyOfTotalMoney = q_qtyOfTotalMoney;
 	}
 }
+

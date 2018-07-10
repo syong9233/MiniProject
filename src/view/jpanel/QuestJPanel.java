@@ -1,6 +1,5 @@
 package view.jpanel;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,18 +9,19 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import view.View;
+import view.jbutton.questMenuJButton.questComplete_1;
+import view.jbutton.questMenuJButton.questComplete_2;
 //import view.jbutton.questMenuJButton.questComplete;
 
 public class QuestJPanel extends JPanel implements ActionListener{
 	
 	//***********JButton 객체 생성 및 변수 선언_180707_1************
-	public JButton button1 = new JButton(new ImageIcon("image/quest/quest_complete.png"));
-	public JButton button2 = new JButton(new ImageIcon("image/quest/quest_complete.png"));
+	public questComplete_1 button1 = new questComplete_1(new ImageIcon("image/quest/quest_complete.png"));
+	public questComplete_2 button2 = new questComplete_2(new ImageIcon("image/quest/quest_complete.png"));
 	public JLabel questLabel = new JLabel(new ImageIcon("image/quest/quest_name.png"));
 	
 	public JLabel goalTap = new JLabel();
@@ -37,7 +37,7 @@ public class QuestJPanel extends JPanel implements ActionListener{
 	public QuestJPanel(){
 		//***************QuestJPanel_180707_1​****************
 		setLayout(null);
-		setBounds(0, 206, 360, 370);
+		setBounds(0, 212, 360, 380);
 		//------------------------------------------------------
 		
 		try {

@@ -1,15 +1,11 @@
 package view.jpanel;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
@@ -18,60 +14,59 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import view.View;
 
-public class StateJPanel extends JPanel implements ActionListener{
-	
-	//******JPanel, JProgressBar, Image 등 객체 생성 및 변수 선언_180707_1*******
-	private JButton extendJButton = new JButton(new ImageIcon("image/state/state_company.png"));
-	private JButton educateJButton = new JButton(new ImageIcon("image/state/state_edu.png"));
-	private JButton employJButton = new JButton(new ImageIcon("image/state/state_employ.png"));
-	private JButton computerJButton = new JButton(new ImageIcon("image/state/state_computer.png"));
-	private JButton keyboardJButton = new JButton(new ImageIcon("image/state/state_keyboard.png"));
+public class StateJPanel extends JPanel{
 
-	private JProgressBar extendBar = new JProgressBar();
-	private JProgressBar educateBar = new JProgressBar();
-	private JProgressBar employBar = new JProgressBar();
-	private JProgressBar computerBar = new JProgressBar();
-	private JProgressBar keyboardBar = new JProgressBar();
+	//*****************************Image*****************************
+	ImageIcon extendIcon = new ImageIcon("image/state/state_company.png");
+	ImageIcon educateIcon = new ImageIcon("image/state/state_edu.png");
+	ImageIcon employIcon = new ImageIcon("image/state/state_employ.png");
+	ImageIcon computerIcon = new ImageIcon("image/state/state_computer.png");
+	ImageIcon keyboardIcon = new ImageIcon("image/state/state_keyboard.png");
+
+	//*****************************JButton*****************************
+	public JButton extendJButton = new JButton("회사 확장", extendIcon);
+	public JButton educateJButton = new JButton("교육 이수", educateIcon);
+	public JButton employJButton = new JButton("직원 고용", employIcon);
+	public JButton computerJButton = new JButton("컴퓨터 사양", computerIcon);
+	public JButton keyboardJButton = new JButton("타자수", keyboardIcon);
+
+	//*****************************JBar*****************************
+	public JProgressBar extendBar = new JProgressBar();
+	public JProgressBar educateBar = new JProgressBar();
+	public JProgressBar employBar = new JProgressBar();
+	public JProgressBar computerBar = new JProgressBar();
+	public JProgressBar keyboardBar = new JProgressBar();
 
 	private BufferedImage statePanelImage;
+	private BufferedImage stateTitleImage; //180710 state_title 이미지 추가
 	//-------------------------------------------------------------------
 
 	public StateJPanel(){
-		
+
 		//***************StateJPanel_180707_1​****************
 		setLayout(null);
-		setBounds(2, 205, 340, 385);
-		//----------------------------------------------------
+		setBounds(3, 210, 338, 385);
+		setOpaque(false);
+		//***************************************************
 
 		//**********************이미지 객체화_180707_1*************************
 		try {
 			statePanelImage = ImageIO.read(new File("image/state/state_panel.png"));
+			stateTitleImage = ImageIO.read(new File("image/state/state_title.png")); //180710 state_title 이미지 추가
 		} catch (IOException e) {
 
 			e.printStackTrace();
 		}
-		//------------------------------------------------------------------
+		//******************************************************************	
+
 
 		//****************각각의 JButton Setting_180707_1****************
-		extendJButton.setBounds(190, 55, 140, 70);      
-		educateJButton.setBounds(190, 115, 140, 70);
-		employJButton.setBounds(190, 175, 140, 70);
-		computerJButton.setBounds(190, 235, 140, 70);
-		keyboardJButton.setBounds(190, 295, 140, 70);
-
-		extendJButton.addActionListener(this);
-		educateJButton.addActionListener(this);
-		employJButton.addActionListener(this);
-		computerJButton.addActionListener(this);
-		keyboardJButton.addActionListener(this);
-
-		extendJButton.setOpaque(false);
-		educateJButton.setOpaque(false);
-		employJButton.setOpaque(false);
-		computerJButton.setOpaque(false);
-		keyboardJButton.setOpaque(false);
+		extendJButton.setBounds(210, 40, 140, 70); //180710 버튼 이동
+		educateJButton.setBounds(210, 90, 140, 70);
+		employJButton.setBounds(210, 140, 140, 70);
+		computerJButton.setBounds(210, 190, 140, 70);
+		keyboardJButton.setBounds(210, 240, 140, 70);
 
 		extendJButton.setBorderPainted(false);
 		educateJButton.setBorderPainted(false);
@@ -96,20 +91,21 @@ public class StateJPanel extends JPanel implements ActionListener{
 		employJButton.setFocusable(false);
 		computerJButton.setFocusable(false);
 		keyboardJButton.setFocusable(false);
-		//------------------------------------------------------------
-		
-		//*****************각각의 JBar Setting_180707_1*****************
-		extendBar.setLocation(10, 70);
-		educateBar.setLocation(10 ,130);
-		employBar.setLocation(10, 190);
-		computerBar.setLocation(10, 250);
-		keyboardBar.setLocation(10, 310);
+		//************************************************************
 
-		extendBar.setSize(160, 40);
-		educateBar.setSize(160, 40);
-		employBar.setSize(160, 40);
-		computerBar.setSize(160, 40);
-		keyboardBar.setSize(160, 40);
+
+		//*****************각각의 JBar Setting_180707_1*****************
+		extendBar.setLocation(15, 60);   //180710 위치 이동
+		educateBar.setLocation(15, 110);
+		employBar.setLocation(15, 160);
+		computerBar.setLocation(15, 210);
+		keyboardBar.setLocation(15, 260);
+
+		extendBar.setSize(180, 35);   //180710 사이즈 변경
+		educateBar.setSize(180, 35);
+		employBar.setSize(180, 35);
+		computerBar.setSize(180, 35);
+		keyboardBar.setSize(180, 35);
 
 		extendBar.setStringPainted(true);
 		educateBar.setStringPainted(true);
@@ -129,26 +125,20 @@ public class StateJPanel extends JPanel implements ActionListener{
 		computerBar.setMaximum(10);
 		keyboardBar.setMaximum(10);
 
-		extendBar.setValue(1);
-		educateBar.setValue(1);
-		employBar.setValue(1);
-		computerBar.setValue(1);
-		keyboardBar.setValue(1);
+		extendBar.setBorderPainted(false);
+		educateBar.setBorderPainted(false);
+		employBar.setBorderPainted(false);
+		computerBar.setBorderPainted(false);
+		keyboardBar.setBorderPainted(false);
+		//************************************************************
 
-		extendBar.setString(1 + "/" + extendBar.getMaximum());
-		educateBar.setString(1 + "/" + educateBar.getMaximum());
-		employBar.setString(1 + "/" + employBar.getMaximum());
-		computerBar.setString(1 + "/" + computerBar.getMaximum());
-		keyboardBar.setString(1 + "/" + keyboardBar.getMaximum());
-		//------------------------------------------------------------
-		
-		//***********add this​_180707_1************
+		//*********************add this​_180707_1**********************
 		this.add(extendJButton);
 		this.add(educateJButton);
 		this.add(employJButton);
 		this.add(computerJButton);
 		this.add(keyboardJButton);
-		
+
 		this.add(extendBar);
 		this.add(educateBar);
 		this.add(employBar);
@@ -156,21 +146,13 @@ public class StateJPanel extends JPanel implements ActionListener{
 		this.add(keyboardBar);
 		//-----------------------------------------
 	}
-	
-	//*********JButton 등의 이벤트 발생 시작 메소드_180707_1************
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		View.cm().stateChoice(e, extendBar, educateBar, employBar, computerBar, keyboardBar, educateJButton);
 
-	}
-	//---------------------------------------------------------
-	
 	//*********StateJPanel BackGround Image add_180707_1************
-	
 	@Override
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
-		g.drawImage(statePanelImage, -1, 1, null);
+		g.drawImage(statePanelImage, -1, -1, null);
+		g.drawImage(stateTitleImage, 225, 5, null);	//180710 state_title 이미지 추가
 
 	}
 	//---------------------------------------------------------

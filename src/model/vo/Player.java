@@ -94,11 +94,11 @@ public class Player implements java.io.Serializable{
 		this.p_qtyOfLotto = 10;
 		this.p_qtyOfPotion = 0;
 		this.p_qtyOfAutoTap = 0;
-		this.p_lvOfComputer = 0;
-		this.p_lvOfKeyboard = 0;
-		this.p_lvOfEducate = 0;
-		this.p_lvOfEmploy = 0;
-		this.p_lvOfExtend = 0;
+		this.p_lvOfComputer = 1;
+		this.p_lvOfKeyboard = 1;
+		this.p_lvOfEducate = 1;
+		this.p_lvOfEmploy = 1;
+		this.p_lvOfExtend = 1;
 		this.p_qtyOfTap = 0;
 	}
 
@@ -222,3 +222,4 @@ public class Player implements java.io.Serializable{
 		this.p_AmountOfTapMoney = p_AmountOfTapMoney;
 	}	
 }
+

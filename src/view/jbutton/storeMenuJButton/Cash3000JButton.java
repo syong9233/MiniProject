@@ -11,8 +11,10 @@ public class Cash3000JButton extends JButton {
 
 		super(imageIcon);
 
-		setLocation(50, 110);
-		setSize(150, 70);
-
+		setLocation(5, 130);
+		setSize(300, 55);
+		setBorderPainted(false);
+		setContentAreaFilled(false);
+		setFocusPainted(false);
 	}
 }

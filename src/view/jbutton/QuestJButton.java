@@ -5,9 +5,12 @@ import javax.swing.JButton;
 
 public class QuestJButton extends JButton{
 
-	public QuestJButton(){
-		super(new ImageIcon("image/main/main_Quest"));
-		setSize(75, 35);
-		setLocation(90, 122);
+	public QuestJButton(ImageIcon imageicon){
+		super(imageicon);
+		setSize(80, 70);
+		setLocation(90, 70);
+		setBorderPainted(false);
+		setContentAreaFilled(false);
+		setFocusPainted(false);
 	}
 }
