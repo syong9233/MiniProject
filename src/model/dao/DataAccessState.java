@@ -51,7 +51,7 @@ public class DataAccessState {
 		JLabel lv3JBackImageLabel = new JLabel(new ImageIcon(new ImageIcon("image/main/final_lv3.png").getImage().getScaledInstance(338, 600, java.awt.Image.SCALE_SMOOTH)));
 		JLabel lv5JBackImageLabel = new JLabel(new ImageIcon(new ImageIcon("image/main/final_lv5.png").getImage().getScaledInstance(338, 600, java.awt.Image.SCALE_SMOOTH)));
 		JLabel lv7JBackImageLabel = new JLabel(new ImageIcon(new ImageIcon("image/main/final_lv7.png").getImage().getScaledInstance(338, 600, java.awt.Image.SCALE_SMOOTH)));
-		JLabel lv10JBackImageLabel = new JLabel(new ImageIcon(new ImageIcon("image/main/final_lv3.png").getImage().getScaledInstance(338, 600, java.awt.Image.SCALE_SMOOTH)));
+		JLabel lv10JBackImageLabel = new JLabel(new ImageIcon(new ImageIcon("image/main/final_lv9.png").getImage().getScaledInstance(338, 600, java.awt.Image.SCALE_SMOOTH)));
 
 		lv3JBackImageLabel.setSize(338, 600);
 		lv5JBackImageLabel.setSize(338, 600);
