@@ -17,7 +17,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import controller.ControllerManager;
-import model.vo.Music;
 import view.jbutton.LottoJButton;
 import view.jbutton.QuestBackJButton;
 import view.jbutton.QuestJButton;
@@ -25,16 +24,27 @@ import view.jbutton.StateBackJButton;
 import view.jbutton.StateJButton;
 import view.jbutton.StoreBackJButton;
 import view.jbutton.StoreJButton;
+import view.jbutton.storeMenuJButton.CountAutoTapJButton;
+import view.jbutton.storeMenuJButton.CountCashJButton;
+import view.jbutton.storeMenuJButton.CountLottoJButton;
+import view.jbutton.storeMenuJButton.CountPotionJButton;
+import view.jbutton.storeMenuJButton.Lotto_CountLottoJButton;
 import view.jlabel.AutoMoneyJLabel;
+import view.jlabel.Lotto_LottoJLabel;
 import view.jlabel.NicknameJLabel;
 import view.jlabel.S_AutoJLabel;
 import view.jlabel.S_CashJLabel;
 import view.jlabel.S_LottoJLabel;
 import view.jlabel.S_PotionJLabel;
+import view.jlabel.Store_AutoJLabel;
+import view.jlabel.Store_CashJLabel;
+import view.jlabel.Store_LottoJLabel;
+import view.jlabel.Store_PotionJLabel;
+import view.jlabel.Sub_AutoTimeJLabel;
+import view.jlabel.Sub_PotionTimeJLabel;
 import view.jlabel.TapMoneyJLabel;
 import view.jlabel.TotalMoneyJLabel;
 import view.jpanel.FirstGame;
-import view.jpanel.InventoryJPanel;
 import view.jpanel.LottoJPanel;
 import view.jpanel.MainJPanel;
 import view.jpanel.QuestJPanel;
@@ -55,7 +65,6 @@ public class View extends JFrame implements KeyListener, ActionListener{
 	private QuestJPanel questJPanel = new QuestJPanel();
 	private LottoJPanel lottoJPanel = new LottoJPanel();
 	private StoreJPanel storeJPanel = new StoreJPanel();
-	private InventoryJPanel inventoryJPanel = new InventoryJPanel();
 	
 	private NicknameJLabel nicknameJLabel = new NicknameJLabel();
 	private TotalMoneyJLabel totalMoneyJLabel = new TotalMoneyJLabel();
@@ -70,11 +79,29 @@ public class View extends JFrame implements KeyListener, ActionListener{
 	private StoreJButton storeJButton = new StoreJButton(new ImageIcon("image/main/main_store.png"));
 	private LottoJButton lottoJButton = new LottoJButton(new ImageIcon("image/main/main_lotto.png"));
 	
+	//서브패널에 아이템 표시
 	public static S_PotionJLabel potionJLabel = new S_PotionJLabel();
 	public static S_AutoJLabel autoJLabel = new S_AutoJLabel();
 	public static S_CashJLabel cashJLabel = new S_CashJLabel();
 	public static S_LottoJLabel lottoJLabel = new S_LottoJLabel();
+	
+		//아이템 남은 시간 표시
+	public static Sub_PotionTimeJLabel sub_potionTimeJLabel = new Sub_PotionTimeJLabel();
+	public static Sub_AutoTimeJLabel sub_autoTimeJLabel = new Sub_AutoTimeJLabel();
+	
+	//스토어에 아이템 표시
+	public static Store_PotionJLabel store_PotionJLabel = new Store_PotionJLabel();
+	public static Store_AutoJLabel store_AutoJLabel = new Store_AutoJLabel();
+	public static Store_CashJLabel store_CashJLabel = new Store_CashJLabel();
+	public static Store_LottoJLabel Store_LottoJLabel = new Store_LottoJLabel();
+	
+		//스토어  - 이미지용 버튼
+	private CountPotionJButton countPotionJButton = new CountPotionJButton(new ImageIcon("image/main/main_potion.png"));
+	private CountAutoTapJButton countAutoTapJButton = new CountAutoTapJButton(new ImageIcon("image/main/main_auto.png"));
+	private CountLottoJButton countLottoJButton = new CountLottoJButton(new ImageIcon("image/main/main__lotto.png"));
+	private CountCashJButton countCashJButton = new CountCashJButton(new ImageIcon("image/main/main_cash.png"));
 
+	
 	
 	//sound
 	File file = new File("sound/buttonEffect_click.wav");
@@ -87,7 +114,7 @@ public class View extends JFrame implements KeyListener, ActionListener{
 		//***************MainJFrame_180707_1​****************
 		super("TapCompany");
 		setLayout(null);
-		setBounds(1000, 15, 350, 600);
+		setBounds(0, 0, 350, 600);
 		getContentPane().setBackground(Color.BLACK);
 		
 		this.addWindowListener(new WindowAdapter(){
@@ -107,10 +134,7 @@ public class View extends JFrame implements KeyListener, ActionListener{
 		//--------------------------------------------------
 
 		//***********add this, add action​_180707_1************
-		subJPanel.add(potionJLabel);
-		subJPanel.add(autoJLabel);
-		subJPanel.add(cashJLabel);
-		subJPanel.add(lottoJLabel);
+	
 		
 		stateJPanel.add(stateBackJButton);
 		questJPanel.add(questBackJButton);
@@ -143,10 +167,34 @@ public class View extends JFrame implements KeyListener, ActionListener{
 		questJButton.addActionListener(this);
 		storeJButton.addActionListener(this);
 		lottoJButton.addActionListener(this);	
+		
 		this.addKeyListener(this);
 		subJPanel.usePotionJButton.addActionListener(this);
 		subJPanel.useAutoTapJButton.addActionListener(this);
 		
+		//서브에 템 표시 추가
+		subJPanel.add(potionJLabel);
+		subJPanel.add(autoJLabel);
+		subJPanel.add(cashJLabel);
+		subJPanel.add(lottoJLabel);
+			//서브에 아이템 남은 시간 표시
+		subJPanel.add(sub_potionTimeJLabel);
+		subJPanel.add(sub_autoTimeJLabel);
+
+		
+		
+		//스토어에 템 표시 추가
+		storeJPanel.add(store_PotionJLabel);
+		storeJPanel.add(store_AutoJLabel);
+		storeJPanel.add(store_CashJLabel);
+		storeJPanel.add(Store_LottoJLabel);
+			//이미지버튼
+		storeJPanel.add(countPotionJButton);
+		storeJPanel.add(countAutoTapJButton);
+		storeJPanel.add(countLottoJButton);
+		storeJPanel.add(countCashJButton);
+
+
 		this.add(subJPanel);
 		this.add(mainJPanel);
 		
@@ -160,7 +208,8 @@ public class View extends JFrame implements KeyListener, ActionListener{
 		cm.loadPlayer();
 		cm.checkFisrtGame(this, nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel, 
 				mainJPanel, subJPanel, stateJPanel.extendBar, stateJPanel.educateBar, stateJPanel.employBar,
-				stateJPanel.computerBar, stateJPanel.keyboardBar);//--------------------------------------------
+				stateJPanel.computerBar, stateJPanel.keyboardBar);
+		//--------------------------------------------
 	}
 	
 	//*********JButton, JLabel 등의 이벤트 발생 시작 메소드_180707_1************

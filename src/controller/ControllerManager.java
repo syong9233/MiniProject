@@ -22,6 +22,7 @@ import view.jbutton.storeMenuJButton.BuyCashJButton;
 import view.jbutton.storeMenuJButton.BuyLottoJButton;
 import view.jbutton.storeMenuJButton.BuyPotionJButton;
 import view.jbutton.storeMenuJButton.CashCloseJButton;
+import view.jbutton.storeMenuJButton.Lotto_CountLottoJButton;
 import view.jlabel.AutoMoneyJLabel;
 import view.jlabel.NicknameJLabel;
 import view.jlabel.TapMoneyJLabel;
@@ -60,8 +61,8 @@ public class ControllerManager {
 	//------------------------------------------------------------------------------------
 
 	//***************************DataAccessMain DAO*************************************
-	public void autoRun(TotalMoneyJLabel totalMoneyJLabel, MainJPanel mainJPanel){
-		main.autoRun(totalMoneyJLabel, main.getMain(), 0);
+	public void autoRun(TotalMoneyJLabel totalMoneyJLabel, MainJPanel mainJPanel, TapMoneyJLabel tapMoneyJLabel){
+		main.autoRun(totalMoneyJLabel, main.getMain(), 0, tapMoneyJLabel);
 	}
 
 	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel, JLabel ingTap,
@@ -124,8 +125,8 @@ public class ControllerManager {
 	//------------------------------------------------------------------------------------
 
 	//***************************DataAccessStore DAO*************************************
-	public void lottoStart(ActionEvent e, LottoJPanel lottoJPanel, JPanel yesOrNoJPanel, JButton lottoRegame, JPanel success, JPanel fail){
-		store.lottoStart(e, main.getMain(), lottoJPanel, yesOrNoJPanel, lottoRegame, success, fail);
+	public void lottoStart(ActionEvent e, LottoJPanel lottoJPanel, JPanel yesOrNoJPanel, JButton lottoRegame, JPanel success, JPanel fail, Lotto_CountLottoJButton lotto_CountLottoJButton){
+		store.lottoStart(e, main.getMain(), lottoJPanel, yesOrNoJPanel, lottoRegame, success, fail, lotto_CountLottoJButton);
 		
 	}
 

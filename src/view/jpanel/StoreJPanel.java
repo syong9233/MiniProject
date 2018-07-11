@@ -34,6 +34,10 @@ public class StoreJPanel extends JPanel implements ActionListener{
 	
 	private EmptyMoneyJButton emptyMoneyJButton = new EmptyMoneyJButton(new ImageIcon("image/store/store_moreMoneyButton.png"));
 	
+	
+	
+	
+
 	private	JPanel emptyMoneyJPanel ;
 	private JPanel buyCashJPanel ;
 	

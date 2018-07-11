@@ -17,6 +17,8 @@ import view.View;
 import view.jbutton.BackJButton;
 import view.jbutton.LottoRegameJButton;
 import view.jbutton.YesJButton;
+import view.jbutton.storeMenuJButton.Lotto_CountLottoJButton;
+import view.jlabel.Lotto_LottoJLabel;
 
 public class LottoJPanel extends JPanel implements ActionListener{
 	public YesJButton yesButton = new YesJButton(new ImageIcon("image/lotto/ans_YES.png"));
@@ -30,6 +32,12 @@ public class LottoJPanel extends JPanel implements ActionListener{
 	private JPanel success;
 	private JPanel fail;
 
+	//로또패널에 아이템 개수 표시
+	public static Lotto_LottoJLabel lotto_LottoJLabel = new Lotto_LottoJLabel();
+		
+			//로또 - 이미지용 버튼
+	private Lotto_CountLottoJButton lotto_CountLottoJButton = new Lotto_CountLottoJButton(new ImageIcon("image/lotto/lotto_lottoCount.png"));
+		
 	public LottoJPanel(){
 
 		this.setLayout(null);
@@ -90,7 +98,12 @@ public class LottoJPanel extends JPanel implements ActionListener{
 		//*************************************
 
 		//*******yes no 버튼 추가 **********
-
+		//로또 템 이미지
+				this.add(lotto_CountLottoJButton);
+				
+					//로또 아이템 개수 라벨
+				this.add(lotto_LottoJLabel);
+			
 		yesOrNoJPanel.add(yesButton);
 		yesOrNoJPanel.add(backButton);
 
@@ -106,7 +119,7 @@ public class LottoJPanel extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		View.cm().lottoStart(e, this, yesOrNoJPanel, lottoRegame, success, fail);
+		View.cm().lottoStart(e, this, yesOrNoJPanel, lottoRegame, success, fail, lotto_CountLottoJButton);
 	}
 
 	//패널에 이미지 넣는방법
