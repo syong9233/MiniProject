@@ -32,7 +32,7 @@ public class StoreJPanel extends JPanel implements ActionListener{
 	private Cash5000JButton Cash5000JButton = new Cash5000JButton(new ImageIcon("image/store/store_5000cash.png"));
 	private CashCloseJButton cashCloseJButton = new CashCloseJButton(new ImageIcon("image/store/common_backButton.png"));
 	
-	private EmptyMoneyJButton emptyMoneyJButton = new EmptyMoneyJButton(new ImageIcon("image/store/empty.png"));
+	private EmptyMoneyJButton emptyMoneyJButton = new EmptyMoneyJButton(new ImageIcon("image/store/store_moreMoneyButton.png"));
 	
 	private	JPanel emptyMoneyJPanel ;
 	private JPanel buyCashJPanel ;
@@ -60,7 +60,7 @@ public class StoreJPanel extends JPanel implements ActionListener{
 			}
 		};
 		
-		emptyMoneyJPanel.setBounds(44, 170, 250, 150);
+		emptyMoneyJPanel.setBounds(23, 170, 320, 280);
 		emptyMoneyJPanel.add(emptyMoneyJButton);
 		emptyMoneyJPanel.setVisible(false);
 		emptyMoneyJPanel.setLayout(null);
@@ -77,7 +77,7 @@ public class StoreJPanel extends JPanel implements ActionListener{
 		
 		try {
 			storeBackGroundImage = ImageIO.read(new File("image/store/store_background.png"));
-			emptyPanelImage = ImageIO.read(new File("image/store/emptyPanel.png"));
+			emptyPanelImage = ImageIO.read(new File("image/store/store_moreMoney.png"));
 			buyCashJPanelImage = ImageIO.read(new File("image/store/store_cash_payBackground.png"));
 			
 			

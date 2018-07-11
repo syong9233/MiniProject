@@ -215,8 +215,9 @@ public class View extends JFrame implements KeyListener, ActionListener{
 	
 	//**********게임 실행_180707_1*************
 	public static void main(String[] args) {
-		new Music().start();
+		//new Music().start();
 		new View();
+		
 	}
 	//--------------------------------------
 }
