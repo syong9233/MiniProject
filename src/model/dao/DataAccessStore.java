@@ -20,7 +20,10 @@ import view.jbutton.LottoRegameJButton;
 import view.jbutton.StoreBackJButton;
 import view.jbutton.YesJButton;
 import view.jbutton.storeMenuJButton.*;
-
+import view.jlabel.Store_AutoJLabel;
+import view.jlabel.Store_CashJLabel;
+import view.jlabel.Store_LottoJLabel;
+import view.jlabel.Store_PotionJLabel;
 import view.jlabel.TotalMoneyJLabel;
 import view.jpanel.LottoJPanel;
 import view.jpanel.MainJPanel;
@@ -39,7 +42,7 @@ public class DataAccessStore {
 	}
 
 	public void lottoStart(ActionEvent e, Main main, LottoJPanel lottoJPanel, JPanel yesOrNoJPanel,
-			JButton lottoRegame, JPanel success, JPanel fail) {
+			JButton lottoRegame, JPanel success, JPanel fail, Lotto_CountLottoJButton lotto_CountLottoJButton) {
 		// 당첨/꽝 이미지 넣기(try/catch/@override)
 		
 
@@ -47,10 +50,13 @@ public class DataAccessStore {
 		
 
 		if (e.getSource() instanceof YesJButton) {
-
+			//yes클릭시 로또 보유 개수 안보이게 함
+			lotto_CountLottoJButton.setVisible(false);
+			LottoJPanel.lotto_LottoJLabel.setVisible(false);
 			if (main.getM_qtyOfLotto() != 0) {
 				// 보유하고 있는 로또 개수 1 차감
 				main.setM_qtyOfLotto(main.getM_qtyOfLotto() - 1);
+				LottoJPanel.lotto_LottoJLabel.setText(String.format("%,d",main.getM_qtyOfLotto()));
 				int r = (int) (Math.random() * 2) + 1;
 				View.cm().savePlayer();
 
@@ -66,7 +72,6 @@ public class DataAccessStore {
 					lottoRegame.setVisible(true);
 					yesOrNoJPanel.setVisible(false);
 					success.setVisible(true);
-
 				} else {
 
 					// Yes탭 눌렀을 떄 미 당첨시
@@ -95,9 +100,13 @@ public class DataAccessStore {
 
 			yesOrNoJPanel.setVisible(true);
 			lottoJPanel.setVisible(true);
-
 			lottoJPanel.repaint();
 			yesOrNoJPanel.repaint();
+			
+			//regame 클릭시 로또 보유 개수 다시 보이게 함
+			lotto_CountLottoJButton.setVisible(true);
+			LottoJPanel.lotto_LottoJLabel.setVisible(true);
+
 		}
 	}
 
@@ -108,6 +117,9 @@ public class DataAccessStore {
 			BuyPotionJButton buyPotionJButton, BuyAutoTapJButton buyAutoTapJButton, BuyLottoJButton buyLottoJButton,
 			BuyCashJButton buyCashJButton, JPanel buyCashJPanel, CashCloseJButton cashCloseJButton) {
 
+		
+
+		
 		if (e.getSource() instanceof BuyPotionJButton) {
 
 			buyPotion(storeJPanel, player, main, emptyMoneyJPanel, buyPotionJButton, buyAutoTapJButton, buyLottoJButton,
@@ -209,14 +221,25 @@ public class DataAccessStore {
 			buyAutoTapJButton.setVisible(true);
 			buyLottoJButton.setVisible(true);
 			buyCashJButton.setVisible(true);
+
+			
 			View.cm().savePlayer();
 
+		
+			
+			
 		} else if (e.getSource() instanceof Cash1000JButton) {
 			player.setP_Cash(player.getP_Cash() + 1000);
+			View.store_CashJLabel.setText(String.format("%,d", player.getP_Cash()));
+
 		} else if (e.getSource() instanceof Cash3000JButton) {
 			player.setP_Cash(player.getP_Cash() + 3000);
+			View.store_CashJLabel.setText(String.format("%,d", player.getP_Cash()));
+
 		} else if (e.getSource() instanceof Cash5000JButton) {
 			player.setP_Cash(player.getP_Cash() + 5000);
+			View.store_CashJLabel.setText(String.format("%,d", player.getP_Cash()));
+
 		}
 
 		System.out.println("현재 Cash : " + player.getP_Cash());
@@ -240,8 +263,10 @@ public class DataAccessStore {
 		}
 		main.setM_qtyOfPotion(main.getM_qtyOfPotion() + 10);
 		player.setP_Cash(player.getP_Cash() - store.getS_priceOfPotion());
-		
-		
+		View.store_PotionJLabel.setText(String.format("%,d", main.getM_qtyOfPotion()));
+		View.store_CashJLabel.setText(String.format("%,d", player.getP_Cash()));
+
+	
 		
 		System.out.println("포션 구매 완료(-1000)");
 		System.out.println("현재 Cash : " + player.getP_Cash());
@@ -266,11 +291,14 @@ public class DataAccessStore {
 		}
 		player.setP_Cash(player.getP_Cash() - store.getS_priceOfLotto());
 		main.setM_qtyOfLotto(main.getM_qtyOfLotto() + 5);
+		View.Store_LottoJLabel.setText(String.format("%,d",main.getM_qtyOfLotto()));
+		View.store_CashJLabel.setText(String.format("%,d", player.getP_Cash()));
+
 
 		System.out.println("복권 구매 완료(-2000)");
 		System.out.println("현재 Cash : " + player.getP_Cash());
 		System.out.println("현재 복권 개수 : " + main.getM_qtyOfLotto());
-
+		
 		return;
 
 	}
@@ -290,6 +318,10 @@ public class DataAccessStore {
 		}
 		player.setP_Cash(player.getP_Cash() - store.getS_priceOfAutoTap());
 		main.setM_qtyOfAutoTap(main.getM_qtyOfAutoTap() + 5);
+		
+		View.store_AutoJLabel.setText(String.format("%,d", main.getM_qtyOfAutoTap()));
+		View.store_CashJLabel.setText(String.format("%,d", player.getP_Cash()));
+
 
 		System.out.println("헬퍼 구매 완료(-500)");
 		System.out.println("현재 Cash : " + player.getP_Cash());
