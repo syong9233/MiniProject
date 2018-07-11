@@ -117,6 +117,9 @@ public class DataAccessStore {
 			BuyPotionJButton buyPotionJButton, BuyAutoTapJButton buyAutoTapJButton, BuyLottoJButton buyLottoJButton,
 			BuyCashJButton buyCashJButton, JPanel buyCashJPanel, CashCloseJButton cashCloseJButton) {
 
+		
+
+		
 		if (e.getSource() instanceof BuyPotionJButton) {
 
 			buyPotion(storeJPanel, player, main, emptyMoneyJPanel, buyPotionJButton, buyAutoTapJButton, buyLottoJButton,
@@ -218,6 +221,7 @@ public class DataAccessStore {
 			buyAutoTapJButton.setVisible(true);
 			buyLottoJButton.setVisible(true);
 			buyCashJButton.setVisible(true);
+
 			
 			View.cm().savePlayer();
 
@@ -260,7 +264,8 @@ public class DataAccessStore {
 		main.setM_qtyOfPotion(main.getM_qtyOfPotion() + 10);
 		player.setP_Cash(player.getP_Cash() - store.getS_priceOfPotion());
 		View.store_PotionJLabel.setText(String.format("%,d", main.getM_qtyOfPotion()));
-		
+		View.store_CashJLabel.setText(String.format("%,d", player.getP_Cash()));
+
 	
 		
 		System.out.println("포션 구매 완료(-1000)");
@@ -287,6 +292,8 @@ public class DataAccessStore {
 		player.setP_Cash(player.getP_Cash() - store.getS_priceOfLotto());
 		main.setM_qtyOfLotto(main.getM_qtyOfLotto() + 5);
 		View.Store_LottoJLabel.setText(String.format("%,d",main.getM_qtyOfLotto()));
+		View.store_CashJLabel.setText(String.format("%,d", player.getP_Cash()));
+
 
 		System.out.println("복권 구매 완료(-2000)");
 		System.out.println("현재 Cash : " + player.getP_Cash());
@@ -313,7 +320,9 @@ public class DataAccessStore {
 		main.setM_qtyOfAutoTap(main.getM_qtyOfAutoTap() + 5);
 		
 		View.store_AutoJLabel.setText(String.format("%,d", main.getM_qtyOfAutoTap()));
-	
+		View.store_CashJLabel.setText(String.format("%,d", player.getP_Cash()));
+
+
 		System.out.println("헬퍼 구매 완료(-500)");
 		System.out.println("현재 Cash : " + player.getP_Cash());
 		System.out.println("현재 헬퍼 개수 : " + main.getM_qtyOfAutoTap());

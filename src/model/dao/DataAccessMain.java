@@ -362,18 +362,16 @@ public class DataAccessMain {
 			view.add(mainJPanel);
 			view.repaint();
 		}else if(e.getSource() instanceof StoreBackJButton){
-			
-			View.potionJLabel.setText(String.format("%,d", main.getM_qtyOfPotion()));
-			View.autoJLabel.setText(String.format("%,d", main.getM_qtyOfAutoTap()));
-			View.lottoJLabel.setText(String.format("%,d",main.getM_qtyOfLotto()));
-			View.cashJLabel.setText(String.format("%,d",player.getPlayer().getP_Cash()));
-			
 			subJPanel.setVisible(true);
 			storeJPanel.setVisible(false);
 			view.add(subJPanel);
 			view.add(mainJPanel);
 			view.repaint();
 			View.cm().savePlayer();
+			View.potionJLabel.setText(String.format("%,d", main.getM_qtyOfPotion()));
+			View.autoJLabel.setText(String.format("%,d", main.getM_qtyOfAutoTap()));
+			View.cashJLabel.setText(String.format("%,d",player.getPlayer().getP_Cash()));
+			View.lottoJLabel.setText(String.format("%,d",main.getM_qtyOfLotto()));
 		}else if(e.getSource() instanceof BackJButton){
 			lottoJPanel.setVisible(false);
 			subJPanel.setVisible(true);

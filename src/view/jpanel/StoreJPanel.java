@@ -95,19 +95,27 @@ public class StoreJPanel extends JPanel implements ActionListener{
 	      buyPotionJButton.setBorderPainted(false);
 	      buyPotionJButton.setContentAreaFilled(false);
 	      buyPotionJButton.setFocusPainted(false);
+	      buyPotionJButton.setToolTipText("Potion : 5초간 탭으로 획득하는 돈의 양이 10배 증가합니다. 1000Cash - 10개");
+
 
 	      buyAutoTapJButton.setBorderPainted(false);
 	      buyAutoTapJButton.setContentAreaFilled(false);
 	      buyAutoTapJButton.setFocusPainted(false);
+	      buyAutoTapJButton.setToolTipText("AutoTap : 5초간 초당 10회의 탭을 자동으로 해줍니다. 500Cash - 5개");
+	      
 
+	      
 	      buyLottoJButton.setBorderPainted(false);
 	      buyLottoJButton.setContentAreaFilled(false);
 	      buyLottoJButton.setFocusPainted(false);
+	      buyLottoJButton.setToolTipText("2000Cash - 5개");
+	      
 
 	      buyCashJButton.setBorderPainted(false);
 	      buyCashJButton.setContentAreaFilled(false);
 	      buyCashJButton.setFocusPainted(false);
-		
+	      buyCashJButton.setToolTipText("캐쉬를 삽니다.");
+
 		
 		this.add(emptyMoneyJPanel);
 		this.add(buyCashJPanel);
