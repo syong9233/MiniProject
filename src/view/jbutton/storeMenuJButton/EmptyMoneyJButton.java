@@ -11,9 +11,12 @@ public class EmptyMoneyJButton extends JButton {
 
 		super(imageIcon);
 		
-		setLocation(85, 90);
-		setSize(80, 40);
-
+		setLocation(64, 120);
+		setSize(155, 60);
+		
+		setBorderPainted(false);
+		setContentAreaFilled(false);
+		setFocusPainted(false);
 		
 	}
 
