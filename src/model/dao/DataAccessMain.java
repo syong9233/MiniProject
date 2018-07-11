@@ -144,7 +144,8 @@ public class DataAccessMain {
 																JButton employJButton, JButton computerJButton, JButton keyboardJButton) {	
 		main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfTapMoney());
 		totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()));
-		quest.viewQuest(main, totalMoneyJLabel, goalTap, ingTap, goalMoney, ingMoney);
+		quest.viewQuest(main, goalTap, ingTap, goalMoney, ingMoney);
+		
 		state.keyboardSpace(main, extendJButton, educateJButton,employJButton, computerJButton, keyboardJButton);
 	}// 180710_JButton Ãß°¡
 	//-----------------------------------------------------------------------
@@ -153,7 +154,8 @@ public class DataAccessMain {
 	public void setMain(Player player, NicknameJLabel nicknameJLabel, 
 			TotalMoneyJLabel totalMoneyJLabel, AutoMoneyJLabel autoMoneyJLabel, 
 			TapMoneyJLabel tapMoneyJLabel, JProgressBar extendBar, JProgressBar educateBar,
-			JProgressBar employBar, JProgressBar computerBar, JProgressBar keyboardBar, State state) {
+			JProgressBar employBar, JProgressBar computerBar, JProgressBar keyboardBar, State state,
+			JLabel ingTap, JLabel goalTap, JLabel ingMoney, JLabel goalMoney, Quest quest) {
 		nicknameJLabel.setText("player : " + player.getP_Nickname());
 		totalMoneyJLabel.setText(String.format("%,d", (main.getM_TotalOfMoney())));
 		autoMoneyJLabel.setText(String.format("%,d", (main.getM_AmountOfAutoMoney())));
@@ -173,6 +175,11 @@ public class DataAccessMain {
 		employBar.setString(state.getP_lvOfEmploy() + "/" + employBar.getMaximum());
 		computerBar.setString(state.getP_lvOfComputer() + "/" + computerBar.getMaximum());
 		keyboardBar.setString(state.getP_lvOfKeyboard() + "/" + keyboardBar.getMaximum());
+		
+		goalTap.setText(quest.getTap2() + "");
+		ingTap.setText((quest.getQ_qtyOfTap() + 1) + "");
+		goalMoney.setText(String.format("%,d", quest.getTemp2()));
+		ingMoney.setText(String.format("%,d", main.getM_TotalOfMoney()));
 	}
 	//-----------------------------------------------------------------------
 	public void reSetMoneyJLabel(AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel) {
@@ -185,7 +192,7 @@ public class DataAccessMain {
 			TotalMoneyJLabel totalMoneyJLabel, AutoMoneyJLabel autoMoneyJLabel,
 			TapMoneyJLabel tapMoneyJLabel, MainJPanel mainJPanel, SubJPanel subJPanel,
 			JProgressBar extendBar, JProgressBar educateBar, JProgressBar employBar,
-			JProgressBar computerBar, JProgressBar keyboardBar){
+			JProgressBar computerBar, JProgressBar keyboardBar, JLabel ingTap, JLabel goalTap, JLabel ingMoney, JLabel goalMoney){
 		if(player.getPlayer().getP_Nickname().equals("")){
 			int temp = 1;
 			String nickname = "";
@@ -211,7 +218,7 @@ public class DataAccessMain {
 				player.setP_Nickname(nickname);
 				setPlayer(player.getPlayer(), state, quest);
 				setMain(player.getPlayer(), nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel,
-						extendBar, educateBar, employBar, computerBar, keyboardBar, state);
+						extendBar, educateBar, employBar, computerBar, keyboardBar, state, ingTap, goalTap, ingMoney, goalMoney, quest);
 				autoRun(totalMoneyJLabel, this.getMain(), 0);
 			}else{
 				view.setVisible(false); 
@@ -219,7 +226,7 @@ public class DataAccessMain {
 		}else{
 			setPlayer(player.getPlayer(), state, quest);
 			setMain(player.getPlayer(), nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel,
-					extendBar, educateBar, employBar, computerBar, keyboardBar, state);
+					extendBar, educateBar, employBar, computerBar, keyboardBar, state, ingTap, goalTap, ingMoney, goalMoney, quest);
 			whileNotPlay(view, mainJPanel, subJPanel, player.getPlayer());
 			autoRun(totalMoneyJLabel, this.getMain(), 0);
 	
