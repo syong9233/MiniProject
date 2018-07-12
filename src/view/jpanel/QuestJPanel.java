@@ -113,7 +113,7 @@ public class QuestJPanel extends JPanel implements ActionListener{
    //*********JButton 이벤트 발생 시작 메소드_180707_1************
    @Override
    public void actionPerformed(ActionEvent e) {
-      View.cm().questChoice(e, button1, button2);
+      View.cm().questChoice(e, ingTap,  goalTap,  ingMoney,  goalMoney,  button1, button2);
    }
    //---------------------------------------------------------
    @Override
