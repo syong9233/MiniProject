@@ -13,7 +13,6 @@ import model.dao.DataAccessQuest;
 import model.dao.DataAccessState;
 import model.dao.DataAccessStore;
 import model.vo.Main;
-import model.vo.Player;
 import view.View;
 import view.jbutton.questMenuJButton.questComplete_1;
 import view.jbutton.questMenuJButton.questComplete_2;
@@ -75,10 +74,10 @@ public class ControllerManager {
 
 	public void checkFisrtGame(View view, NicknameJLabel nicknameJLabel, TotalMoneyJLabel totalMoneyJLabel,
 			AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel, MainJPanel mainJPanel, SubJPanel subJPanel, JProgressBar extendBar,
-			JProgressBar educateBar, JProgressBar employBar, JProgressBar computerBar, JProgressBar keyboardBar){
+			JProgressBar educateBar, JProgressBar employBar, JProgressBar computerBar, JProgressBar keyboardBar, JLabel ingTap, JLabel goalTap, JLabel ingMoney, JLabel goalMoney){
 		main.checkFisrtGame(view, player, state.getState(), quest.getQuest(), nicknameJLabel,
 				totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel, mainJPanel, subJPanel, extendBar, educateBar, employBar,
-				computerBar, keyboardBar);
+				computerBar, keyboardBar, ingTap, goalTap, ingMoney, goalMoney);
 	}
 	
 	public void potionTime(int time){
@@ -119,8 +118,8 @@ public class ControllerManager {
 	//------------------------------------------------------------------------------------
 
 	//***************************DataAccessQuest DAO*************************************
-	public void questChoice(ActionEvent e, questComplete_1 button1, questComplete_2 button2){
-		quest.qChoice(e, main.getMain(), button1, button2);
+	public void questChoice(ActionEvent e, JLabel ingTap, JLabel goalTap,JLabel ingMoney, JLabel goalMoney, questComplete_1 button1, questComplete_2 button2){
+		quest.qChoice(e, main.getMain(), ingTap,  goalTap,  ingMoney,  goalMoney, button1, button2);
 	}
 	//------------------------------------------------------------------------------------
 

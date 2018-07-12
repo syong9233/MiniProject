@@ -150,7 +150,7 @@ public class DataAccessMain {
 																JButton employJButton, JButton computerJButton, JButton keyboardJButton) {	
 		main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfTapMoney());
 		totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()));
-		quest.viewQuest(main, totalMoneyJLabel, goalTap, ingTap, goalMoney, ingMoney);
+		quest.viewQuest(main, goalTap, ingTap, goalMoney, ingMoney);
 		state.keyboardSpace(main, extendJButton, educateJButton,employJButton, computerJButton, keyboardJButton);
 	}// 180710_JButton Ãß°¡
 	//-----------------------------------------------------------------------
@@ -159,7 +159,8 @@ public class DataAccessMain {
 	public void setMain(Player player, NicknameJLabel nicknameJLabel, 
 			TotalMoneyJLabel totalMoneyJLabel, AutoMoneyJLabel autoMoneyJLabel, 
 			TapMoneyJLabel tapMoneyJLabel, JProgressBar extendBar, JProgressBar educateBar,
-			JProgressBar employBar, JProgressBar computerBar, JProgressBar keyboardBar, State state) {
+			JProgressBar employBar, JProgressBar computerBar, JProgressBar keyboardBar, State state,
+			JLabel ingTap, JLabel goalTap, JLabel ingMoney, JLabel goalMoney, Quest quest) {
 		nicknameJLabel.setText("player : " + player.getP_Nickname());
 		totalMoneyJLabel.setText(String.format("%,d", (main.getM_TotalOfMoney())));
 		autoMoneyJLabel.setText(String.format("%,d", (main.getM_AmountOfAutoMoney())));
@@ -192,6 +193,14 @@ public class DataAccessMain {
 		employBar.setString(state.getP_lvOfEmploy() + "/" + employBar.getMaximum());
 		computerBar.setString(state.getP_lvOfComputer() + "/" + computerBar.getMaximum());
 		keyboardBar.setString(state.getP_lvOfKeyboard() + "/" + keyboardBar.getMaximum());
+		
+		quest.setTap2(player.getTap2());
+		quest.setTemp2(player.getTemp2());
+		
+		goalTap.setText(player.getTap2() + "");
+		ingTap.setText((player.getP_qtyOfTap() + 1) + "");
+		goalMoney.setText(String.format("%,d", quest.getTemp2()));
+		ingMoney.setText(String.format("%,d", main.getM_TotalOfMoney()));
 	}
 	//-----------------------------------------------------------------------
 	public void reSetMoneyJLabel(AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel) {
@@ -204,7 +213,7 @@ public class DataAccessMain {
 			TotalMoneyJLabel totalMoneyJLabel, AutoMoneyJLabel autoMoneyJLabel,
 			TapMoneyJLabel tapMoneyJLabel, MainJPanel mainJPanel, SubJPanel subJPanel,
 			JProgressBar extendBar, JProgressBar educateBar, JProgressBar employBar,
-			JProgressBar computerBar, JProgressBar keyboardBar){
+			JProgressBar computerBar, JProgressBar keyboardBar, JLabel ingTap, JLabel goalTap, JLabel ingMoney, JLabel goalMoney){
 		if(player.getPlayer().getP_Nickname().equals("")){
 			int temp = 1;
 			String nickname = "";
@@ -230,7 +239,7 @@ public class DataAccessMain {
 				player.setP_Nickname(nickname);
 				setPlayer(player.getPlayer(), state, quest);
 				setMain(player.getPlayer(), nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel,
-						extendBar, educateBar, employBar, computerBar, keyboardBar, state);
+						extendBar, educateBar, employBar, computerBar, keyboardBar, state, ingTap, goalTap, ingMoney, goalMoney, quest);
 				autoRun(totalMoneyJLabel, this.getMain(), 0, tapMoneyJLabel);
 			}else{
 				view.setVisible(false); 
@@ -238,25 +247,11 @@ public class DataAccessMain {
 		}else{
 			setPlayer(player.getPlayer(), state, quest);
 			setMain(player.getPlayer(), nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel,
-					extendBar, educateBar, employBar, computerBar, keyboardBar, state);
+					extendBar, educateBar, employBar, computerBar, keyboardBar, state, ingTap, goalTap, ingMoney, goalMoney, quest);
 			whileNotPlay(view, mainJPanel, subJPanel, player.getPlayer());
 			autoRun(totalMoneyJLabel, this.getMain(), 0, tapMoneyJLabel);
 	
 		}
-		
-		View.potionJLabel.setText(String.format("%,d", main.getM_qtyOfPotion()));
-		View.autoJLabel.setText(String.format("%,d", main.getM_qtyOfAutoTap()));
-		View.lottoJLabel.setText(String.format("%,d",main.getM_qtyOfLotto()));
-		View.cashJLabel.setText(String.format("%,d",player.getPlayer().getP_Cash()));
-		View.sub_potionTimeJLabel.setText(String.format("%,d", main.getM_potiontime()));
-		View.sub_autoTimeJLabel.setText(String.format("%,d",main.getM_autotime()));
-		LottoJPanel.lotto_LottoJLabel.setText(String.format("%,d",main.getM_qtyOfLotto()));
-
-		View.store_AutoJLabel.setText(String.format("%,d", main.getM_qtyOfAutoTap()));
-		View.Store_LottoJLabel.setText(String.format("%,d",main.getM_qtyOfLotto()));
-		View.store_PotionJLabel.setText(String.format("%,d", main.getM_qtyOfPotion()));
-		View.store_CashJLabel.setText(String.format("%,d", player.getPlayer().getP_Cash()));
-		
 
 
 	}
@@ -264,35 +259,11 @@ public class DataAccessMain {
 
 	//*******************ÇÃ·¹ÀÌÇÏÁö ¾ÊÀº µ¿¾È È¹µæÇÑ ±Ý¾× Ãß°¡_180707_1*******************
 	public void whileNotPlay(View view, MainJPanel mainJPanel, SubJPanel subJPanel, Player player){
-		JLabel noticeJLabel = new JLabel("ÇÃ·¹ÀÌ ÇÏÁö ¾ÊÀº µ¿¾È È¹µæÇÑ ±Ý¾× ");
-		JLabel noticeMoneyJLabel = new JLabel();
 		int temp = (int)((new Date().getTime() - player.getP_lastTime().getTime()) / 1000);
 
-		main.setM_TotalOfMoney(main.getM_TotalOfMoney() + (main.getM_AmountOfTapMoney() * temp));
-
-		noticeJLabel.setBounds(82, 80, 300, 50);
-		noticeJLabel.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 11));
-		noticeJLabel.setForeground(new Color(255, 255, 255));
-		noticeMoneyJLabel.setBounds(22, 100, 300, 50);
-		noticeMoneyJLabel.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 11));
-		noticeMoneyJLabel.setForeground(new Color(255, 255, 255));
-		noticeMoneyJLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		noticeMoneyJLabel.setText(String.format("%,d", (main.getM_AmountOfTapMoney() * temp)));
-		
-		mainJPanel.add(noticeJLabel);
-		mainJPanel.add(noticeMoneyJLabel);
-		view.add(subJPanel);
-		view.add(mainJPanel);
-		view.repaint();
-		
-		try {
-			Thread.sleep(3000);
-			noticeJLabel.setVisible(false);
-			noticeMoneyJLabel.setVisible(false);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		return;
+	      main.setM_TotalOfMoney(main.getM_TotalOfMoney() + (main.getM_AmountOfTapMoney() * temp));
+	      
+	        JOptionPane.showMessageDialog(null, "ÈÞ°¡ ±â°£ µ¿¾È È¹µæÇÑ ±Ý¾×! ! !\n" + String.format("%,d", (main.getM_AmountOfTapMoney() * temp)) + "¿ø", "Get Money! ! !", JOptionPane.PLAIN_MESSAGE);
 	}
 	//-----------------------------------------------------------------------
 
