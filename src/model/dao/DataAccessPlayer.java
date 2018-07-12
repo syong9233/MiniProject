@@ -28,7 +28,7 @@ public class DataAccessPlayer {
 					new FileInputStream("player_list.dat"))){
 			while(true){
 				player = (Player)ois.readObject();
-				System.out.println("회원 정보 불러오기 완료");
+				
 			}
 		} catch (EOFException e){
 			return;
@@ -56,6 +56,7 @@ public class DataAccessPlayer {
 		player.setP_lvOfExtend(state.getP_lvOfExtend());
 		player.setTap1(quest.getTap1());
 		player.setTap2(quest.getTap2());
+		player.setTemp2(quest.getTemp2());
 		
 		try (ObjectOutputStream oos = 
 				new ObjectOutputStream(new FileOutputStream("player_list.dat"))){

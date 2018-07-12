@@ -208,7 +208,7 @@ public class View extends JFrame implements KeyListener, ActionListener{
 		cm.loadPlayer();
 		cm.checkFisrtGame(this, nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel, 
 				mainJPanel, subJPanel, stateJPanel.extendBar, stateJPanel.educateBar, stateJPanel.employBar,
-				stateJPanel.computerBar, stateJPanel.keyboardBar);//--------------------------------------------
+				stateJPanel.computerBar, stateJPanel.keyboardBar,questJPanel.ingTap, questJPanel.goalTap, questJPanel.ingMoney, questJPanel.goalMoney );//--------------------------------------------
 	}
 	
 	//*********JButton, JLabel 등의 이벤트 발생 시작 메소드_180707_1************

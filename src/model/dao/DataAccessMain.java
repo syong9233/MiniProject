@@ -75,9 +75,10 @@ public class DataAccessMain {
 						main.setM_potiontime(main.getM_potiontime() - 1);
 						View.sub_potionTimeJLabel.setText(String.format("%,d", main.getM_potiontime()));
 
+
 						if (tim == 10) {
-							main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfAutoMoney());
 							totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()));
+							main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfAutoMoney());
 							tapMoneyJLabel.setText(String.format("%,d", main.getM_AmountOfTapMoney()));
 							tim = 0;
 						}
@@ -88,7 +89,7 @@ public class DataAccessMain {
 
 							main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfTapMoney());
 							totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()));
-							
+
 							main.setM_autotime(main.getM_autotime() - 1);
 							View.sub_autoTimeJLabel.setText(String.format("%,d",main.getM_autotime()));
 
@@ -114,7 +115,7 @@ public class DataAccessMain {
 						Thread.sleep(100);
 
 						System.out.println("tap");
-						
+
 						main.setM_autotime(main.getM_autotime() - 1);
 						View.sub_autoTimeJLabel.setText(String.format("%,d",main.getM_autotime()));
 						totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()));
@@ -147,10 +148,10 @@ public class DataAccessMain {
 	public void keyReleased(TotalMoneyJLabel totalMoneyJLabel, DataAccessQuest quest, DataAccessState state,
 			JLabel goalTap, JLabel ingTap, JLabel goalMoney,
 			JLabel ingMoney , JButton button1, JButton button2, JButton extendJButton, JButton educateJButton,
-																JButton employJButton, JButton computerJButton, JButton keyboardJButton) {	
+			JButton employJButton, JButton computerJButton, JButton keyboardJButton) {	
 		main.setM_TotalOfMoney(main.getM_TotalOfMoney() + main.getM_AmountOfTapMoney());
 		totalMoneyJLabel.setText(String.format("%,d", main.getM_TotalOfMoney()));
-		quest.viewQuest(main, totalMoneyJLabel, goalTap, ingTap, goalMoney, ingMoney);
+		quest.viewQuest(main, goalTap, ingTap, goalMoney, ingMoney);
 		state.keyboardSpace(main, extendJButton, educateJButton,employJButton, computerJButton, keyboardJButton);
 	}// 180710_JButton 추가
 	//-----------------------------------------------------------------------
@@ -159,12 +160,13 @@ public class DataAccessMain {
 	public void setMain(Player player, NicknameJLabel nicknameJLabel, 
 			TotalMoneyJLabel totalMoneyJLabel, AutoMoneyJLabel autoMoneyJLabel, 
 			TapMoneyJLabel tapMoneyJLabel, JProgressBar extendBar, JProgressBar educateBar,
-			JProgressBar employBar, JProgressBar computerBar, JProgressBar keyboardBar, State state) {
+			JProgressBar employBar, JProgressBar computerBar, JProgressBar keyboardBar, State state, 
+			JLabel ingTap, JLabel goalTap, JLabel ingMoney, JLabel goalMoney, Quest quest) {
 		nicknameJLabel.setText("player : " + player.getP_Nickname());
 		totalMoneyJLabel.setText(String.format("%,d", (main.getM_TotalOfMoney())));
 		autoMoneyJLabel.setText(String.format("%,d", (main.getM_AmountOfAutoMoney())));
 		tapMoneyJLabel.setText(String.format("%,d", (main.getM_AmountOfTapMoney())));
-		
+
 		//서브에 템 표시
 		View.potionJLabel.setText(String.format("%,d", main.getM_qtyOfPotion()));
 		View.autoJLabel.setText(String.format("%,d", main.getM_qtyOfAutoTap()));
@@ -172,16 +174,17 @@ public class DataAccessMain {
 		View.lottoJLabel.setText(String.format("%,d",main.getM_qtyOfLotto()));
 		View.sub_potionTimeJLabel.setText(String.format("%,d", main.getM_potiontime()));
 		View.sub_autoTimeJLabel.setText(String.format("%,d",main.getM_autotime()));
-		
+
 		//로또에 템 표시
 		LottoJPanel.lotto_LottoJLabel.setText(String.format("%,d",main.getM_qtyOfLotto()));
-		
+
 		//스토어에 템 표시
 		View.store_AutoJLabel.setText(String.format("%,d", main.getM_qtyOfAutoTap()));
 		View.Store_LottoJLabel.setText(String.format("%,d",main.getM_qtyOfLotto()));
 		View.store_PotionJLabel.setText(String.format("%,d", main.getM_qtyOfPotion()));
 		View.store_CashJLabel.setText(String.format("%,d", player.getP_Cash()));
-		
+
+		//스탯 초기화
 		extendBar.setValue(state.getP_lvOfExtend());
 		educateBar.setValue(state.getP_lvOfEducate());
 		employBar.setValue(state.getP_lvOfEmploy());
@@ -192,6 +195,14 @@ public class DataAccessMain {
 		employBar.setString(state.getP_lvOfEmploy() + "/" + employBar.getMaximum());
 		computerBar.setString(state.getP_lvOfComputer() + "/" + computerBar.getMaximum());
 		keyboardBar.setString(state.getP_lvOfKeyboard() + "/" + keyboardBar.getMaximum());
+
+		quest.setTap2(player.getTap2());
+		quest.setTemp2(player.getTemp2());
+
+		goalTap.setText(player.getTap2() + "");
+		ingTap.setText((player.getP_qtyOfTap() + 1) + "");
+		goalMoney.setText(String.format("%,d", quest.getTemp2()));
+		ingMoney.setText(String.format("%,d", main.getM_TotalOfMoney()));
 	}
 	//-----------------------------------------------------------------------
 	public void reSetMoneyJLabel(AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel) {
@@ -204,7 +215,7 @@ public class DataAccessMain {
 			TotalMoneyJLabel totalMoneyJLabel, AutoMoneyJLabel autoMoneyJLabel,
 			TapMoneyJLabel tapMoneyJLabel, MainJPanel mainJPanel, SubJPanel subJPanel,
 			JProgressBar extendBar, JProgressBar educateBar, JProgressBar employBar,
-			JProgressBar computerBar, JProgressBar keyboardBar){
+			JProgressBar computerBar, JProgressBar keyboardBar, JLabel ingTap, JLabel goalTap, JLabel ingMoney, JLabel goalMoney){
 		if(player.getPlayer().getP_Nickname().equals("")){
 			int temp = 1;
 			String nickname = "";
@@ -230,7 +241,7 @@ public class DataAccessMain {
 				player.setP_Nickname(nickname);
 				setPlayer(player.getPlayer(), state, quest);
 				setMain(player.getPlayer(), nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel,
-						extendBar, educateBar, employBar, computerBar, keyboardBar, state);
+						extendBar, educateBar, employBar, computerBar, keyboardBar, state, ingTap, goalTap, ingMoney, goalMoney, quest);
 				autoRun(totalMoneyJLabel, this.getMain(), 0, tapMoneyJLabel);
 			}else{
 				view.setVisible(false); 
@@ -238,12 +249,12 @@ public class DataAccessMain {
 		}else{
 			setPlayer(player.getPlayer(), state, quest);
 			setMain(player.getPlayer(), nicknameJLabel, totalMoneyJLabel, autoMoneyJLabel, tapMoneyJLabel,
-					extendBar, educateBar, employBar, computerBar, keyboardBar, state);
+					extendBar, educateBar, employBar, computerBar, keyboardBar, state, ingTap, goalTap, ingMoney, goalMoney, quest);
 			whileNotPlay(view, mainJPanel, subJPanel, player.getPlayer());
 			autoRun(totalMoneyJLabel, this.getMain(), 0, tapMoneyJLabel);
-	
+
 		}
-		
+
 		View.potionJLabel.setText(String.format("%,d", main.getM_qtyOfPotion()));
 		View.autoJLabel.setText(String.format("%,d", main.getM_qtyOfAutoTap()));
 		View.lottoJLabel.setText(String.format("%,d",main.getM_qtyOfLotto()));
@@ -256,7 +267,7 @@ public class DataAccessMain {
 		View.Store_LottoJLabel.setText(String.format("%,d",main.getM_qtyOfLotto()));
 		View.store_PotionJLabel.setText(String.format("%,d", main.getM_qtyOfPotion()));
 		View.store_CashJLabel.setText(String.format("%,d", player.getPlayer().getP_Cash()));
-		
+
 
 
 	}
@@ -278,13 +289,13 @@ public class DataAccessMain {
 		noticeMoneyJLabel.setForeground(new Color(255, 255, 255));
 		noticeMoneyJLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		noticeMoneyJLabel.setText(String.format("%,d", (main.getM_AmountOfTapMoney() * temp)));
-		
+
 		mainJPanel.add(noticeJLabel);
 		mainJPanel.add(noticeMoneyJLabel);
 		view.add(subJPanel);
 		view.add(mainJPanel);
 		view.repaint();
-		
+
 		try {
 			Thread.sleep(3000);
 			noticeJLabel.setVisible(false);
@@ -310,11 +321,11 @@ public class DataAccessMain {
 		state.setP_lvOfEmploy(player.getP_lvOfEmploy());
 		state.setP_lvOfExtend(player.getP_lvOfExtend());
 		state.setP_lvOfKeyboard(player.getP_lvOfKeyboard());
-		
+
 		quest.setQ_qtyOfTap(player.getP_qtyOfTap());
 	}
 	//-----------------------------------------------------------------------
-	
+
 	public void loadQuest(Quest quest, JLabel goalTap, JLabel ingTap, JLabel goalMoney, JLabel ingMoney){
 		goalTap.setText(quest.getTap2() + "");
 		ingTap.setText((quest.getQ_qtyOfTap() + 1) + "");
@@ -323,7 +334,7 @@ public class DataAccessMain {
 		ingMoney.setText(String.format("%,d", main.getM_TotalOfMoney()));
 		quest.setQ_qtyOfTotalMoney(main.getM_TotalOfMoney());
 	}
-	
+
 	//*********************게임 내 버튼을 누를 경우 페이지 이동_180707_1*******************
 	public void pageMove(View view, ActionEvent e, MainJPanel mainJPanel,
 			StateJPanel stateJPanel, QuestJPanel questJPanel, StoreJPanel storeJPanel,
@@ -333,10 +344,10 @@ public class DataAccessMain {
 			JProgressBar computerBar, JProgressBar keyboardBar, NicknameJLabel nicknameJLabel,
 			TotalMoneyJLabel totalMoneyJLabel, AutoMoneyJLabel autoMoneyJLabel, TapMoneyJLabel tapMoneyJLabel
 			,DataAccessStore store, StoreBackJButton storeBackJButton, DataAccessPlayer player) {
-		
-		
-		
-	
+
+
+
+
 		if(e.getSource() instanceof StateJButton){
 			stateJPanel.setVisible(true);
 			subJPanel.setVisible(false);
