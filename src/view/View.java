@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import controller.ControllerManager;
+import model.vo.Music;
 import view.jbutton.LottoJButton;
 import view.jbutton.QuestBackJButton;
 import view.jbutton.QuestJButton;
@@ -28,9 +29,7 @@ import view.jbutton.storeMenuJButton.CountAutoTapJButton;
 import view.jbutton.storeMenuJButton.CountCashJButton;
 import view.jbutton.storeMenuJButton.CountLottoJButton;
 import view.jbutton.storeMenuJButton.CountPotionJButton;
-import view.jbutton.storeMenuJButton.Lotto_CountLottoJButton;
 import view.jlabel.AutoMoneyJLabel;
-import view.jlabel.Lotto_LottoJLabel;
 import view.jlabel.NicknameJLabel;
 import view.jlabel.S_AutoJLabel;
 import view.jlabel.S_CashJLabel;
@@ -263,7 +262,7 @@ public class View extends JFrame implements KeyListener, ActionListener{
 	
 	//**********게임 실행_180707_1*************
 	public static void main(String[] args) {
-		//new Music().start();
+		new Music().start();
 		new View();
 		
 	}
